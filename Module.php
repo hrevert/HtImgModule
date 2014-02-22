@@ -30,6 +30,7 @@ class Module
                 'HtImg\Imagine' => 'HtImgModule\Factory\ImagineFactory',
                 'HtImg\RelativePathResolver' => 'HtImgModule\Factory\RelativePathResolverFactory',
                 'HtImg\UrlProvider' => 'HtImgModule\Factory\ImgUrlProviderFactory',
+                'HtImg\ImageService' => 'HtImgModule\Factory\ImageServiceFactory',
             ]
         ];
     }

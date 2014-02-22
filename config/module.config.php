@@ -13,7 +13,7 @@ return [
                     'display' => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/:relativePath',
+                            'route' => '/:filter/:relativePath',
                             'defaults' => [
                                 'controller' => 'htimg',
                                 'action' => 'display'
@@ -25,8 +25,8 @@ return [
         ]
     ],
     'controllers' => [
-        'invokables' => [
-            'htimg' => 'htImgModule\Controller\ImageController'
+        'factories' => [
+            'htimg' => 'HtImgModule\Controller\Factory\ImageControllerFactory'
         ]
     ]
 ];

@@ -2,8 +2,9 @@
 namespace HtImgModule\Options;
 
 use HtImgModule\Exception;
+use Zend\Stdlib\AbstractOptions;
 
-class ModuleOptions implements CacheOptionsInterface
+class ModuleOptions extends AbstractOptions implements CacheOptionsInterface
 {
     protected $enableCache = true;
 
@@ -56,9 +57,9 @@ class ModuleOptions implements CacheOptionsInterface
         return $this;
     }
 
-    public function getImgSourcePathStack(array $imgSourcePathStack)
+    public function getImgSourcePathStack()
     {
-        return $this->imgSourcePathStack
+        return $this->imgSourcePathStack;
     }
 
     public function setImgSourceMap($imgSourceMap)
@@ -79,7 +80,7 @@ class ModuleOptions implements CacheOptionsInterface
         if (!in_array($driver, $this->allowedDrivers)) {
             throw new Exception\InvalidArgumentException(
                 sprintf(
-                    '%s expects parameter 1 to one of %s, %s provided instead'
+                    '%s expects parameter 1 to one of %s, %s provided instead',
                     __METHOD__,
                     implode(', ', $this->allowedDrivers),
                     $driver
