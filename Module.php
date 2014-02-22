@@ -29,6 +29,7 @@ class Module
                 'HtImg\ModuleOptions' => 'HtImgModule\Factory\ModuleOptionsFactory',
                 'HtImg\Imagine' => 'HtImgModule\Factory\ImagineFactory',
                 'HtImg\RelativePathResolver' => 'HtImgModule\Factory\RelativePathResolverFactory',
+                'HtImg\UrlProvider' => 'HtImgModule\Factory\ImgUrlProviderFactory',
             ]
         ];
     }
@@ -37,10 +38,14 @@ class Module
     {
         return [
             'factories' => [
-                'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\Factory\DisplayImageFactory',
+                'HtImgModule\View\Helper\ImgUrl' => 'HtImgModule\View\Helper\Factory\ImgUrlFactory',
+            ],
+            'invokables' => [
+                'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\Factory\DisplayImage',
             ],
             'aliases' => [
-                'htDisplayImage' => 'HtImgModule\View\Helper\DisplayImage'
+                'htDisplayImage' => 'HtImgModule\View\Helper\DisplayImage',
+                'htImgUrl' => 'HtImgModule\View\Helper\ImgUrl',
             ]
         ]
     }

@@ -18,7 +18,7 @@ class DisplayImage extends AbstractHtmlElement
         if ($relativeName === null) {
             return $this;
         }
-        if ($attributes) {
+        if ($attributes !== null) {
             $this->setAttributes($attributes);
         }
         return $this->getImgTag($relativeName, $filter);
