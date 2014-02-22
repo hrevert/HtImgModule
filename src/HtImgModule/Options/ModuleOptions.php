@@ -3,7 +3,7 @@ namespace HtImgModule\Options;
 
 use HtImgModule\Exception;
 
-class ModuleOptions 
+class ModuleOptions implements CacheOptionsInterface
 {
     protected $enableCache = true;
 
