@@ -21,4 +21,27 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return [
+            'factories' => [
+                'HtImg\ModuleOptions' => 'HtImgModule\Factory\ModuleOptionsFactory',
+                'HtImg\Imagine' => 'HtImgModule\Factory\ImagineFactory',
+                'HtImg\RelativePathResolver' => 'HtImgModule\Factory\RelativePathResolverFactory',
+            ]
+        ];
+    }
+
+    public function getViewHelperConfig()
+    {
+        return [
+            'factories' => [
+                'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\Factory\DisplayImageFactory',
+            ],
+            'aliases' => [
+                'htDisplayImage' => 'HtImgModule\View\Helper\DisplayImage'
+            ]
+        ]
+    }
 }
