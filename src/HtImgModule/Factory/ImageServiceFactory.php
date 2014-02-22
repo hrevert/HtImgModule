@@ -10,6 +10,8 @@ class ImageServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new ImageService;
+        $imagine = $serviceLocator->get('HtImg\Imagine');
+
+        return new ImageService($imagine);
     }
 }

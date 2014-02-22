@@ -4,14 +4,12 @@ namespace HtImgModule\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use HtImgModule\Service\ImgUrlProvider;
+use HtImgModel\View\Strategy\ImageStrategy;
 
-class ImgUrlProviderFactory implements FactoryInterface
+class ImageStrategyFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $options = $serviceLocator->get('HtImg\ModuleOptions');
-
-        return new ImgUrlProvider($options);
+        return new ImageStrategy;
     }
 }

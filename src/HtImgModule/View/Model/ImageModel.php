@@ -2,6 +2,7 @@
 namespace HtImgModule\View\Model;
 
 use Zend\View\Model\ViewModel;
+use Imagine\Image\ImageInterface;
 
 class ImageModel extends ViewModel
 {
@@ -28,16 +29,31 @@ class ImageModel extends ViewModel
     protected $imagePath;
 
     /**
-     * @var 
+     * @var ImageInterface
      */
     protected $image; 
 
+    /**
+     * @var string
+     */
+    protected $format;
+
+    /**
+     * @var string
+     */
+    protected $template = 'ht-image/image';
+
+    /**
+     * Constructor
+     *
+     * @param ImageInterface|string $imageOrPath
+     */
     public function __construct($imageOrPath = null)
     {
         if ($imageOrPath !== null) {
             if (is_string($imageOrPath)) {
                 $this->setImagePath($imageOrPath);
-            } else {
+            } elseif ($imageOrPath instanceof ImageInterface) {
                 $this->setImage($imagePath);
             }
         }
@@ -70,10 +86,10 @@ class ImageModel extends ViewModel
     /**
      * Sets image
      *
-     * @param $image
+     * @param ImageInterface $image
      * @return self
      */    
-    public function setImage($image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
 
@@ -83,10 +99,33 @@ class ImageModel extends ViewModel
     /**
      * Gets image
      *
-     * @return 
+     * @return ImageInterface
      */   
     public function getImage()
     {
         return $this->image;
-    }            
+    }
+
+    /**
+     * Sets format
+     *
+     * @param string $format
+     * @return self
+     */     
+    public function setFormat($format)
+    {
+        $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * Gets format
+     *
+     * @return string
+     */      
+    public function getFormat()
+    {
+        return $this->format;
+    }                
 }

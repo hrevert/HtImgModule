@@ -13,7 +13,7 @@ return [
                     'display' => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/:filter/:relativePath',
+                            'route' => '/display/:filter/:relativePath',
                             'defaults' => [
                                 'controller' => 'htimg',
                                 'action' => 'display'
@@ -28,5 +28,13 @@ return [
         'factories' => [
             'htimg' => 'HtImgModule\Controller\Factory\ImageControllerFactory'
         ]
-    ]
+    ],
+    'view_manager' => array(
+        'strategies' => array(
+            'HtImgModule\View\Strategy\ImageStrategy'
+        ),
+        'template_map' => array(
+             'ht-image/image' => __DIR__ . '/../view/ht-image/image.phtml',
+         ),
+    ),
 ];

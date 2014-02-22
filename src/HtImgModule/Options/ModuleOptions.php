@@ -4,11 +4,9 @@ namespace HtImgModule\Options;
 use HtImgModule\Exception;
 use Zend\Stdlib\AbstractOptions;
 
-class ModuleOptions extends AbstractOptions implements CacheOptionsInterface
+class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, FilterOptionsInterface
 {
     protected $enableCache = true;
-
-    protected $cachePrefix = 'media/cache';
 
     protected $imgSourcePathStack = ['./'];
 
@@ -26,6 +24,8 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface
         'gmagick',
     ];
 
+    protected $filterLoaders = [];
+
     public function setEnableCache($enableCache)
     {
         $this->enableCache = (bool) $enableCache;
@@ -36,18 +36,6 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface
     public function getEnableCache()
     {
         return $this->enableCache;
-    }
-
-    public function setCachePrefix($cachePrefix)
-    {
-        $this->cachePrefix = $cachePrefix;
-
-        return $this;
-    }
-
-    public function getCachePrefix()
-    {
-        return $this->cachePrefix;
     }
 
     public function setImgSourcePathStack(array $imgSourcePathStack)
@@ -119,5 +107,17 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface
     public function getWebRoot()
     {
         return $this->webRoot;
+    }
+
+    public function setFilterLoaders(array $filterLoaders)
+    {
+        $this->filterLoaders = $filterLoaders;
+
+        return $this;
+    }
+
+    public function getFilterLoaders()
+    {
+        return $this->filterLoaders;
     }
 }

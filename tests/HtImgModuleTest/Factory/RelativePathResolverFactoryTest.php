@@ -29,7 +29,8 @@ class RelativePathResolverFactoryTest extends \PHPUnit_Framework_TestCase
     public function testResolve()
     {
         $this->assertEquals(false, $this->resolver->resolve('hello'));
-        $this->factory->getStackResolver()->SetPaths([__DIR__]);
-        $this->assertEquals(true, $this->factory->getStackResolver()->resolve('RelativePathResolverFactoryTest.php'));
+        $stackResolver = $this->factory->getStackResolver();
+        $stackResolver->setPaths([__DIR__]);
+        $this->assertEquals(__DIR__ . '\RelativePathResolverFactoryTest.php', $stackResolver->resolve('RelativePathResolverFactoryTest.php'));
     }
 }

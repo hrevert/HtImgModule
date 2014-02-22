@@ -1,13 +1,15 @@
 <?php
 namespace HtImgModule\Service;
 
+use Imagine\Image\ImagineInterface;
+
 class ImageService
 {
     /**
      * Constructor
-     * @param $imagine
+     * @param ImagineInterface $imagine
      */
-    public function __construct($imagine)
+    public function __construct(ImagineInterface $imagine)
     {
         $this->imagine = $imagine;
     }
