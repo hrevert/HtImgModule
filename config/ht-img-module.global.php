@@ -72,6 +72,16 @@ $options = [
      * Filter Loaders
      */
     //'filter_loaders' => [],
+
+    /**
+     * Cache Expiry
+     *
+     * Interval in seconds after which a cached image will expiry and new cache is to be created
+     *
+     * Default: 86400   (1 day)
+     * Accepted value: Integer
+     */
+    //'cache_expiry' => 86400
 ];
 
 

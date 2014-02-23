@@ -9,4 +9,6 @@ interface CacheOptionsInterface
 
     public function getCachePath();
 
+    public function getCacheExpiry();
+
 }

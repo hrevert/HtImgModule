@@ -1,6 +1,16 @@
 <?php
 return [
-    'htimg' => [],
+    'htimg' => [
+        'filters' => [
+            'thumbnail' => [
+                'type' => 'thumbnail',
+                'options' => [
+                    'width' => 100,
+                    'height' => 100,
+                ]            
+            ]
+        ]
+    ],
     'router' => [
         'routes' => [
             'htimg' => [
@@ -13,7 +23,7 @@ return [
                     'display' => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/display/:filter/:relativePath',
+                            'route' => '/display/:filter/',
                             'defaults' => [
                                 'controller' => 'htimg',
                                 'action' => 'display'
@@ -33,8 +43,5 @@ return [
         'strategies' => array(
             'HtImgModule\View\Strategy\ImageStrategy'
         ),
-        'template_map' => array(
-             'ht-image/image' => __DIR__ . '/../view/ht-image/image.phtml',
-         ),
     ),
 ];

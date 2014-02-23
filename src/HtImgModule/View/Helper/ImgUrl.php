@@ -31,11 +31,11 @@ class ImgUrl extends AbstractHelper
         $this->cacheOptions = $cacheOptions;
     }
         
-    public function __invoke($relativeName, $filter = null)
+    public function __invoke($relativeName, $filter)
     {
         if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter)) {
             return $this->getView()->basePath() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter);
         }
-        return $this->getView()->url('htimg/display', array('relativeName' => $relativeName, 'filter' => $filter));
+        return $this->getView()->url('htimg/display', array('filter' => $filter), array('query' => array('relativePath' => $relativeName)));
     }
 }

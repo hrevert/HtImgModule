@@ -3,9 +3,9 @@
 namespace HtImgModule\Imagine\Filter\Loader;
 
 use HtImgModule\Exception\InvalidArgumentException;
-use Imagine\Filter\Advanced\RelativeResize;
+use Imagine\Filter\Advanced\RelativeResize as RelativeResizeFilter;
 
-class RelativeResizeFilterLoader implements LoaderInterface
+class RelativeResize implements LoaderInterface
 {
     /**
      * 
@@ -13,7 +13,7 @@ class RelativeResizeFilterLoader implements LoaderInterface
     public function load(array $options = array())
     {
         foreach ($options as $method => $parameter) {
-            return new RelativeResize($method, $parameter);
+            return new RelativeResizeFilter($method, $parameter);
         }
 
         throw new InvalidArgumentException('Expected method/parameter pair, none given');

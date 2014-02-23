@@ -31,7 +31,7 @@ class DisplayImage extends AbstractHtmlElement
      */
     public function getImgTag($relativeName, $filter)
     {
-        $this->attributes['url'] = $this->getView()->htImgUrl($relativeName, $filter);;
+        $this->attributes['src'] = $this->getView()->htImgUrl($relativeName, $filter);;
         $html = '<img'
             . $this->htmlAttribs($this->getAttributes())
             . $this->getClosingBracket();

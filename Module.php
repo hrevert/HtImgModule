@@ -45,12 +45,12 @@ class Module
                 'HtImgModule\View\Helper\ImgUrl' => 'HtImgModule\View\Helper\Factory\ImgUrlFactory',
             ],
             'invokables' => [
-                'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\Factory\DisplayImage',
+                'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\DisplayImage',
             ],
             'aliases' => [
                 'htDisplayImage' => 'HtImgModule\View\Helper\DisplayImage',
                 'htImgUrl' => 'HtImgModule\View\Helper\ImgUrl',
             ]
-        ]
+        ];
     }
 }

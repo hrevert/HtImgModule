@@ -52,6 +52,7 @@ class ImageService
         $this->cacheManager = $cacheManager;
         $this->cacheOptions = $cacheOptions;
         $this->imagine = $imagine;
+        $this->filterManager = $filterManager;
         $this->relativePathResolver = $relativePathResolver;
     }
 
@@ -68,7 +69,13 @@ class ImageService
             return $this->imagine->open($this->cacheManager->getCachePath($relativePath, $filter));
         }
 
-        return $this->getImage($this->relativePathResolver->resolve($relativePath), $filter);
+        $imagePath = $this->relativePathResolver->resolve($relativePath);
+        $image = $this->getImage($imagePath, $filter);
+        if ($this->cacheOptions->getEnableCache()) {
+            $this->cacheManager->createCache($relativePath, $filter, $image);
+        }
+
+        return $image;
     }
 
     /**
@@ -81,8 +88,6 @@ class ImageService
     public function getImage($imagePath, $filter)
     {
         $image = $this->imagine->open($imagePath);
-        $this->filterManager->getFilter($filter)->apply($image);
-
-        return $image;        
+        return $this->filterManager->getFilter($filter)->apply($image);       
     }
 }

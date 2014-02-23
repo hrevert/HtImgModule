@@ -4,6 +4,7 @@ namespace HtImgModule\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use HtImgModule\Service\ImageService;
 use HtImgModule\View\Model\ImageModel;
+use Imagine\Exception\InvalidArgumentException;
 
 class ImageController extends AbstractActionController
 {
@@ -25,12 +26,20 @@ class ImageController extends AbstractActionController
 
     public function displayAction()
     {
-        $relativePath = $this->params()->fromRoute('relativePath');
+        $relativePath = $this->params()->fromQuery('relativePath');
         $filter = $this->params()->fromRoute('filter');
         if (!$relativePath || !$filter) {
             return $this->notFoundAction();
         }
-        $image = $this->imageService->getImageFromRelativePath($relativePath, $filter);
+        try {
+            $image = $this->imageService->getImageFromRelativePath($relativePath, $filter);
+        } catch (InvalidArgumentException $e) {
+            return $this->notFoundAction();
+        }
+        
+        if (!$image) {
+            return $this->notFoundAction();
+        }
 
         return new ImageModel($image);
 

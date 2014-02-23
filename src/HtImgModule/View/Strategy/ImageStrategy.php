@@ -8,6 +8,7 @@ use Zend\View\ViewEvent;
 use Imagine\Image\ImagineInterface;
 use Imagine\Image\ImageInterface;
 use HtImgModule\Exception;
+use HtImgModule\View\Renderer\ImageRenderer;
 
 class ImageStrategy implements ListenerAggregateInterface
 {
@@ -36,6 +37,7 @@ class ImageStrategy implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
+        $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $priority);
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'passImagine'), $priority);
     }
     
@@ -52,7 +54,7 @@ class ImageStrategy implements ListenerAggregateInterface
     }
     
     /**
-     * Passes the instance of image to the template
+     * Passes the instance of image to the ViewModel when path of image is provided
      *
      * @param ViewEvent $e
      * @return void
@@ -71,6 +73,15 @@ class ImageStrategy implements ListenerAggregateInterface
                 );
             }
             $model->setImage($this->imagine->open($model->getImagePath()));
-        }        
+        }
+        $model->setVariable('image', $model->getImage());        
+    }
+    
+    public function selectRenderer(ViewEvent $e)
+    {
+        $model = $e->getModel();
+        if ($model instanceof ImageModel) {
+            return new ImageRenderer;
+        }
     }          
 }

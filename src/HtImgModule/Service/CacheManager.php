@@ -23,7 +23,12 @@ class CacheManager
     
     public function cacheExists($relativeName, $filter)
     {
-        return is_readable($this->getCachePath($relativeName, $filter));
+        $cachePath = $this->getCachePath($relativeName, $filter);
+        if ((time() - filemtime($cachePath)) > $this->cacheOptions->getCacheExpiry()) {
+            unlink($cachePath);
+            return false;
+        }
+        return is_readable($cachePath);
     }  
     
     public function getCacheUrl($relativeName, $filter)

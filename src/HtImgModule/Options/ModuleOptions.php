@@ -28,6 +28,8 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
 
     protected $cachePath = 'htimg';
 
+    protected $cacheExpiry = 84600;
+
     public function setEnableCache($enableCache)
     {
         $this->enableCache = (bool) $enableCache;
@@ -133,5 +135,17 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     public function getCachePath()
     {
         return $this->cachePath;
+    }
+
+    public function setCacheExpiry($cacheExpiry)
+    {
+        $this->cacheExpiry = $cacheExpiry;
+
+        return $this;
+    }
+
+    public function getCacheExpiry()
+    {
+        return $this->cacheExpiry;
     }
 }

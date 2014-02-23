@@ -39,6 +39,11 @@ class ImageModel extends ViewModel
     protected $template = 'ht-image/image';
 
     /**
+     * @var string
+     */
+    protected $format = 'png';
+
+    /**
      * Constructor
      *
      * @param ImageInterface|string $imageOrPath
@@ -49,7 +54,7 @@ class ImageModel extends ViewModel
             if (is_string($imageOrPath)) {
                 $this->setImagePath($imageOrPath);
             } elseif ($imageOrPath instanceof ImageInterface) {
-                $this->setImage($imagePath);
+                $this->setImage($imageOrPath);
             }
         }
     }
@@ -109,7 +114,7 @@ class ImageModel extends ViewModel
      */     
     public function setFormat($format)
     {
-        $this->setVariable('format', $format);
+        $this->format = $format;
 
         return $this;
     }
@@ -121,6 +126,6 @@ class ImageModel extends ViewModel
      */      
     public function getFormat()
     {
-        return $this->getVariable('format');
+        return $this->format;
     }                
 }
