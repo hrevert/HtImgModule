@@ -3,6 +3,7 @@ namespace HtImgModule\Service;
 
 use HtImgModule\Exception;
 use HtImgModule\Imagine\Filter\Loader\LoaderInterface;
+use HtImgModule\Options\FilterOptionsInterface;
 
 class FilterManager
 {

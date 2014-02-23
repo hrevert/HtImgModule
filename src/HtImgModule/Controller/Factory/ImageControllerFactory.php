@@ -11,6 +11,6 @@ class ImageControllerFactory implements FactoryInterface
     {
         $serviceLocator = $controllers->getServiceLocator();
 
-        return new ImageController($serviceLocator->get('HtImg\ImageServic'));
+        return new ImageController($serviceLocator->get('HtImgModule\Service\ImageService'));
     }
 }

@@ -36,11 +36,6 @@ class ImageModel extends ViewModel
     /**
      * @var string
      */
-    protected $format;
-
-    /**
-     * @var string
-     */
     protected $template = 'ht-image/image';
 
     /**
@@ -114,7 +109,7 @@ class ImageModel extends ViewModel
      */     
     public function setFormat($format)
     {
-        $this->format = $format;
+        $this->setVariable('format', $format);
 
         return $this;
     }
@@ -126,6 +121,6 @@ class ImageModel extends ViewModel
      */      
     public function getFormat()
     {
-        return $this->format;
+        return $this->getVariable('format');
     }                
 }

@@ -29,11 +29,11 @@ class Module
                 'HtImg\ModuleOptions' => 'HtImgModule\Factory\ModuleOptionsFactory',
                 'HtImg\Imagine' => 'HtImgModule\Factory\ImagineFactory',
                 'HtImg\RelativePathResolver' => 'HtImgModule\Factory\RelativePathResolverFactory',
-                'HtImg\UrlProvider' => 'HtImgModule\Factory\ImgUrlProviderFactory',
-                'HtImg\ImageService' => 'HtImgModule\Factory\ImageServiceFactory',
+                'HtImgModule\Service\ImageService' => 'HtImgModule\Factory\ImageServiceFactory',
                 'HtImgModule\View\Strategy\ImageStrategy' => 'HtImgModule\Factory\ImageStrategyFactory',
                 'HtImgModule\Service\FilterLoaderPluginManager' => 'HtImgModule\Factory\FilterLoaderPluginManagerFactory',
                 'HtImgModule\Service\FilterManager' => 'HtImgModule\Factory\FilterManagerFactory',
+                'HtImgModule\Service\CacheManager' => 'HtImgModule\Factory\CacheManagerFactory',
             ]
         ];
     }
@@ -41,9 +41,11 @@ class Module
     public function getViewHelperConfig()
     {
         return [
+            'factories' => [
+                'HtImgModule\View\Helper\ImgUrl' => 'HtImgModule\View\Helper\Factory\ImgUrlFactory',
+            ],
             'invokables' => [
                 'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\Factory\DisplayImage',
-                'HtImgModule\View\Helper\ImgUrl' => 'HtImgModule\View\Helper\ImgUrl',
             ],
             'aliases' => [
                 'htDisplayImage' => 'HtImgModule\View\Helper\DisplayImage',

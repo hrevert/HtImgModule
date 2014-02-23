@@ -13,3 +13,5 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 /* var $loader \Composer\Autoload\ClassLoader */
 $loader->add('HtImgModuleTest\\', __DIR__);
 $loader->add('HtImgModule\\', __DIR__ . '/../src/');
+define('TEST_DIR', __DIR__);
+define('RESOURCES_DIR', TEST_DIR . '/resources');

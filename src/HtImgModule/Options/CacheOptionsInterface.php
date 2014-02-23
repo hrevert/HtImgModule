@@ -5,4 +5,8 @@ interface CacheOptionsInterface
 {
     public function getEnableCache();
 
+    public function getWebRoot();
+
+    public function getCachePath();
+
 }

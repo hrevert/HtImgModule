@@ -30,7 +30,7 @@ class ImageController extends AbstractActionController
         if (!$relativePath || !$filter) {
             return $this->notFoundAction();
         }
-        $image = $this->imageService->getImage($relativePath, $filter);
+        $image = $this->imageService->getImageFromRelativePath($relativePath, $filter);
 
         return new ImageModel($image);
 

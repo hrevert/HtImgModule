@@ -8,7 +8,7 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
 {
     protected $enableCache = true;
 
-    protected $imgSourcePathStack = ['./'];
+    protected $imgSourcePathStack = [];
 
     protected $imgSourceMap = [];
 
@@ -25,6 +25,8 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     ];
 
     protected $filterLoaders = [];
+
+    protected $cachePath = 'htimg';
 
     public function setEnableCache($enableCache)
     {
@@ -119,5 +121,17 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     public function getFilterLoaders()
     {
         return $this->filterLoaders;
+    }
+
+    public function setCachePath($cachePath)
+    {
+        $this->cachePath = $cachePath;
+
+        return $this;
+    }
+
+    public function getCachePath()
+    {
+        return $this->cachePath;
     }
 }
