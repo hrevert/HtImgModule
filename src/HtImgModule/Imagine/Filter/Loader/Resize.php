@@ -2,10 +2,10 @@
 
 namespace HtImgModule\Imagine\Filter\Loader;
 
-use Imagine\Filter\Basic\Resize;
+use Imagine\Filter\Basic\Resize as ResizeFilter;
 use Imagine\Image\Box;
 
-class ResizeFilter implements LoaderInterface
+class Resize implements LoaderInterface
 {
     /**
      * 
@@ -15,6 +15,6 @@ class ResizeFilter implements LoaderInterface
         $width = $options['width'];
         $height = $options['height'];   
 
-        return new Resize(new Box($width, $height));
+        return new ResizeFilter(new Box($width, $height));
     }
 }

@@ -96,6 +96,13 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
         return $this;
     }
 
+    public function addFilter($filterName, array $filterOptions)
+    {
+        $this->filters[$filterName] = $filterOptions;
+
+        return $this;
+    }
+
     public function getFilters()
     {
         return $this->filters;

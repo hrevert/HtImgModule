@@ -10,10 +10,8 @@ class ImageModelTest extends \PHPUnit_Framework_TestCase
     {
         $model = new ImageModel;
         $model->setImagePath('./');
-        $model->setFormat('png');
+        $model->setFormat('jpeg');
         $this->assertEquals('./', $model->getImagePath());
-        $this->assertEquals('png', $model->getFormat());
-        /**$model->setImage(new Image);
-        $this->assertInstanceOf('Imagine\Gd\Image', $model->getImage());**/
+        $this->assertEquals('jpeg', $model->getFormat());
     }
 }
