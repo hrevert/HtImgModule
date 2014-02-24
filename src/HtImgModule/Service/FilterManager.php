@@ -4,6 +4,7 @@ namespace HtImgModule\Service;
 use HtImgModule\Exception;
 use HtImgModule\Imagine\Filter\Loader\LoaderInterface;
 use HtImgModule\Options\FilterOptionsInterface;
+use Imagine\Image\ImageInterface;
 
 class FilterManager
 {
@@ -57,5 +58,10 @@ class FilterManager
         }
 
         return $this->filterLoaderPluginManager->get($options['type'])->load($options['options']);
+    }
+
+    public function applyFilter(ImageInterface $image, $filter)
+    {
+        return $this->getFilter($filter)->apply($image);
     }
 }

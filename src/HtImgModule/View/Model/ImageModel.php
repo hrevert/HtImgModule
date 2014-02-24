@@ -7,7 +7,7 @@ use Imagine\Image\ImageInterface;
 class ImageModel extends ViewModel
 {
     /**
-     * Image probably won't need to be captured into a 
+     * Image won't need to be captured into a 
      * a parent container by default.
      * 
      * @var string
@@ -32,11 +32,6 @@ class ImageModel extends ViewModel
      * @var ImageInterface
      */
     protected $image; 
-
-    /**
-     * @var string
-     */
-    protected $template = 'ht-image/image';
 
     /**
      * @var string

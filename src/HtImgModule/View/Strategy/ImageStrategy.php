@@ -38,7 +38,7 @@ class ImageStrategy implements ListenerAggregateInterface
     public function attach(EventManagerInterface $events, $priority = 1)
     {
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $priority);
-        $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'passImagine'), $priority);
+        $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'injectResponse'), $priority);
     }
     
     /**
@@ -54,34 +54,42 @@ class ImageStrategy implements ListenerAggregateInterface
     }
     
     /**
-     * Passes the instance of image to the ViewModel when path of image is provided
+     * Sets ImageRenderer as Renderer when ImageModel is used
      *
      * @param ViewEvent $e
      * @return void
-     * @throwns Exception\RuntimeException
      */
-    public function passImagine(ViewEvent $e)
-    {
-        $model = $e->getModel();
-        if (!$model instanceof ImageModel) {
-            return ;
-        }
-        if (!$model->getImage() instanceof ImageInterface) {
-            if (!$model->getImagePath()) {
-                throw new Exception\RuntimeException(
-                    'You must provide Imagine\Image\ImageInterface or path of image'
-                );
-            }
-            $model->setImage($this->imagine->open($model->getImagePath()));
-        }
-        $model->setVariable('image', $model->getImage());        
-    }
-    
     public function selectRenderer(ViewEvent $e)
     {
         $model = $e->getModel();
         if ($model instanceof ImageModel) {
+            if (!$model->getImage() instanceof ImageInterface) {
+                if (!$model->getImagePath()) {
+                    throw new Exception\RuntimeException(
+                        'You must provide Imagine\Image\ImageInterface or path of image'
+                    );
+                }
+                $model->setImage($this->imagine->open($model->getImagePath()));
+            }
+             
             return new ImageRenderer;
+        }
+    }
+    
+    /**
+     * Sets the response based on image returned by the renderer
+     *
+     * @param ViewEvent $e
+     * @return void
+     */
+    public function injectResponse(ViewEvent $e)
+    {
+        $model = $e->getModel();
+        if ($model instanceof ImageModel) {
+            $result   = $e->getResult();
+         
+            $response = $e->getResponse();
+            $response->setContent($result);            
         }
     }          
 }

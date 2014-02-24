@@ -50,7 +50,9 @@ class ImageRenderer implements RendererInterface
                     );
                 }
             }
-            $image->show($format ? $format : null);
+            ob_start();
+            $image->show($format);
+            return ob_get_clean();
         }
     }        
 }

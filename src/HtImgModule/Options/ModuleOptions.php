@@ -28,7 +28,7 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
 
     protected $cachePath = 'htimg';
 
-    protected $cacheExpiry = 84600;
+    protected $cacheExpiry = 86400;
 
     public function setEnableCache($enableCache)
     {
