@@ -3,17 +3,17 @@ namespace HtImgModule\Imagine\Filter\Loader\Factory;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\FactoryInterface;
-use HtImgModule\Imagine\Filter\Loader\Paste;
+use HtImgModule\Imagine\Filter\Loader\Watermark;
 
-class PasteFactory implements FactoryInterface
+class WatermarkFactory implements FactoryInterface
 {
      public function createService(ServiceLocatorInterface $filterLoaders)
      {
          $serviceLocator = $filterLoaders->getServiceLocator();
 
-         return new Paste(
+         return new Watermark(
             $serviceLocator->get('HtImg\Imagine'),
             $serviceLocator->get('HtImg\RelativePathResolver')
          );
-     }
+     }    
 }

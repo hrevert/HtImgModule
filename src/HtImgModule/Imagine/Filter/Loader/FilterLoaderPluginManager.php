@@ -16,6 +16,8 @@ class FilterLoaderPluginManager extends AbstractPluginManager
     protected $factories = [
         'chain' => 'HtImgModule\Imagine\Filter\Loader\Factory\ChainFactory',
         'paste' => 'HtImgModule\Imagine\Filter\Loader\Factory\PasteFactory',
+        'watermark' => 'HtImgModule\Imagine\Filter\Loader\Factory\WatermarkFactory',
+        'background' => 'HtImgModule\Imagine\Filter\Loader\Factory\BackgroundFactory',
     ];
 
     public function validatePlugin($plugin)

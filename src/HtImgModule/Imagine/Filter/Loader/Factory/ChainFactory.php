@@ -4,7 +4,7 @@ namespace HtImgModule\Imagine\Filter\Loader\Factory;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\FactoryInterface;
-use HtImgModule\Imagine\Filter\Chain;
+use HtImgModule\Imagine\Filter\Loader\Chain;
 
 class ChainFactory implements FactoryInterface
 {
