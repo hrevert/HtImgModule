@@ -7,6 +7,22 @@ use HtImgModule\Exception;
 
 class Background extends Paste implements LoaderInterface
 {
+
+    /**
+     * @var ImagineInterface
+     */
+    protected $imagine;
+
+    /**
+     * Constructor
+     *
+     * @param ImagineInterface  $imagine
+     */
+    public function __construct(ImagineInterface $imagine)
+    {
+        $this->imagine = $imagine;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -16,7 +32,7 @@ class Background extends Paste implements LoaderInterface
             ? [$options['width'], $options['height']] 
             : null;
         return new BackgroundFilter(
-            $this->imagine->open($this->resolver->load($options['image'])),
+            $this->imagine,
             $size,
             isset($options['color']) ? $options['color'] : '#fff'
         ); 

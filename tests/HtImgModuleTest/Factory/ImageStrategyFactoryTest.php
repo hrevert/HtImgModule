@@ -3,6 +3,7 @@ namespace HtImgModuleTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
 use Imagine\Gd\Imagine;
+use HtImgModule\Factory\ImageStrategyFactory;
 
 class ImageStrategyFactoryTest extends \PHPUnit_Framework_TestCase
 {

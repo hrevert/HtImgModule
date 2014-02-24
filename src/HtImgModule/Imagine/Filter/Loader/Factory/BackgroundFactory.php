@@ -12,8 +12,7 @@ class BackgroundFactory implements FactoryInterface
          $serviceLocator = $filterLoaders->getServiceLocator();
 
          return new Background(
-            $serviceLocator->get('HtImg\Imagine'),
-            $serviceLocator->get('HtImg\RelativePathResolver')
+            $serviceLocator->get('HtImg\Imagine')
          );
      }    
 }

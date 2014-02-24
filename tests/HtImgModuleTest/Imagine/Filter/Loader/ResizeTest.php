@@ -1,6 +1,8 @@
 <?php
 namespace HtImgModuleTest\Imagine\Filter\Loader;
 
+use HtImgModule\Imagine\Filter\Loader\Resize;
+
 class ResizeTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoad()
