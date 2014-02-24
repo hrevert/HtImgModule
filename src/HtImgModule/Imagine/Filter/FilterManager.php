@@ -1,8 +1,7 @@
 <?php
-namespace HtImgModule\Imagine\Filter; 
+namespace HtImgModule\Imagine\Filter;
 
 use HtImgModule\Exception;
-use HtImgModule\Imagine\Filter\Loader\LoaderInterface;
 use HtImgModule\Options\FilterOptionsInterface;
 use Imagine\Image\ImageInterface;
 
@@ -24,7 +23,7 @@ class FilterManager implements FilterManagerInterface
      * @param FilterOptionsInterface $filterOptions
      */
     public function __construct(
-        FilterOptionsInterface $filterOptions, 
+        FilterOptionsInterface $filterOptions,
         Loader\FilterLoaderPluginManager $filterLoaderPluginManager
     )
     {

@@ -10,8 +10,8 @@ class FilterLoaderPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions); 
+        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions);
         $factory = new FilterLoaderPluginManagerFactory();
-        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager', $factory->createService($serviceManager));         
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager', $factory->createService($serviceManager));
     }
 }

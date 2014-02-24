@@ -12,7 +12,7 @@ class PasteFactory implements FactoryInterface
          $serviceLocator = $filterLoaders->getServiceLocator();
 
          return new Paste(
-            $serviceLocator->get('HtImg\Imagine'), 
+            $serviceLocator->get('HtImg\Imagine'),
             $serviceLocator->get('HtImg\RelativePathResolver')
          );
      }

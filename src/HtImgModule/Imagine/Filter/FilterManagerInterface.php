@@ -1,5 +1,5 @@
 <?php
-namespace HtImgModule\Imagine\Filter; 
+namespace HtImgModule\Imagine\Filter;
 
 use Imagine\Image\ImageInterface;
 
@@ -8,7 +8,7 @@ interface FilterManagerInterface
     /**
      * Gets a filter
      *
-     * @param string $filter
+     * @param  string                                          $filter
      * @return Imagine\Filter\FilterInterface
      * @throws \HtImgModule\Exception\FilterNotFoundException
      * @throws \HtImgModule\Exception\InvalidArgumentException
@@ -19,15 +19,15 @@ interface FilterManagerInterface
      * Applies a filter to a image and gives the new image
      *
      * @param ImageInterface $filter
-     * @param string $filter
+     * @param string         $filter
      */
     public function applyFilter(ImageInterface $image, $filter);
 
     /**
      * Adds a new Filter
-     * 
-     * @param string $name
-     * @param array $options
+     *
+     * @param  string $name
+     * @param  array  $options
      * @return self
      */
     public function addFilter($name, array $options);

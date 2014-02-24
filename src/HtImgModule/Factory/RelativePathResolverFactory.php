@@ -16,6 +16,7 @@ class RelativePathResolverFactory implements FactoryInterface
         $resolver = new Resolver\AggregateResolver();
         $resolver->attach($this->getMapResolver())    // this will be consulted first
                  ->attach($this->getStackResolver());
+
         return $resolver;
     }
 
@@ -26,13 +27,13 @@ class RelativePathResolverFactory implements FactoryInterface
         ]);
         $stack->setDefaultSuffix('');
 
-        return $stack;        
+        return $stack;
     }
 
     public function getMapResolver()
     {
-        $map = new Resolver\TemplateMapResolver($this->options->getImgSourceMap()); 
+        $map = new Resolver\TemplateMapResolver($this->options->getImgSourceMap());
 
-        return $map;    
+        return $map;
     }
 }

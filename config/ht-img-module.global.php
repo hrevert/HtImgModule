@@ -11,7 +11,7 @@ $options = [
     /**
      * Enable Cache
      *
-     * Whether or not to cache image in public path, 
+     * Whether or not to cache image in public path,
      * so that Apache(or whatever) can directly get image
      * This can improve a lot of performance
      *
@@ -64,7 +64,7 @@ $options = [
      /**
       * Cache Path(Relative to web root)
       *
-      * Default: htimg 
+      * Default: htimg
       */
     //'cache_path' => 'htimg'
 
@@ -83,7 +83,6 @@ $options = [
      */
     //'cache_expiry' => 86400
 ];
-
 
 /**
  * You do not need to edit below this line

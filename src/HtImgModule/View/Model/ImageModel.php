@@ -7,20 +7,20 @@ use Imagine\Image\ImageInterface;
 class ImageModel extends ViewModel
 {
     /**
-     * Image won't need to be captured into a 
+     * Image won't need to be captured into a
      * a parent container by default.
-     * 
+     *
      * @var string
      */
     protected $captureTo = null;
 
     /**
      * Image is terminal
-     * 
+     *
      * @var bool
      */
-    protected $terminate = true; 
-    
+    protected $terminate = true;
+
     /**
      * Path of image to show
      *
@@ -31,7 +31,7 @@ class ImageModel extends ViewModel
     /**
      * @var ImageInterface
      */
-    protected $image; 
+    protected $image;
 
     /**
      * @var string
@@ -53,11 +53,11 @@ class ImageModel extends ViewModel
             }
         }
     }
-    
+
     /**
      * Sets path of image to show
      *
-     * @param string $imagePath
+     * @param  string $imagePath
      * @return self
      */
     public function setImagePath($imagePath)
@@ -65,7 +65,7 @@ class ImageModel extends ViewModel
         $this->imagePath = $imagePath;
 
         return $this;
-        
+
     }
 
     /**
@@ -81,9 +81,9 @@ class ImageModel extends ViewModel
     /**
      * Sets image
      *
-     * @param ImageInterface $image
+     * @param  ImageInterface $image
      * @return self
-     */    
+     */
     public function setImage(ImageInterface $image)
     {
         $this->image = $image;
@@ -95,7 +95,7 @@ class ImageModel extends ViewModel
      * Gets image
      *
      * @return ImageInterface
-     */   
+     */
     public function getImage()
     {
         return $this->image;
@@ -104,9 +104,9 @@ class ImageModel extends ViewModel
     /**
      * Sets format
      *
-     * @param string $format
+     * @param  string $format
      * @return self
-     */     
+     */
     public function setFormat($format)
     {
         $this->format = $format;
@@ -118,9 +118,9 @@ class ImageModel extends ViewModel
      * Gets format
      *
      * @return string
-     */      
+     */
     public function getFormat()
     {
         return $this->format;
-    }                
+    }
 }

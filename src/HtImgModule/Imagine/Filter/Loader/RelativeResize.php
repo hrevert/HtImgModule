@@ -8,7 +8,7 @@ use Imagine\Filter\Advanced\RelativeResize as RelativeResizeFilter;
 class RelativeResize implements LoaderInterface
 {
     /**
-     * 
+     *
      */
     public function load(array $options = array())
     {

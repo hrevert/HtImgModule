@@ -9,8 +9,8 @@ class ThumbnailTest extends \PHPUnit_Framework_TestCase
     {
         $options = [
             'width' => 100,
-            'height' => 100, 
-            'mode' => 'outbound' ,      
+            'height' => 100,
+            'mode' => 'outbound' ,
         ];
         $this->assertInstanceOf('Imagine\Filter\Basic\Thumbnail', (new Thumbnail)->load($options));
     }

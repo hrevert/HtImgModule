@@ -3,24 +3,23 @@ namespace HtImgModule\Service;
 
 use Imagine\Image\ImagineInterface;
 use HtImgModule\Options\CacheOptionsInterface;
-use HtImgModule\Service\CacheManagerInterface;
 use Zend\View\Resolver\AggregateResolver;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
 
 class ImageService
 {
     /**
-     * @var CacheOptionsInterface 
+     * @var CacheOptionsInterface
      */
     protected $cacheOptions;
 
     /**
-     * @var CacheManagerInterface 
+     * @var CacheManagerInterface
      */
     protected $cacheManager;
 
     /**
-     * @var ImagineInterface 
+     * @var ImagineInterface
      */
     protected $imagine;
 
@@ -36,15 +35,15 @@ class ImageService
 
     /**
      * Constructor
-     * 
-     * @param CacheManagerInterface $cacheManager
-     * @param CacheOptionsInterface $cacheOptions
-     * @param ImagineInterface $imagine
+     *
+     * @param CacheManagerInterface  $cacheManager
+     * @param CacheOptionsInterface  $cacheOptions
+     * @param ImagineInterface       $imagine
      * @param FilterManagerInterface $filterManager
      */
     public function __construct(
-        CacheManagerInterface $cacheManager, 
-        CacheOptionsInterface $cacheOptions, 
+        CacheManagerInterface $cacheManager,
+        CacheOptionsInterface $cacheOptions,
         ImagineInterface $imagine,
         AggregateResolver $relativePathResolver,
         FilterManagerInterface $filterManager
@@ -58,10 +57,10 @@ class ImageService
     }
 
     /**
-     * Gets image from relative path of image 
+     * Gets image from relative path of image
      *
-     * @param string $relativePath
-     * @param string $filter
+     * @param  string                        $relativePath
+     * @param  string                        $filter
      * @return \Imagine\Image\ImageInterface
      */
     public function getImageFromRelativePath($relativePath, $filter)
@@ -80,15 +79,16 @@ class ImageService
     }
 
     /**
-     * Gets image from path of image 
+     * Gets image from path of image
      *
-     * @param string $imagePath
-     * @param string $filter
+     * @param  string                        $imagePath
+     * @param  string                        $filter
      * @return \Imagine\Image\ImageInterface
      */
     public function getImage($imagePath, $filter)
     {
         $image = $this->imagine->open($imagePath);
-        return $this->filterManager->getFilter($filter)->apply($image);       
+
+        return $this->filterManager->getFilter($filter)->apply($image);
     }
 }

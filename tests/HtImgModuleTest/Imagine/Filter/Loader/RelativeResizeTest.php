@@ -14,5 +14,5 @@ class RelativeResizeTest extends \PHPUnit_Framework_TestCase
         ];
         $filter = $loader->load($options);
         $this->assertInstanceOf('Imagine\Filter\Advanced\RelativeResize', $filter);
-    }    
+    }
 }

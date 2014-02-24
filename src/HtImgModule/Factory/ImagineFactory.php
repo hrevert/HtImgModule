@@ -16,6 +16,7 @@ class ImagineFactory implements FactoryInterface
     {
         $options = $serviceLocator->get('HtImg\ModuleOptions');
         $class = $this->classes[$options->getDriver()];
+
         return new $class;
     }
 }

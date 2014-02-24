@@ -12,10 +12,10 @@ class ImagineFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $options = new ModuleOptions;
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('HtImg\ModuleOptions', $options); 
+        $serviceManager->setService('HtImg\ModuleOptions', $options);
         $factory = new ImagineFactory();
         $this->assertInstanceOf('Imagine\Image\ImagineInterface', $factory->createService($serviceManager));
-                   
+
     }
 
 }

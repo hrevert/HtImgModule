@@ -55,7 +55,7 @@ class Paste implements FilterInterface
     }
 
     /**
-     * @param string $point
+     * @param string                        $point
      * @param \Imagine\Image\ImageInterface $pasteImage
      * @param \Imagine\Image\ImageInterface $image
      *
@@ -75,7 +75,7 @@ class Paste implements FilterInterface
     }
 
     /**
-     * @param string $point
+     * @param string                        $point
      * @param \Imagine\Image\ImageInterface $pasteImage
      * @param \Imagine\Image\ImageInterface $image
      *
@@ -96,8 +96,8 @@ class Paste implements FilterInterface
 
     /**
      * @param integer|string $point
-     * @param string $pointName
-     * @param array $allowedStringValues
+     * @param string         $pointName
+     * @param array          $allowedStringValues
      *
      * @throws \InvalidArgumentException
      */
@@ -116,5 +116,5 @@ class Paste implements FilterInterface
             $pointName,
             implode('|', $allowedStringValues)
         ));
-    }    
+    }
 }

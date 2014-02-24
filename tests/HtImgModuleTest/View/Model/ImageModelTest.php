@@ -2,7 +2,6 @@
 namespace HtImgModuleTest\View\Model;
 
 use HtImgModule\View\Model\ImageModel;
-use Imagine\Gd\Image;
 
 class ImageModelTest extends \PHPUnit_Framework_TestCase
 {

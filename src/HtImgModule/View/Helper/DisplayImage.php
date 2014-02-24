@@ -21,6 +21,7 @@ class DisplayImage extends AbstractHtmlElement
         if ($attributes !== null) {
             $this->setAttributes($attributes);
         }
+
         return $this->getImgTag($relativeName, $filter);
     }
 
@@ -50,5 +51,5 @@ class DisplayImage extends AbstractHtmlElement
     {
         return $this->attributes;
     }
-      
+
 }

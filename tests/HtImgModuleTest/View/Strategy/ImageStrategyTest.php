@@ -14,20 +14,20 @@ class ImageStrategyTest extends \PHPUnit_Framework_TestCase
         $this->model = new ImageModel;
         $this->strategy = new ImageStrategy(new Imagine);
         $this->viewEvent = new ViewEvent();
-        $this->viewEvent->setModel($this->model);     
+        $this->viewEvent->setModel($this->model);
     }
 
     public function testException()
     {
         $this->setExpectedException('HtImgModule\Exception\RuntimeException');
-        $this->strategy->selectRenderer($this->viewEvent); 
+        $this->strategy->selectRenderer($this->viewEvent);
     }
 
     public function testAnotherModel()
     {
         $viewEvent = new ViewEvent();
         $viewEvent->setModel(new ViewModel);
-        $this->strategy->selectRenderer($viewEvent); 
+        $this->strategy->selectRenderer($viewEvent);
     }
 
 }

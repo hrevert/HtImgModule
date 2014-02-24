@@ -36,7 +36,7 @@ class ImageController extends AbstractActionController
         } catch (InvalidArgumentException $e) {
             return $this->notFoundAction();
         }
-        
+
         if (!$image) {
             return $this->notFoundAction();
         }

@@ -5,7 +5,6 @@ use Zend\View\Renderer\RendererInterface;
 use Zend\View\Resolver\ResolverInterface;
 use HtImgModule\View\Model\ImageModel;
 use HtImgModule\Exception;
-use Imagine\Image\ImagineInterface;
 use Imagine\Image\ImageInterface;
 
 class ImageRenderer implements RendererInterface
@@ -23,7 +22,7 @@ class ImageRenderer implements RendererInterface
     {
         return $this;
     }
-    
+
     /**
      * Set the resolver used to map a template name to a resource the renderer may consume.
      *
@@ -36,7 +35,7 @@ class ImageRenderer implements RendererInterface
 
         return $this;
     }
-    
+
     public function render($nameOrModel, $values = null)
     {
         if ($nameOrModel instanceof ImageModel) {
@@ -52,7 +51,8 @@ class ImageRenderer implements RendererInterface
             }
             ob_start();
             $image->show($format);
+
             return ob_get_clean();
         }
-    }        
+    }
 }

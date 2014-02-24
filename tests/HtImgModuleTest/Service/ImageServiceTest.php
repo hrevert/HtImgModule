@@ -3,7 +3,7 @@ namespace HtImgModuleTest\Service;
 
 use HtImgModule\Service\ImageService;
 use HtImgModule\Options\ModuleOptions;
-use HtImgModule\Service\CacheManager; 
+use HtImgModule\Service\CacheManager;
 use Imagine\Gd\Imagine;
 use HtImgModule\Imagine\Filter\FilterManager;
 

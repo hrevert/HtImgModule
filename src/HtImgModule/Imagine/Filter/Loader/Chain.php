@@ -1,7 +1,6 @@
 <?php
 namespace HtImgModule\Imagine\Filter\Loader;
 
-use HtImgModule\Imagine\Filter\FilterManagerInterface;
 use HtImgModule\Exception;
 
 class Chain implements LoaderInterface
@@ -21,7 +20,7 @@ class Chain implements LoaderInterface
 
     /**
      * {@inheritDoc}
-     */    
+     */
     public function load(array $options = array())
     {
         if (false == isset($options['filters']) || false == is_array($options['filters'])) {
@@ -40,6 +39,6 @@ class Chain implements LoaderInterface
         }
 
         return new ChainFilter($filters);
-             
-    }    
+
+    }
 }

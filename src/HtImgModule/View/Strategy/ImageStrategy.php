@@ -15,12 +15,12 @@ class ImageStrategy implements ListenerAggregateInterface
     /**
      * @var \Zend\Stdlib\CallbackHandler[]
      */
-    protected $listeners = array(); 
-    
+    protected $listeners = array();
+
     /**
      * @var ImagineInterface
      */
-    protected $imagine; 
+    protected $imagine;
 
     /**
      * Constructor
@@ -31,7 +31,7 @@ class ImageStrategy implements ListenerAggregateInterface
     {
         $this->imagine = $imagine;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -40,7 +40,7 @@ class ImageStrategy implements ListenerAggregateInterface
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $priority);
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'injectResponse'), $priority);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -52,11 +52,11 @@ class ImageStrategy implements ListenerAggregateInterface
             }
         }
     }
-    
+
     /**
      * Sets ImageRenderer as Renderer when ImageModel is used
      *
-     * @param ViewEvent $e
+     * @param  ViewEvent $e
      * @return void
      */
     public function selectRenderer(ViewEvent $e)
@@ -71,15 +71,15 @@ class ImageStrategy implements ListenerAggregateInterface
                 }
                 $model->setImage($this->imagine->open($model->getImagePath()));
             }
-             
+
             return new ImageRenderer;
         }
     }
-    
+
     /**
      * Sets the response based on image returned by the renderer
      *
-     * @param ViewEvent $e
+     * @param  ViewEvent $e
      * @return void
      */
     public function injectResponse(ViewEvent $e)
@@ -87,9 +87,9 @@ class ImageStrategy implements ListenerAggregateInterface
         $model = $e->getModel();
         if ($model instanceof ImageModel) {
             $result   = $e->getResult();
-         
+
             $response = $e->getResponse();
-            $response->setContent($result);            
+            $response->setContent($result);
         }
-    }          
+    }
 }

@@ -1,8 +1,7 @@
 <?php
-namespace HtImgModule\Factory;
+namespace HtImgModuleTest\Factory;
 
 use Zend\ServiceManager\ServiceManager;
-use HtImgModule\Factory\ImageStrategyFactory;
 use Imagine\Gd\Imagine;
 
 class ImageStrategyFactoryTest extends \PHPUnit_Framework_TestCase
@@ -12,6 +11,6 @@ class ImageStrategyFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService('HtImg\Imagine', new Imagine);
         $factory = new ImageStrategyFactory();
-        $this->assertInstanceOf('HtImgModule\View\Strategy\ImageStrategy', $factory->createService($serviceManager)); 
+        $this->assertInstanceOf('HtImgModule\View\Strategy\ImageStrategy', $factory->createService($serviceManager));
     }
 }

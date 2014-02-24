@@ -10,8 +10,8 @@ class CacheManagerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions); 
+        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions);
         $factory = new CacheManagerFactory();
-        $this->assertInstanceOf('HtImgModule\Service\CacheManager', $factory->createService($serviceManager));   
+        $this->assertInstanceOf('HtImgModule\Service\CacheManager', $factory->createService($serviceManager));
     }
 }

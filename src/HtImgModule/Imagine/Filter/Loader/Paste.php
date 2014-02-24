@@ -21,7 +21,7 @@ class Paste implements LoaderInterface
     /**
      * Constructor
      *
-     * @param ImagineInterface $imagine
+     * @param ImagineInterface  $imagine
      * @param ResolverInterface $resolver
      */
     public function __construct(ImagineInterface $imagine, ResolverInterface $resolver)
@@ -29,7 +29,7 @@ class Paste implements LoaderInterface
         $this->imagine = $imagine;
         $this->resolver = $resolver;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -54,6 +54,6 @@ class Paste implements LoaderInterface
 
         $image = $this->imagine->open($path);
 
-        return new PasteFilter($image, $x, $y);        
-    }        
+        return new PasteFilter($image, $x, $y);
+    }
 }

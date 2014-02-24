@@ -15,15 +15,15 @@ class RelativePathResolverFactoryTest extends \PHPUnit_Framework_TestCase
     public function SetUp()
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions); 
+        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions);
         $factory = new RelativePathResolverFactory();
         $this->factory = $factory;
-        $this->resolver = $factory->createService($serviceManager);             
+        $this->resolver = $factory->createService($serviceManager);
     }
 
     public function testFactory()
     {
-        $this->assertInstanceOf('Zend\View\Resolver\AggregateResolver', $this->resolver);   
+        $this->assertInstanceOf('Zend\View\Resolver\AggregateResolver', $this->resolver);
     }
 
     public function testResolve()
