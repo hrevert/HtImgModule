@@ -9,5 +9,5 @@ interface LoaderInterface
      *
      * @return \Imagine\Filter\FilterInterface
      */
-    function load(array $options = array());    
+    public function load(array $options = array());    
 }

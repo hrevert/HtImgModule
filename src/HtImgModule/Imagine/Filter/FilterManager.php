@@ -1,12 +1,12 @@
 <?php
-namespace HtImgModule\Service; 
+namespace HtImgModule\Imagine\Filter; 
 
 use HtImgModule\Exception;
 use HtImgModule\Imagine\Filter\Loader\LoaderInterface;
 use HtImgModule\Options\FilterOptionsInterface;
 use Imagine\Image\ImageInterface;
 
-class FilterManager
+class FilterManager implements FilterManagerInterface
 {
     /**
      * @var FilterOptionsInterface
@@ -25,13 +25,16 @@ class FilterManager
      */
     public function __construct(
         FilterOptionsInterface $filterOptions, 
-        FilterLoaderPluginManager $filterLoaderPluginManager
+        Loader\FilterLoaderPluginManager $filterLoaderPluginManager
     )
     {
         $this->filterOptions = $filterOptions;
         $this->filterLoaderPluginManager = $filterLoaderPluginManager;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getFilter($filter)
     {
         if (!isset($this->filterOptions->getFilters()[$filter])) {
@@ -60,8 +63,21 @@ class FilterManager
         return $this->filterLoaderPluginManager->get($options['type'])->load($options['options']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function applyFilter(ImageInterface $image, $filter)
     {
         return $this->getFilter($filter)->apply($image);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addFilter($name, array $options)
+    {
+        $this->filterOptions->addFilter($name, $options);
+
+        return $this;
     }
 }

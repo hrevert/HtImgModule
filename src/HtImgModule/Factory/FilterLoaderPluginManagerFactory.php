@@ -3,7 +3,7 @@ namespace HtImgModule\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use HtImgModule\Service\FilterLoaderPluginManager;
+use HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager;
 use Zend\ServiceManager\Config;
 
 class FilterLoaderPluginManagerFactory implements FactoryInterface

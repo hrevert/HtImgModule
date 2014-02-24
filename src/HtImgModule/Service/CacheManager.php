@@ -4,7 +4,7 @@ namespace HtImgModule\Service;
 use HtImgModule\Options\CacheOptionsInterface;
 use Imagine\Image\ImageInterface;
 
-class CacheManager
+class CacheManager implements CacheManagerInterface
 {
     /**
      * @var CacheOptionsInterface 
@@ -21,6 +21,9 @@ class CacheManager
         $this->cacheOptions = $cacheOptions;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public function cacheExists($relativeName, $filter)
     {
         $cachePath = $this->getCachePath($relativeName, $filter);
@@ -33,17 +36,26 @@ class CacheManager
 
         return false;
     }  
-    
+
+    /**
+     * {@inheritDoc}
+     */   
     public function getCacheUrl($relativeName, $filter)
     {
         return $this->cacheOptions->getCachePath() . '/' . $filter . '/'. $relativeName;        
     }
-    
+ 
+    /**
+     * {@inheritDoc}
+     */    
     public function getCachePath($relativeName, $filter)
     {
         return $this->cacheOptions->getWebRoot() . '/' . $this->getCacheUrl($relativeName, $filter);
     }      
-    
+
+    /**
+     * {@inheritDoc}
+     */     
     public function createCache($relativeName, $filter, ImageInterface $image)
     {
         $cachePath = $this->getCachePath($relativeName, $filter);

@@ -4,7 +4,7 @@ namespace HtImgModuleTest\Factory;
 use Zend\ServiceManager\ServiceManager;
 use HtImgModule\Factory\FilterManagerFactory;
 use HtImgModule\Options\ModuleOptions;
-use HtImgModule\Service\FilterLoaderPluginManager;
+use HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager;
 
 class FilterManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,8 +12,8 @@ class FilterManagerFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $serviceManager = new ServiceManager();
         $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions); 
-        $serviceManager->setService('HtImgModule\Service\FilterLoaderPluginManager', new FilterLoaderPluginManager); 
+        $serviceManager->setService('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager', new FilterLoaderPluginManager); 
         $factory = new FilterManagerFactory();
-        $this->assertInstanceOf('HtImgModule\Service\FilterManager', $factory->createService($serviceManager));   
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\FilterManager', $factory->createService($serviceManager));   
     }
 }

@@ -5,7 +5,7 @@ namespace HtImgModule\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 use HtImgModule\Service\ImgUrlProviderInterface;
 use HtImgModule\Options\CacheOptionsInterface;
-use HtImgModule\Service\CacheManager;
+use HtImgModule\Service\CacheManagerInterface;
 
 class ImgUrl extends AbstractHelper
 {
@@ -15,17 +15,17 @@ class ImgUrl extends AbstractHelper
     protected $cacheOptions;
 
     /**
-     * @var CacheManager 
+     * @var CacheManagerInterface 
      */
     protected $cacheManager;
 
     /**
      * Constructor
      * 
-     * @param CacheManager $cacheManager
+     * @param CacheManagerInterface $cacheManager
      * @param CacheOptionsInterface $cacheOptions
      */
-    public function __construct(CacheManager $cacheManager, CacheOptionsInterface $cacheOptions)
+    public function __construct(CacheManagerInterface $cacheManager, CacheOptionsInterface $cacheOptions)
     {
         $this->cacheManager = $cacheManager;
         $this->cacheOptions = $cacheOptions;

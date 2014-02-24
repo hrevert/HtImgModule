@@ -5,7 +5,7 @@ use HtImgModule\Service\ImageService;
 use HtImgModule\Options\ModuleOptions;
 use HtImgModule\Service\CacheManager; 
 use Imagine\Gd\Imagine;
-use HtImgModule\Service\FilterManager;
+use HtImgModule\Imagine\Filter\FilterManager;
 
 class ImageServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,7 +20,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
         $resolver->expects($this->any())
             ->method('resolve')
             ->will($this->returnValue(true));
-        $filterManager = new FilterManager($options, $this->getMock('HtImgModule\Service\FilterLoaderPluginManager'));
+        $filterManager = new FilterManager($options, $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
         $resolver->expects($this->any())
             ->method('getFilter')
             ->will($this->returnValue($this->getMock('Imagine\Filter\FilterInterface')));

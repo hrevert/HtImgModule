@@ -3,8 +3,9 @@ namespace HtImgModule\Service;
 
 use Imagine\Image\ImagineInterface;
 use HtImgModule\Options\CacheOptionsInterface;
-use HtImgModule\Service\CacheManager;
+use HtImgModule\Service\CacheManagerInterface;
 use Zend\View\Resolver\AggregateResolver;
+use HtImgModule\Imagine\Filter\FilterManagerInterface;
 
 class ImageService
 {
@@ -14,7 +15,7 @@ class ImageService
     protected $cacheOptions;
 
     /**
-     * @var CacheManager 
+     * @var CacheManagerInterface 
      */
     protected $cacheManager;
 
@@ -29,24 +30,24 @@ class ImageService
     protected $relativePathResolver;
 
     /**
-     * @var FilterManager
+     * @var FilterManagerInterface
      */
     protected $filterManager;
 
     /**
      * Constructor
      * 
-     * @param CacheManager $cacheManager
+     * @param CacheManagerInterface $cacheManager
      * @param CacheOptionsInterface $cacheOptions
      * @param ImagineInterface $imagine
-     * @param FilterManager $filterManager
+     * @param FilterManagerInterface $filterManager
      */
     public function __construct(
-        CacheManager $cacheManager, 
+        CacheManagerInterface $cacheManager, 
         CacheOptionsInterface $cacheOptions, 
         ImagineInterface $imagine,
         AggregateResolver $relativePathResolver,
-        FilterManager $filterManager
+        FilterManagerInterface $filterManager
     )
     {
         $this->cacheManager = $cacheManager;

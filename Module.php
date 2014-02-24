@@ -31,8 +31,8 @@ class Module
                 'HtImg\RelativePathResolver' => 'HtImgModule\Factory\RelativePathResolverFactory',
                 'HtImgModule\Service\ImageService' => 'HtImgModule\Factory\ImageServiceFactory',
                 'HtImgModule\View\Strategy\ImageStrategy' => 'HtImgModule\Factory\ImageStrategyFactory',
-                'HtImgModule\Service\FilterLoaderPluginManager' => 'HtImgModule\Factory\FilterLoaderPluginManagerFactory',
-                'HtImgModule\Service\FilterManager' => 'HtImgModule\Factory\FilterManagerFactory',
+                'HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager' => 'HtImgModule\Factory\FilterLoaderPluginManagerFactory',
+                'HtImgModule\Imagine\Filter\FilterManager' => 'HtImgModule\Factory\FilterManagerFactory',
                 'HtImgModule\Service\CacheManager' => 'HtImgModule\Factory\CacheManagerFactory',
             ]
         ];

@@ -14,7 +14,7 @@ class ImageServiceFactory implements FactoryInterface
         $options = $serviceLocator->get('HtImg\ModuleOptions');
         $cacheManager = $serviceLocator->get('HtImgModule\Service\CacheManager');
         $resolver = $serviceLocator->get('HtImg\RelativePathResolver');
-        $filterManager = $serviceLocator->get('HtImgModule\Service\FilterManager');
+        $filterManager = $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager');
 
         return new ImageService($cacheManager, $options, $imagine, $resolver, $filterManager);
     }

@@ -1,5 +1,5 @@
 <?php
-namespace HtImgModule\Service; 
+namespace HtImgModule\Imagine\Filter\Loader;
 
 use Zend\ServiceManager\AbstractPluginManager;
 use HtImgModule\Imagine\Filter\Loader\LoaderInterface;
@@ -7,12 +7,17 @@ use HtImgModule\Exception;
 
 class FilterLoaderPluginManager extends AbstractPluginManager
 {
-    protected $invokableClasses = array(
+    protected $invokableClasses = [
         'crop' => 'HtImgModule\Imagine\Filter\Loader\Crop',
         'relative_resize' => 'HtImgModule\Imagine\Filter\Loader\RelativeResize',
         'resize' => 'HtImgModule\Imagine\Filter\Loader\Resize',
         'thumbnail' => 'HtImgModule\Imagine\Filter\Loader\Thumbnail',
-    );
+    ];
+
+    protected $factories = [
+        'chain' => 'HtImgModule\Imagine\Filter\Loader\Factory\ChainFactory',
+        'paste' => 'HtImgModule\Imagine\Filter\Loader\Factory\PasteFactory',    
+    ];
     
     public function validatePlugin($plugin)
     {
