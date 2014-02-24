@@ -24,41 +24,45 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function cacheExists($relativeName, $filter)
+    public function cacheExists($relativeName, $filter, $format = null)
     {
-        $cachePath = $this->getCachePath($relativeName, $filter);
-        if (is_readable($cachePath)) {
+        $cachePath = $this->getCachePath($relativeName, $filter, $format);
+        if (is_file($cachePath) && is_readable($cachePath)) {
             if ((time() - filemtime($cachePath)) < $this->cacheOptions->getCacheExpiry()) {
                 return true;
             }
             unlink($cachePath);
         }
-
+        
         return false;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCacheUrl($relativeName, $filter)
+    public function getCacheUrl($relativeName, $filter, $format = null)
     {
-        return $this->cacheOptions->getCachePath() . '/' . $filter . '/'. $relativeName;
+        if (!$format) {
+             return $this->cacheOptions->getCachePath() . '/' . $filter . '/'. $relativeName;
+        } else {
+            return $this->getCacheUrl($relativeName, $filter) . '.' . $format;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCachePath($relativeName, $filter)
+    public function getCachePath($relativeName, $filter, $format = null)
     {
-        return $this->cacheOptions->getWebRoot() . '/' . $this->getCacheUrl($relativeName, $filter);
+        return $this->cacheOptions->getWebRoot() . '/' . $this->getCacheUrl($relativeName, $filter, $format);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createCache($relativeName, $filter, ImageInterface $image)
+    public function createCache($relativeName, $filter, ImageInterface $image, $format = null)
     {
-        $cachePath = $this->getCachePath($relativeName, $filter);
+        $cachePath = $this->getCachePath($relativeName, $filter, $format);
         if (!is_dir(dirname($cachePath))) {
             mkdir(dirname($cachePath), 0755, true);
         }

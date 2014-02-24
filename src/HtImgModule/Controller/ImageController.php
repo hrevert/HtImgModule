@@ -32,16 +32,19 @@ class ImageController extends AbstractActionController
             return $this->notFoundAction();
         }
         try {
-            $image = $this->imageService->getImageFromRelativePath($relativePath, $filter);
+            $imageData = $this->imageService->getImageFromRelativePath($relativePath, $filter);
         } catch (InvalidArgumentException $e) {
             return $this->notFoundAction();
         }
 
-        if (!$image) {
+        if (!$imageData) {
             return $this->notFoundAction();
         }
 
-        return new ImageModel($image);
+        $imageModel = new ImageModel($imageData['image']);
+        $imageModel->setFormat($imageData['format']);
+
+        return $imageModel;
 
     }
 }

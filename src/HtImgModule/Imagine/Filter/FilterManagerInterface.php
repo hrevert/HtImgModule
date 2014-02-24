@@ -31,4 +31,15 @@ interface FilterManagerInterface
      * @return self
      */
     public function addFilter($name, array $options);
+
+
+    /**
+     * Gets a filter
+     *
+     * @param  string                                          $filter
+     * @return array
+     * @throws \HtImgModule\Exception\FilterNotFoundException
+     * @throws \HtImgModule\Exception\InvalidArgumentException
+     */
+    public function getFilterOptions($filter);
 }

@@ -5,6 +5,8 @@ namespace HtImgModule\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 use HtImgModule\Options\CacheOptionsInterface;
 use HtImgModule\Service\CacheManagerInterface;
+use HtImgModule\Imagine\Filter\FilterManager;
+use Zend\View\Resolver\ResolverInterface;
 
 class ImgUrl extends AbstractHelper
 {
@@ -19,21 +21,47 @@ class ImgUrl extends AbstractHelper
     protected $cacheManager;
 
     /**
+     * @var FilterManager
+     */
+    protected $filterManager;
+
+    /**
+     * @var ResolverInterface
+     */
+    protected $relativePathResolver;
+
+    /**
      * Constructor
      *
      * @param CacheManagerInterface $cacheManager
      * @param CacheOptionsInterface $cacheOptions
+     * @param FilterManager $filterManager
      */
-    public function __construct(CacheManagerInterface $cacheManager, CacheOptionsInterface $cacheOptions)
+    public function __construct(
+        CacheManagerInterface $cacheManager, 
+        CacheOptionsInterface $cacheOptions, 
+        FilterManager $filterManager,
+        ResolverInterface $relativePathResolver
+    )
     {
         $this->cacheManager = $cacheManager;
         $this->cacheOptions = $cacheOptions;
+        $this->filterManager = $filterManager;
+        $this->relativePathResolver = $relativePathResolver;
     }
 
     public function __invoke($relativeName, $filter)
     {
-        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter)) {
-            return $this->getView()->basePath() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter);
+        $filterOptions = $this->filterManager->getFilterOptions($filter);
+        if (isset($filterOptions['format'])) {
+            $format = $filterOptions['format'];
+        } else {
+            $imagePath = $this->relativePathResolver->resolve($relativeName);
+            $format = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $format = $format ?: 'png';            
+        } 
+        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
+            return $this->getView()->basePath() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
         }
 
         return $this->getView()->url('htimg/display', array('filter' => $filter), array('query' => array('relativePath' => $relativeName)));

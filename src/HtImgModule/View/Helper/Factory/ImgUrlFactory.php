@@ -10,9 +10,12 @@ class ImgUrlFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $helpers)
     {
         $serviceLocator = $helpers->getServiceLocator();
-        $options = $serviceLocator->get('HtImg\ModuleOptions');
-        $cacheManager = $serviceLocator->get('HtImgModule\Service\CacheManager');
 
-        return new ImgUrl($cacheManager, $options);
+        return new ImgUrl(
+            $serviceLocator->get('HtImgModule\Service\CacheManager'),
+            $serviceLocator->get('HtImg\ModuleOptions'),
+            $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager'),
+            $serviceLocator->get('HtImg\RelativePathResolver')
+        );
     }
 }

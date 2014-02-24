@@ -36,30 +36,41 @@ class FilterManager implements FilterManagerInterface
      */
     public function getFilter($filter)
     {
-        if (!isset($this->filterOptions->getFilters()[$filter])) {
-            throw new Exception\FilterNotFoundException(
-                sprintf(
-                    'Filter, "%s" not found',
-                    $filter
-                )
-            );
-        }
-
+        $this->validateFilter($filter);
         $options = $this->filterOptions->getFilters()[$filter];
 
+        return $this->filterLoaderPluginManager->get($options['type'])->load($options['options']);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFilterOptions($filter)
+    {
+        $this->validateFilter($filter);
+        $options = $this->filterOptions->getFilters()[$filter];
+
+        return $options['options'];
+    }
+
+    protected function validateFilter($filter)
+    {
+        if (!isset($this->filterOptions->getFilters()[$filter])) {
+            throw new Exception\FilterNotFoundAction(sprintf(
+                'Filter "%s" was not found', $filter
+            ));            
+        }
+        $options = $this->filterOptions->getFilters()[$filter];
         if (!isset($options['type'])) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Filter type for "%s" image filter must be specified', $filter
             ));
         }
-
         if (!isset($options['options'])) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Options for filter type "%s" must be specified', $filter
             ));
         }
-
-        return $this->filterLoaderPluginManager->get($options['type'])->load($options['options']);
     }
 
     /**

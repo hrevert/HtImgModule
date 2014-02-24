@@ -65,17 +65,31 @@ class ImageService
      */
     public function getImageFromRelativePath($relativePath, $filter)
     {
-        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativePath, $filter)) {
-            return $this->imagine->open($this->cacheManager->getCachePath($relativePath, $filter));
-        }
+        $filterOptions = $this->filterManager->getFilterOptions($filter);
 
-        $imagePath = $this->relativePathResolver->resolve($relativePath);
-        $image = $this->getImage($imagePath, $filter);
-        if ($this->cacheOptions->getEnableCache()) {
-            $this->cacheManager->createCache($relativePath, $filter, $image);
+        if (isset($filterOptions['format'])) {
+            $format = $filterOptions['format'];
+        } else {
+            $imagePath = $this->relativePathResolver->resolve($relativePath);
+            $format = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $format = $format ?: 'png';            
+        }      
+        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
+            $imagePath = $this->cacheManager->getCachePath($relativePath, $filter, $format);
+            $image = $this->imagine->open($imagePath);
+        } else {
+            if (!isset($imagePath)) {
+                $imagePath = $this->relativePathResolver->resolve($relativePath);
+            }
+            $image = $this->getImage($imagePath, $filter);
+            if ($this->cacheOptions->getEnableCache()) {
+                $this->cacheManager->createCache($relativePath, $filter, $image, $format);
+            }            
         }
-
-        return $image;
+        return [
+            'image' => $image,
+            'format' => $format
+        ];
     }
 
     /**
