@@ -1,0 +1,31 @@
+{
+    "name": "hrevert/ht-img-module",
+    "description": "Image manipulation module for Zend Framework 2",
+    "type": "module",
+    "keywords": [
+        "zf2",
+        "module",
+        "zendframework"
+    ],
+    "license": "GPL-2.0",
+    "homepage": "https://github.com/hrevert/HtImgModule",
+    "authors": [
+        {
+            "name": "Hrevert Technologies",
+            "email": "info@hrevert.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zendframework": "~2.1",
+        "imagine/Imagine": "0.5.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "HtImgModule": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
