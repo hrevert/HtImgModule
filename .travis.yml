@@ -7,4 +7,5 @@ php:
 before_script:
  - composer install
 
-script: phpunit --coverage-text
+script:
+  - (cd tests ; phpunit ./)
