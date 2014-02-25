@@ -4,6 +4,7 @@ namespace HtImgModule\Imagine\Filter;
 use HtImgModule\Exception;
 use HtImgModule\Options\FilterOptionsInterface;
 use Imagine\Image\ImageInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class FilterManager implements FilterManagerInterface
 {
@@ -13,7 +14,7 @@ class FilterManager implements FilterManagerInterface
     protected $filterOptions;
 
     /**
-     * @var FilterLoaderPluginManager
+     * @var ServiceLocatorInterface
      */
     protected $filterLoaderPluginManager;
 
@@ -21,10 +22,11 @@ class FilterManager implements FilterManagerInterface
      * Constructor
      *
      * @param FilterOptionsInterface $filterOptions
+     * @param ServiceLocatorInterface $filterLoaderPluginManager
      */
     public function __construct(
         FilterOptionsInterface $filterOptions,
-        Loader\FilterLoaderPluginManager $filterLoaderPluginManager
+        ServiceLocatorInterface $filterLoaderPluginManager
     )
     {
         $this->filterOptions = $filterOptions;

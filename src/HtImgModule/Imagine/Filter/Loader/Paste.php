@@ -39,14 +39,10 @@ class Paste implements LoaderInterface
             throw new Exception\InvalidArgumentException('Option "image" is required.');
         }
 
-        if (!is_readable($options['image'])) {
-            throw new Exception\InvalidArgumentException('Expected image file exists and readable.');
-        }
-
         $x = isset($options['x']) ? $options['x'] : 0;
         $y = isset($options['y']) ? $options['y'] : 0;
 
-        $path = $this->resolver->load($options['image']);
+        $path = $this->resolver->resolve($options['image']);
 
         if (!$path) {
             throw new Exception\RuntimeException(sprintf('Could not resolve %s', $options['image']));
