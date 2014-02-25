@@ -53,6 +53,14 @@ class FilterManager implements FilterManagerInterface
         return $options['options'];
     }
 
+    /**
+     * Validates if filter exists and is valid
+     *
+     * @param string $filter    Filter Alias
+     * @throws  Exception\FilterNotFoundAction
+     * @throws Exception\InvalidArgumentException
+     * @return void
+     */
     protected function validateFilter($filter)
     {
         if (!isset($this->filterOptions->getFilters()[$filter])) {

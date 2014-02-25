@@ -146,7 +146,7 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
 
     public function setCacheExpiry($cacheExpiry)
     {
-        $this->cacheExpiry = $cacheExpiry;
+        $this->cacheExpiry = (int) $cacheExpiry;
 
         return $this;
     }

@@ -1,7 +1,7 @@
 <?php
 return [
     'htimg' => [
-        'filters' => [
+        'filters' => [ // Just one for quick and easy way
             'thumbnail' => [
                 'type' => 'thumbnail',
                 'options' => [

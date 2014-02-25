@@ -50,6 +50,13 @@ class ImgUrl extends AbstractHelper
         $this->relativePathResolver = $relativePathResolver;
     }
 
+    /**
+     * Gets url of image
+     *
+     * @param string $relativeName  Relative Path
+     * @param string $filter        Filter Alias
+     * @return string
+     */
     public function __invoke($relativeName, $filter)
     {
         $filterOptions = $this->filterManager->getFilterOptions($filter);

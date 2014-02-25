@@ -43,11 +43,9 @@ class ImageRenderer implements RendererInterface
             $image = $imageModel->getImage();
             $format = $imageModel->getFormat();
             if (!$imageModel->getImage() instanceof ImageInterface) {
-                if (!$imageModel->getImagePath()) {
-                    throw new Exception\RuntimeException(
-                        'You must provide Imagine\Image\ImageInterface or path of image'
-                    );
-                }
+                throw new Exception\RuntimeException(
+                    'You must provide Imagine\Image\ImageInterface or path of image'
+                );
             }
             ob_start();
             $image->show($format);
