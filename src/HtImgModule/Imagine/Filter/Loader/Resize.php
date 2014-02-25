@@ -8,7 +8,7 @@ use Imagine\Image\Box;
 class Resize implements LoaderInterface
 {
     /**
-     *
+     * {@inheritDoc}
      */
     public function load(array $options = array())
     {

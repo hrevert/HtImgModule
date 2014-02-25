@@ -47,3 +47,6 @@ Whenever, you call a filter alias like `my_thumbnail` from view template, the vi
 
 ## Documentation
 The officially documentation is available in the [docs/](https://github.com/hrevert/HtImgModule/tree/master/docs) directory:
+
+## Acknowledgements
+HtImgModule is inspired [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) and [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).

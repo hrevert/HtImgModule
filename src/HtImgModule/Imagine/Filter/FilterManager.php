@@ -57,14 +57,14 @@ class FilterManager implements FilterManagerInterface
      * Validates if filter exists and is valid
      *
      * @param string $filter    Filter Alias
-     * @throws  Exception\FilterNotFoundAction
+     * @throws  Exception\FilterNotFoundException
      * @throws Exception\InvalidArgumentException
      * @return void
      */
     protected function validateFilter($filter)
     {
         if (!isset($this->filterOptions->getFilters()[$filter])) {
-            throw new Exception\FilterNotFoundAction(sprintf(
+            throw new Exception\FilterNotFoundException(sprintf(
                 'Filter "%s" was not found', $filter
             ));            
         }

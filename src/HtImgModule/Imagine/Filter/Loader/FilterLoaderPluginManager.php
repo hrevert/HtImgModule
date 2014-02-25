@@ -6,9 +6,9 @@ use HtImgModule\Exception;
 
 class FilterLoaderPluginManager extends AbstractPluginManager
 {
-    protected $invokableClasses = [
+    protected $invokableClasses  = [
         'crop' => 'HtImgModule\Imagine\Filter\Loader\Crop',
-        'relative_resize' => 'HtImgModule\Imagine\Filter\Loader\RelativeResize',
+        'relativeresize' => 'HtImgModule\Imagine\Filter\Loader\RelativeResize',
         'resize' => 'HtImgModule\Imagine\Filter\Loader\Resize',
         'thumbnail' => 'HtImgModule\Imagine\Filter\Loader\Thumbnail',
     ];
