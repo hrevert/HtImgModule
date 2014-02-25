@@ -1,13 +1,12 @@
 <?php
 namespace HtImgModule\Imagine\Filter;
 
-use Imagine\Filter\FilterInterface;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
 use HtImgModule\Exception;
 
-class Watermark implements FilterInterface
+class Watermark implements \Imagine\Filter\FilterInterface
 {
     /**
      * @var string|int

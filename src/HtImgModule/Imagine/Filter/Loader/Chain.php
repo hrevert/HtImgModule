@@ -4,20 +4,21 @@ namespace HtImgModule\Imagine\Filter\Loader;
 use HtImgModule\Exception;
 use HtImgModule\Imagine\Filter\FilterManager;
 use HtImgModule\Imagine\Filter\Chain as ChainFilter;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class Chain implements LoaderInterface
 {
     /**
-     * @var FilterManager
+     * @var ServiceLocatorInterface
      */
-    protected $filterManager;
+    protected $filterLoaders;
 
     /**
-     * @param FilterManager $filterManager
+     * @param ServiceLocatorInterface $filterLoaders
      */
-    public function __construct(FilterManager $filterManager)
+    public function __construct(ServiceLocatorInterface $filterLoaders)
     {
-        $this->filterManager = $filterManager;
+        $this->filterLoaders = $filterLoaders;
     }
 
     /**
@@ -36,7 +37,7 @@ class Chain implements LoaderInterface
         $filters = array();
 
         foreach ($options['filters'] as $loaderName => $loaderOptions) {
-            $loader = $this->filterManager->getLoader($loaderName);
+            $loader = $this->filterLoaders->get($loaderName);
             $filters[] = $loader->load($loaderOptions);
         }
 

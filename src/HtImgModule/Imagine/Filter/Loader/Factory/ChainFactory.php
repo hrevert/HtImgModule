@@ -12,6 +12,6 @@ class ChainFactory implements FactoryInterface
     {
         $serviceLocator = $filterLoaders->getServiceLocator();
 
-        return new Chain($serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager'));
+        return new Chain($serviceLocator->get('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
     }
 }
