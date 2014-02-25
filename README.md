@@ -1,9 +1,9 @@
 HtImgModule
 ===========
 [![Master Branch Build Status](https://api.travis-ci.org/hrevert/HtImgModule.png?branch=master)](http://travis-ci.org/hrevert/HtImgModule)
-[![Latest Stable Version](https://poser.pugx.org/hrevert/ht-img-module/v/stable.png)](https://packagist.org/packages/hrevert/HtImgModule)
-[![Latest Unstable Version](https://poser.pugx.org/hrevert/ht-img-module/v/unstable.png)](https://packagist.org/packages/hrevert/HtImgModule)
-[![Total Downloads](https://poser.pugx.org/hrevert/ht-img-module/downloads.png)](https://packagist.org/packages/hrevert/HtImgModule)
+[![Latest Stable Version](https://poser.pugx.org/hrevert/ht-img-module/v/stable.png)](https://packagist.org/packages/hrevert/ht-img-module)
+[![Latest Unstable Version](https://poser.pugx.org/hrevert/ht-img-module/v/unstable.png)](https://packagist.org/packages/hrevert/ht-img-module)
+[![Total Downloads](https://poser.pugx.org/hrevert/ht-img-module/downloads.png)](https://packagist.org/packages/hrevert/ht-img-module)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hrevert/htimgmodule/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 This module simplies image manipulation for Zend Framework 2. This module integrates Zend Framework 2 with [Imagine](https://github.com/avalanche123/Imagine), the most amazing Image manipulation library for PHP.
