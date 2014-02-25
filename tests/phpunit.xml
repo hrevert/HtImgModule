@@ -1,2 +1,5 @@
 ﻿<phpunit bootstrap="Bootstrap.php">
+    <testsuite name="HtImgModuleTest">
+        <directory>HtImgModuleTest</directory>
+    </testsuite>
 </phpunit>
