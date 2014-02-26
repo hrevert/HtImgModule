@@ -3,8 +3,9 @@ namespace HtImgModule\Service;
 
 use Imagine\Image\ImagineInterface;
 use HtImgModule\Options\CacheOptionsInterface;
-use Zend\View\Resolver\AggregateResolver;
+use Zend\View\Resolver\ResolverInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
+use HtImgModule\Exception;
 
 class ImageService
 {
@@ -24,7 +25,7 @@ class ImageService
     protected $imagine;
 
     /**
-     * @var AggregateResolver
+     * @var ResolverInterface
      */
     protected $relativePathResolver;
 
@@ -45,7 +46,7 @@ class ImageService
         CacheManagerInterface $cacheManager,
         CacheOptionsInterface $cacheOptions,
         ImagineInterface $imagine,
-        AggregateResolver $relativePathResolver,
+        ResolverInterface $relativePathResolver,
         FilterManagerInterface $filterManager
     )
     {
@@ -80,6 +81,11 @@ class ImageService
         } else {
             if (!isset($imagePath)) {
                 $imagePath = $this->relativePathResolver->resolve($relativePath);
+            }
+            if (!$imagePath) {
+                throw new Exception\ImageNotFoundException(
+                    sprintf('Unable to resolve %s', $relativePath)
+                );
             }
             $image = $this->getImage($imagePath, $filter);
             if ($this->cacheOptions->getEnableCache()) {
