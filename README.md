@@ -50,3 +50,7 @@ The officially documentation is available in the [docs/](https://github.com/hrev
 
 ## Acknowledgements
 HtImgModule is inspired by [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) and [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hrevert/htimgmodule/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
