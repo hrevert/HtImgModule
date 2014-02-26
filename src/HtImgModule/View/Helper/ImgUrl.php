@@ -3,10 +3,11 @@
 namespace HtImgModule\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
+use Zend\View\Resolver\ResolverInterface;
 use HtImgModule\Options\CacheOptionsInterface;
 use HtImgModule\Service\CacheManagerInterface;
 use HtImgModule\Imagine\Filter\FilterManager;
-use Zend\View\Resolver\ResolverInterface;
+use HtImgModule\Exception;
 
 class ImgUrl extends AbstractHelper
 {
@@ -69,6 +70,15 @@ class ImgUrl extends AbstractHelper
         } 
         if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
             return $this->getView()->basePath() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
+        }
+        if (!isset($imagePath)) {
+            $imagePath = $this->relativePathResolver->resolve($relativeName);
+        }
+
+        if (!$imagePath) {
+            throw new Exception\ImageNotFoundException(
+                sprintf('Unable to resolve %s', $relativeName)
+            );
         }
 
         return $this->getView()->url('htimg/display', array('filter' => $filter), array('query' => array('relativePath' => $relativeName)));
