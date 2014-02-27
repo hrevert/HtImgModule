@@ -39,9 +39,9 @@ return [
             'htimg' => 'HtImgModule\Controller\Factory\ImageControllerFactory'
         ]
     ],
-    'view_manager' => array(
-        'strategies' => array(
+    'view_manager' => [
+        'strategies' => [
             'HtImgModule\View\Strategy\ImageStrategy'
-        ),
-    ),
+        ],
+    ],
 ];
