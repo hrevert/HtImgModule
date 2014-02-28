@@ -7,7 +7,7 @@
         "module",
         "zendframework"
     ],
-    "license": "GPL-2.0",
+    "license": "MIT",
     "homepage": "https://github.com/hrevert/HtImgModule",
     "authors": [
         {
