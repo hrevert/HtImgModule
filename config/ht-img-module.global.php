@@ -37,6 +37,7 @@ $options = [
      *
      * Default: Empty array|array()
      * Accepted values: array containing key as image relative path and value as image real path
+     */
     //'img_source_map' => array('hello/world.png' => 'data/img/hello/world.png'),
 
     /**

@@ -16,7 +16,13 @@ return [
             'data/images/',
             'module/Application/data/images',
             // and so on
+        ],
+        'img_source_map'=> [
+            'my/special/image'      => 'path/to/my/special/image',
+            'another/special/image' => 'path/to/another/special/image',
+            // and so on
         ]
     ]
 ];
 ```
+The image resolver will first try to resolve the image from source map and then from source path stack.
