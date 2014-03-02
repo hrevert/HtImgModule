@@ -6,11 +6,21 @@ use HtImgModule\Exception;
 
 class ResolverManager  extends AbstractPluginManager
 {
+    /**
+     * @var array
+     */
     protected $factories  = [
         'imagemap' => 'HtImgModule\Imagine\Resolver\Factory\ImageMapResolverFactory',
         'imagepathstack' => 'HtImgModule\Imagine\Resolver\Factory\ImagePathStackResolverFactory',
     ];
 
+    /**
+     * Checks if $plugin is instance of ResolverInterface
+     *
+     * @param mixed $plugin 
+     * @return void
+     * @throws Exception\InvalidArgumentException
+     */
     public function validatePlugin($plugin)
     {
         if ($plugin instanceof ResolverInterface) {
