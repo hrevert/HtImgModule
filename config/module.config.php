@@ -9,7 +9,12 @@ return [
                     'height' => 100,
                 ]
             ]
-        ]
+        ],
+        'image_resolvers' => [
+            1000 => 'image_map',
+            200 => 'image_path_stack',
+        ],
+        'resolvers_manager' => [],
     ],
     'router' => [
         'routes' => [

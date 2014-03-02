@@ -6,6 +6,8 @@ use Zend\Stdlib\AbstractOptions;
 
 class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, FilterOptionsInterface
 {
+    protected $__strictMode__ = false;
+
     protected $enableCache = true;
 
     protected $imgSourcePathStack = [];
@@ -17,6 +19,8 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     protected $filters = [];
 
     protected $webRoot = 'public';
+
+    protected $imageResolvers = [];
 
     protected $allowedDrivers = [
         'gd',
@@ -154,5 +158,15 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     public function getCacheExpiry()
     {
         return $this->cacheExpiry;
+    }
+
+    public function setImageResolvers(array $imageResolvers)
+    {
+        $this->imageResolvers = $imageResolvers;
+    }
+
+    public function getImageResolvers()
+    {
+        return $this->imageResolvers;
     }
 }

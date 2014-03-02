@@ -51,6 +51,7 @@ class Module implements
                 'HtImgModule\View\Strategy\ImageStrategy' => 'HtImgModule\Factory\ImageStrategyFactory',
                 'HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager' => 'HtImgModule\Factory\FilterLoaderPluginManagerFactory',
                 'HtImgModule\Imagine\Filter\FilterManager' => 'HtImgModule\Factory\FilterManagerFactory',
+                'HtImgModule\Imagine\Resolver\ResolverManager' => 'HtImgModule\Factory\ResolverManagerFactory',
                 'HtImgModule\Service\CacheManager' => 'HtImgModule\Factory\CacheManagerFactory',
             ]
         ];

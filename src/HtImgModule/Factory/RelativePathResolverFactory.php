@@ -8,32 +8,15 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class RelativePathResolverFactory implements FactoryInterface
 {
-    protected $options;
-
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $this->options = $serviceLocator->get('HtImg\ModuleOptions');
+        $options = $serviceLocator->get('HtImg\ModuleOptions');
         $resolver = new Resolver\AggregateResolver();
-        $resolver->attach($this->getMapResolver())    // this will be consulted first
-                 ->attach($this->getStackResolver());
+        $resolverManager = $serviceLocator->get('HtImgModule\Imagine\Resolver\ResolverManager');
+        foreach ($options->getImageResolvers() as $priority => $subResolverName) {
+            $resolver->attach($resolverManager->get($subResolverName), $priority);
+        }
 
         return $resolver;
-    }
-
-    public function getStackResolver()
-    {
-        $stack = new Resolver\TemplatePathStack([
-            'script_paths' => $this->options->getImgSourcePathStack()
-        ]);
-        $stack->setDefaultSuffix('');
-
-        return $stack;
-    }
-
-    public function getMapResolver()
-    {
-        $map = new Resolver\TemplateMapResolver($this->options->getImgSourceMap());
-
-        return $map;
     }
 }
