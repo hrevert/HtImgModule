@@ -41,4 +41,13 @@ interface CacheManagerInterface
      * @return void
      */
     public function createCache($relativeName, $filter, ImageInterface $image);
+
+    /**
+     * Deletes a new cache
+     *
+     * @param  string         $relativeName
+     * @param  string         $filter
+     * @return void
+     */
+    public function deleteCache($relativeName, $filter, $format = null);
 }

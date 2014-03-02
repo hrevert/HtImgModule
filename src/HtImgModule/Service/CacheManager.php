@@ -69,4 +69,14 @@ class CacheManager implements CacheManagerInterface
         $image->save($cachePath);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function deleteCache($relativeName, $filter, $format = null)
+    {
+        $cachePath = $this->getCachePath($relativeName, $filter, $format);
+        if (is_readable($cachePath)) {
+            unlink($cachePath);
+        }
+    }
 }
