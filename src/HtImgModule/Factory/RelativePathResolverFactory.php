@@ -2,7 +2,6 @@
 namespace HtImgModule\Factory;
 
 use Zend\View\Resolver;
-
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

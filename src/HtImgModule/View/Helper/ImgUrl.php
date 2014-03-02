@@ -74,7 +74,6 @@ class ImgUrl extends AbstractHelper
         if (!isset($imagePath)) {
             $imagePath = $this->relativePathResolver->resolve($relativeName);
         }
-
         if (!$imagePath) {
             throw new Exception\ImageNotFoundException(
                 sprintf('Unable to resolve %s', $relativeName)

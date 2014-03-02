@@ -6,9 +6,9 @@ use HtImgModule\Exception;
 
 class ResolverManager  extends AbstractPluginManager
 {
-    protected $invokableClasses  = [
-        'imagemap' => 'HtImgModule\Imagine\Resolver\ImageMapResolver',
-        'imagepathstack' => 'HtImgModule\Imagine\Resolver\ImagePathStackResolver',
+    protected $factories  = [
+        'imagemap' => 'HtImgModule\Imagine\Resolver\Factory\ImageMapResolverFactory',
+        'imagepathstack' => 'HtImgModule\Imagine\Resolver\Factory\ImagePathStackResolverFactory',
     ];
 
     public function validatePlugin($plugin)
