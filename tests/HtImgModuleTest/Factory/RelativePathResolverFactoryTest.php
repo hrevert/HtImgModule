@@ -22,8 +22,10 @@ class RelativePathResolverFactoryTest extends \PHPUnit_Framework_TestCase
     public function testResolve()
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions);
+        $options = new ModuleOptions;
+        $serviceManager->setService('HtImg\ModuleOptions', $options);
         $resolverManager = new ResolverManager;
+        $resolverManager->setServiceLocator($serviceManager);
         $serviceManager->setService('HtImgModule\Imagine\Resolver\ResolverManager', $resolverManager);
         $factory = new RelativePathResolverFactory();
         $resolver = $factory->createService($serviceManager);
