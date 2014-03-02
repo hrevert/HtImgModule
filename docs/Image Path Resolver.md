@@ -30,7 +30,7 @@ Here, the image resolver will first try to resolve the image from source map and
 ## Creating Custom Image Path Resolvers
 At some cases, it is not so easy to resolve image from only the above resolvers and you may want to create your own resolver.
 
-First you want to create resolver class.
+First you need to create resolver class.
 
 ```php
 namespace Application\Imagine\Resolver;
