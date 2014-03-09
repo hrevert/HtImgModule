@@ -1,6 +1,6 @@
 HtImgModule
 ===========
-[![Master Branch Build Status](https://api.travis-ci.org/hrevert/HtImgModule.png?branch=master)](http://travis-ci.org/hrevert/HtImgModule)
+[![Master Branch Build Status](https://api.travis-ci.org/hrevert/HtImgModule.png)](http://travis-ci.org/hrevert/HtImgModule)
 [![Latest Stable Version](https://poser.pugx.org/hrevert/ht-img-module/v/stable.png)](https://packagist.org/packages/hrevert/ht-img-module)
 [![Latest Unstable Version](https://poser.pugx.org/hrevert/ht-img-module/v/unstable.png)](https://packagist.org/packages/hrevert/ht-img-module)
 [![Total Downloads](https://poser.pugx.org/hrevert/ht-img-module/downloads.png)](https://packagist.org/packages/hrevert/ht-img-module)
