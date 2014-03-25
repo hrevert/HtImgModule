@@ -24,9 +24,9 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function cacheExists($relativeName, $filter, $format = null)
+    public function cacheExists($relativeName, $filter, $formatOrImage = null)
     {
-        $cachePath = $this->getCachePath($relativeName, $filter, $format);
+        $cachePath = $this->getCachePath($relativeName, $filter, $formatOrImage);
         if (is_file($cachePath) && is_readable($cachePath)) {
             if ((time() - filemtime($cachePath)) < $this->cacheOptions->getCacheExpiry()) {
                 return true;
@@ -40,8 +40,13 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function getCacheUrl($relativeName, $filter, $format = null)
+    public function getCacheUrl($relativeName, $filter, $formatOrImage = null)
     {
+        if (is_readable($formatOrImage)) {
+            $format = pathinfo($formatOrImage, PATHINFO_EXTENSION);
+        } else {
+            $format = $formatOrImage;
+        }
         if (!$format) {
              return $this->cacheOptions->getCachePath() . '/' . $filter . '/'. $relativeName;
         } else {
@@ -52,17 +57,17 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function getCachePath($relativeName, $filter, $format = null)
+    public function getCachePath($relativeName, $filter, $formatOrImage = null)
     {
-        return $this->cacheOptions->getWebRoot() . '/' . $this->getCacheUrl($relativeName, $filter, $format);
+        return $this->cacheOptions->getWebRoot() . '/' . $this->getCacheUrl($relativeName, $filter, $formatOrImage);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createCache($relativeName, $filter, ImageInterface $image, $format = null)
+    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null)
     {
-        $cachePath = $this->getCachePath($relativeName, $filter, $format);
+        $cachePath = $this->getCachePath($relativeName, $filter, $formatOrImage);
         if (!is_dir(dirname($cachePath))) {
             mkdir(dirname($cachePath), 0755, true);
         }
@@ -72,9 +77,9 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteCache($relativeName, $filter, $format = null)
+    public function deleteCache($relativeName, $filter, $formatOrImage = null)
     {
-        $cachePath = $this->getCachePath($relativeName, $filter, $format);
+        $cachePath = $this->getCachePath($relativeName, $filter, $formatOrImage);
         if (is_readable($cachePath)) {
             unlink($cachePath);
         }
