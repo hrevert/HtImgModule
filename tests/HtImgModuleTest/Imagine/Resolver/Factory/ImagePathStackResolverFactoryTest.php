@@ -1,7 +1,7 @@
 <?php
 namespace HtImgModuleTest\Imagine\Resolver\Factory;
 
-use HtImgModule\Imagine\Resolver\Factory\ImagePathStackResolverFactory; 
+use HtImgModule\Imagine\Resolver\Factory\ImagePathStackResolverFactory;
 use Zend\ServiceManager\ServiceManager;
 use HtImgModule\Options\ModuleOptions;
 

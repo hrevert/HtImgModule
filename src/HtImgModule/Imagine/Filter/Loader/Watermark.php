@@ -1,7 +1,6 @@
 <?php
 namespace HtImgModule\Imagine\Filter\Loader;
 
-use HtImgModule\Exception;
 use HtImgModule\Imagine\Filter\Watermark as WatermarkFilter;
 
 class Watermark extends Paste implements LoaderInterface
@@ -12,7 +11,7 @@ class Watermark extends Paste implements LoaderInterface
     public function load(array $options = array())
     {
         $size = (isset($options['width']) && isset($options['height']) )
-            ? [$options['width'], $options['height']] 
+            ? [$options['width'], $options['height']]
             : null;
 
         return new WatermarkFilter(
@@ -20,5 +19,5 @@ class Watermark extends Paste implements LoaderInterface
             $size,
             isset($options['position']) ? $options['position'] : 'center'
         );
-    }    
+    }
 }

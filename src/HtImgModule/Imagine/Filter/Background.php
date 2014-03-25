@@ -7,7 +7,6 @@ use Imagine\Image\ImagineInterface;
 use Imagine\Image\Box;
 use Imagine\Image\Color;
 use Imagine\Image\Point;
-use HtImgModule\Exception;
 
 class Background implements FilterInterface
 {
@@ -30,8 +29,8 @@ class Background implements FilterInterface
      * Constructor
      *
      * @param ImagineInterface $imagine
-     * @param array|int[] $size  
-     * @param string $color
+     * @param array|int[]      $size
+     * @param string           $color
      */
     public function __construct(ImagineInterface $imagine, $size = null, $color = '#fff')
     {
@@ -50,17 +49,17 @@ class Background implements FilterInterface
 
             $size = new Box($width, $height);
             $topLeft = new Point(
-                ($width - $image->getSize()->getWidth()) / 2, 
+                ($width - $image->getSize()->getWidth()) / 2,
                 ($height - $image->getSize()->getHeight()) / 2
             );
         } else {
             $topLeft = new Point(0, 0);
-            $size = $image->getSize();            
+            $size = $image->getSize();
         }
 
         $background = new Color($this->color);
         $canvas = $this->imagine->create($size, $background);
 
-        return $canvas->paste($image, $topLeft);        
+        return $canvas->paste($image, $topLeft);
     }
 }

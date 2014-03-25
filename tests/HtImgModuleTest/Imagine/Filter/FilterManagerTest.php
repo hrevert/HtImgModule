@@ -25,7 +25,7 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
             new ServiceManager
         );
         $this->setExpectedException('HtImgModule\Exception\FilterNotFoundException');
-        $filterManager->getFilter('not_available');        
+        $filterManager->getFilter('not_available');
     }
 
     public function testExceptionWithNoFilterType()
@@ -37,7 +37,7 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
         );
         $options->addFilter('hello', ['options' => 'hello']);
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
-        $filterManager->getFilter('hello');        
+        $filterManager->getFilter('hello');
     }
 
     public function testExceptionWithNoFilterOptions()
@@ -49,7 +49,7 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
         );
         $options->addFilter('hello', ['type' => 'hello']);
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
-        $filterManager->getFilter('hello');        
+        $filterManager->getFilter('hello');
     }
 
     public function testGetFilterOptions()
@@ -60,8 +60,8 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
             new ServiceManager
         );
         $options->addFilter('filter_name', ['type' => 'hello', 'options' => ['key' => 'value']]);
-        $filterOptions = $filterManager->getFilterOptions('filter_name');  
-        $this->assertEquals(['key' => 'value'], $filterOptions);        
+        $filterOptions = $filterManager->getFilterOptions('filter_name');
+        $this->assertEquals(['key' => 'value'], $filterOptions);
     }
 
     public function testGetFilter()
@@ -77,7 +77,7 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
             $options,
             $filterLoaders
         );
-        $options->addFilter('filter_name', ['type' => 'hello123', 'options' => ['key' => 'value']]); 
-        $this->assertEquals('sample_loader', $filterManager->getFilter('filter_name'));                  
+        $options->addFilter('filter_name', ['type' => 'hello123', 'options' => ['key' => 'value']]);
+        $this->assertEquals('sample_loader', $filterManager->getFilter('filter_name'));
     }
 }

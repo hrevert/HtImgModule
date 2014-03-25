@@ -17,7 +17,7 @@ class ResolverManager  extends AbstractPluginManager
     /**
      * Checks if $plugin is instance of ResolverInterface
      *
-     * @param mixed $plugin 
+     * @param  mixed                              $plugin
      * @return void
      * @throws Exception\InvalidArgumentException
      */

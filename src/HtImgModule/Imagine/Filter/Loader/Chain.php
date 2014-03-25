@@ -2,7 +2,6 @@
 namespace HtImgModule\Imagine\Filter\Loader;
 
 use HtImgModule\Exception;
-use HtImgModule\Imagine\Filter\FilterManager;
 use HtImgModule\Imagine\Filter\Chain as ChainFilter;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

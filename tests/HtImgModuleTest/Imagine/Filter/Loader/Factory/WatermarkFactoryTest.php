@@ -18,6 +18,6 @@ class WatermarkFactoryTest extends \PHPUnit_Framework_Testcase
            ->will($this->returnValue($serviceManager));
         $factory = new WatermarkFactory();
         $loader = $factory->createService($loaders);
-        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Watermark', $loader);        
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Watermark', $loader);
     }
 }

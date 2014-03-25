@@ -14,6 +14,6 @@ class PasteTest extends \PHPUnit_Framework_TestCase
             ->method('resolve')
             ->will($this->returnValue(RESOURCES_DIR . '/Archos.jpg'));
         $loader = new Paste($imagine, $resolver);
-        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Paste', $loader->load(['image' => 'image-to-pasted.jpeg']));        
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Paste', $loader->load(['image' => 'image-to-pasted.jpeg']));
     }
 }

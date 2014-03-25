@@ -6,7 +6,6 @@ use HtImgModule\Options\ModuleOptions;
 use HtImgModule\Service\CacheManager;
 use Imagine\Gd\Imagine;
 use HtImgModule\Imagine\Filter\FilterManager;
-use Zend\ServiceManager\ServiceManager;
 
 class ImageServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -49,7 +48,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
         $filterLoader->expects($this->any())
             ->method('load')
             ->will($this->returnValue($filter));
-            
+
         $filterLoaderPluginManager = $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager');
         $filterLoaderPluginManager->expects($this->any())
             ->method('get')
@@ -67,8 +66,8 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             $resolver,
             $filterManager
         );
-        $imageData = $imageService->getImageFromRelativePath('path/to/image/', 'my_special_filter'); 
-        $this->assertInstanceOf('Imagine\Image\ImageInterface', $imageData['image']);       
-        $this->assertEquals('jpg', $imageData['format']);       
+        $imageData = $imageService->getImageFromRelativePath('path/to/image/', 'my_special_filter');
+        $this->assertInstanceOf('Imagine\Image\ImageInterface', $imageData['image']);
+        $this->assertEquals('jpg', $imageData['format']);
     }
 }

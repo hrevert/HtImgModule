@@ -3,8 +3,6 @@
 namespace HtImgModuleTest\Imagine\Filter\Loader;
 
 use HtImgModule\Imagine\Filter\Loader\Chain;
-use HtImgModule\Options\ModuleOptions;
-use HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager;
 use Zend\ServiceManager\ServiceManager;
 
 class ChainTest extends \PHPUnit_Framework_TestCase
@@ -27,6 +25,6 @@ class ChainTest extends \PHPUnit_Framework_TestCase
         $filterLoaders = new ServiceManager;
         $chainLoader = new  Chain($filterLoaders);
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
-        $chainFilter = $chainLoader->load(['filters' => []]);        
+        $chainFilter = $chainLoader->load(['filters' => []]);
     }
 }

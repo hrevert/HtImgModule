@@ -16,9 +16,9 @@ class DisplayImage extends AbstractHtmlElement
     /**
      * Gets valid HTML image tag or self when $relativeName is not provided
      *
-     * @param string $relativeName  Relative Path
-     * @param string $filter        Filter Alias
-     * @param array $attributes     Attributes for HTML image tag
+     * @param  string $relativeName Relative Path
+     * @param  string $filter       Filter Alias
+     * @param  array  $attributes   Attributes for HTML image tag
      * @return string
      */
     public function __invoke($relativeName = null, $filter = null, $attributes = null)
@@ -51,7 +51,7 @@ class DisplayImage extends AbstractHtmlElement
     /**
      * Sets attributes of HTML image tag
      *
-     * @param array $attributes
+     * @param  array $attributes
      * @return self
      */
     public function setAttributes(array $attributes)

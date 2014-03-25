@@ -32,7 +32,6 @@ interface FilterManagerInterface
      */
     public function addFilter($name, array $options);
 
-
     /**
      * Gets a filter
      *

@@ -33,7 +33,7 @@ class CacheManager implements CacheManagerInterface
             }
             unlink($cachePath);
         }
-        
+
         return false;
     }
 

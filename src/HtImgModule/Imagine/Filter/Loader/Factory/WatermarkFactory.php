@@ -15,5 +15,5 @@ class WatermarkFactory implements FactoryInterface
             $serviceLocator->get('HtImg\Imagine'),
             $serviceLocator->get('HtImg\RelativePathResolver')
          );
-     }    
+     }
 }

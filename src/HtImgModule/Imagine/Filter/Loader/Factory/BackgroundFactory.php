@@ -14,5 +14,5 @@ class BackgroundFactory implements FactoryInterface
          return new Background(
             $serviceLocator->get('HtImg\Imagine')
          );
-     }    
+     }
 }

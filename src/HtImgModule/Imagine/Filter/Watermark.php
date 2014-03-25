@@ -27,8 +27,8 @@ class Watermark implements \Imagine\Filter\FilterInterface
      * Constructor
      *
      * @param ImageInterface $watermark
-     * @param string|int $size
-     * @param string $position
+     * @param string|int     $size
+     * @param string         $position
      */
     public function __construct(ImageInterface $watermark, $size = null, $position = 'center')
     {
@@ -107,6 +107,6 @@ class Watermark implements \Imagine\Filter\FilterInterface
                 break;
         }
 
-        return $image->paste($watermark, new Point($x, $y));        
+        return $image->paste($watermark, new Point($x, $y));
     }
 }

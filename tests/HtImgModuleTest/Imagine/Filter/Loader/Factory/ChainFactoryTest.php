@@ -16,6 +16,6 @@ class ChainFactoryTest extends \PHPUnit_Framework_Testcase
            ->will($this->returnValue($serviceManager));
         $factory = new ChainFactory();
         $loader = $factory->createService($loaders);
-        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Chain', $loader);                   
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Chain', $loader);
     }
 }

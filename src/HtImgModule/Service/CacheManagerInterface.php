@@ -8,9 +8,9 @@ interface CacheManagerInterface
     /**
      * Checks if cache exists
      *
-     * @param  string $relativeName
-     * @param  string $filter
-     * @param  string|null $formatOrImage 
+     * @param  string      $relativeName
+     * @param  string      $filter
+     * @param  string|null $formatOrImage
      * @return bool
      */
     public function cacheExists($relativeName, $filter, $formatOrImage = null);
@@ -18,8 +18,8 @@ interface CacheManagerInterface
     /**
      * Gets browser url for a cache
      *
-     * @param  string $relativeName
-     * @param  string $filter
+     * @param  string      $relativeName
+     * @param  string      $filter
      * @param  string|null $formatOrImage
      * @return string
      */
@@ -28,8 +28,8 @@ interface CacheManagerInterface
     /**
      * Gets filesystem path for a cache
      *
-     * @param  string $relativeName
-     * @param  string $filter
+     * @param  string      $relativeName
+     * @param  string      $filter
      * @param  string|null $formatOrImage
      * @return string
      */
@@ -41,7 +41,7 @@ interface CacheManagerInterface
      * @param  string         $relativeName
      * @param  string         $filter
      * @param  ImageInterface $image
-     * @param  string|null $formatOrImage
+     * @param  string|null    $formatOrImage
      * @return void
      */
     public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null);
@@ -49,8 +49,8 @@ interface CacheManagerInterface
     /**
      * Deletes a new cache
      *
-     * @param  string         $relativeName
-     * @param  string         $filter
+     * @param  string      $relativeName
+     * @param  string      $filter
      * @param  string|null $formatOrImage
      * @return void
      */

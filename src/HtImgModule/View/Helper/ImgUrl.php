@@ -36,11 +36,11 @@ class ImgUrl extends AbstractHelper
      *
      * @param CacheManagerInterface $cacheManager
      * @param CacheOptionsInterface $cacheOptions
-     * @param FilterManager $filterManager
+     * @param FilterManager         $filterManager
      */
     public function __construct(
-        CacheManagerInterface $cacheManager, 
-        CacheOptionsInterface $cacheOptions, 
+        CacheManagerInterface $cacheManager,
+        CacheOptionsInterface $cacheOptions,
         FilterManager $filterManager,
         ResolverInterface $relativePathResolver
     )
@@ -54,8 +54,8 @@ class ImgUrl extends AbstractHelper
     /**
      * Gets url of image
      *
-     * @param string $relativeName  Relative Path
-     * @param string $filter        Filter Alias
+     * @param  string $relativeName Relative Path
+     * @param  string $filter       Filter Alias
      * @return string
      */
     public function __invoke($relativeName, $filter)
@@ -66,8 +66,8 @@ class ImgUrl extends AbstractHelper
         } else {
             $imagePath = $this->relativePathResolver->resolve($relativeName);
             $format = pathinfo($imagePath, PATHINFO_EXTENSION);
-            $format = $format ?: 'png';            
-        } 
+            $format = $format ?: 'png';
+        }
         if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
             return $this->getView()->basePath() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
         }

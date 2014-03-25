@@ -11,6 +11,7 @@ class ImagePathStackResolverFactory implements FactoryInterface
     {
         $serviceLocator = $resolvers->getServiceLocator();
         $options = $serviceLocator->get('HtImg\ModuleOptions');
+
         return new ImagePathStackResolver([
             'script_paths' => $options->getImgSourcePathStack()
         ]);

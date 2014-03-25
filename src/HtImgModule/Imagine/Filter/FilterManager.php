@@ -21,7 +21,7 @@ class FilterManager implements FilterManagerInterface
     /**
      * Constructor
      *
-     * @param FilterOptionsInterface $filterOptions
+     * @param FilterOptionsInterface  $filterOptions
      * @param ServiceLocatorInterface $filterLoaderPluginManager
      */
     public function __construct(
@@ -58,8 +58,8 @@ class FilterManager implements FilterManagerInterface
     /**
      * Validates if filter exists and is valid
      *
-     * @param string $filter    Filter Alias
-     * @throws  Exception\FilterNotFoundException
+     * @param  string                             $filter Filter Alias
+     * @throws Exception\FilterNotFoundException
      * @throws Exception\InvalidArgumentException
      * @return void
      */
@@ -68,7 +68,7 @@ class FilterManager implements FilterManagerInterface
         if (!isset($this->filterOptions->getFilters()[$filter])) {
             throw new Exception\FilterNotFoundException(sprintf(
                 'Filter "%s" was not found', $filter
-            ));            
+            ));
         }
         $options = $this->filterOptions->getFilters()[$filter];
         if (!isset($options['type'])) {

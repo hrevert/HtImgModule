@@ -18,6 +18,6 @@ class PasteFactoryTest extends \PHPUnit_Framework_Testcase
            ->will($this->returnValue($serviceManager));
         $factory = new PasteFactory();
         $loader = $factory->createService($loaders);
-        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Paste', $loader);        
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Paste', $loader);
     }
 }
