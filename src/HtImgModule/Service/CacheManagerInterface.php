@@ -12,7 +12,7 @@ interface CacheManagerInterface
      * @param  string $filter
      * @return bool
      */
-    public function cacheExists($relativeName, $filter);
+    public function cacheExists($relativeName, $filter, $format = null);
 
     /**
      * Gets browser url for a cache
@@ -21,7 +21,7 @@ interface CacheManagerInterface
      * @param  string $filter
      * @return string
      */
-    public function getCacheUrl($relativeName, $filter);
+    public function getCacheUrl($relativeName, $filter, $format = null);
 
     /**
      * Gets filesystem path for a cache
@@ -30,7 +30,7 @@ interface CacheManagerInterface
      * @param  string $filter
      * @return string
      */
-    public function getCachePath($relativeName, $filter);
+    public function getCachePath($relativeName, $filter, $format = null);
 
     /**
      * Creates a new cache
@@ -40,7 +40,7 @@ interface CacheManagerInterface
      * @param  ImageInterface $image
      * @return void
      */
-    public function createCache($relativeName, $filter, ImageInterface $image);
+    public function createCache($relativeName, $filter, ImageInterface $image, $format = null);
 
     /**
      * Deletes a new cache
