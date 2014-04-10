@@ -79,3 +79,9 @@ return [
 ];
 ```
 Here 270 is the priority of the resolver. The resolvers having high priority are consulted first.
+
+
+### Navigation
+
+* Continue to [Displaying Images From Controller](Images From Controller.md)
+* Back to [Using Filters](Using Filters.md)

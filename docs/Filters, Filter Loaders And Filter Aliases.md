@@ -14,3 +14,8 @@ echo $this->htDisplayImage('relative/path/to/image', 'filter_alias');// Here it 
 Filter Loaders loads a filter by providing the options of a filter aliases to a filter. Filter loader must implement [HtImgModule\Imagine\Filter\Loader\LoaderInterface](https://github.com/hrevert/HtImgModule/blob/master/src/HtImgModule/Imagine/Filter/Loader/LoaderInterface.php). The only required method is `load`.
 
 [Filters Usage](https://github.com/hrevert/HtImgModule/blob/master/docs/Using%20Filters.md)
+
+### Navigation
+
+* Continue to [Using Filters](Using Filters.md)
+* Back to [the Index](README.md)

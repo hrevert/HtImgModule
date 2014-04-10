@@ -171,3 +171,8 @@ return [
     ]
 ];
 ```
+
+### Navigation
+
+* Continue to [Image Path Resolver](Image Path Resolver.md)
+* Back to [Filters, Filter Loaders And Filter Aliases](Filters, Filter Loaders And Filter Aliases.md)
