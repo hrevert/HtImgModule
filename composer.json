@@ -24,6 +24,9 @@
         "zendframework/zend-stdlib": "~2.2",
         "imagine/Imagine": "0.5.*"
     },
+    "require": {
+        "ext-gd2": "*"
+    },
     "autoload": {
         "psr-4": {
             "HtImgModule\\": "src/"
