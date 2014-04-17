@@ -2,28 +2,30 @@
 namespace HtImgModule\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use HtImgModule\Service\ImageService;
+use HtImgModule\Service\ImageServiceInterface;
 use HtImgModule\View\Model\ImageModel;
 use Imagine\Exception\InvalidArgumentException;
 
 class ImageController extends AbstractActionController
 {
     /**
-     * @var ImageService
-     *
+     * @var ImageServiceInterface
      */
     protected $imageService;
 
     /**
      * Constructor
      *
-     * @param ImageService $imageService
+     * @param ImageServiceInterface $imageService
      */
-    public function __construct(ImageService $imageService)
+    public function __construct(ImageServiceInterface $imageService)
     {
         $this->imageService = $imageService;
     }
 
+    /**
+     * Displays image
+     */
     public function displayAction()
     {
         $relativePath = $this->params()->fromQuery('relativePath');

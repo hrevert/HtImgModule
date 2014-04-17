@@ -7,7 +7,7 @@ use Zend\View\Resolver\ResolverInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
 use HtImgModule\Exception;
 
-class ImageService
+class ImageService implements ImageServiceInterface
 {
     /**
      * @var CacheOptionsInterface
@@ -58,11 +58,7 @@ class ImageService
     }
 
     /**
-     * Gets image from relative path of image
-     *
-     * @param  string                        $relativePath
-     * @param  string                        $filter
-     * @return \Imagine\Image\ImageInterface
+     * {@inheritDoc}
      */
     public function getImageFromRelativePath($relativePath, $filter)
     {
@@ -100,11 +96,7 @@ class ImageService
     }
 
     /**
-     * Gets image from path of image
-     *
-     * @param  string                        $imagePath
-     * @param  string                        $filter
-     * @return \Imagine\Image\ImageInterface
+     * {@inheritDoc}
      */
     public function getImage($imagePath, $filter)
     {
