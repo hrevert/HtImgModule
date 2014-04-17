@@ -10,7 +10,7 @@ class Resize implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         $width = $options['width'];
         $height = $options['height'];

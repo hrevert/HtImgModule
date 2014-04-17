@@ -23,7 +23,7 @@ class Chain implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         if (false == isset($options['filters']) || false == is_array($options['filters'])) {
             throw new Exception\InvalidArgumentException('Expected filters key and type of array');
@@ -33,7 +33,7 @@ class Chain implements LoaderInterface
             throw new Exception\InvalidArgumentException('At least one filter expected');
         }
 
-        $filters = array();
+        $filters = [];
 
         foreach ($options['filters'] as $loaderName => $loaderOptions) {
             $loader = $this->filterLoaders->get($loaderName);

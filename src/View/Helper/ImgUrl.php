@@ -80,6 +80,6 @@ class ImgUrl extends AbstractHelper
             );
         }
 
-        return $this->getView()->url('htimg/display', array('filter' => $filter), array('query' => array('relativePath' => $relativeName)));
+        return $this->getView()->url('htimg/display', ['filter' => $filter], ['query' => ['relativePath' => $relativeName]]);
     }
 }

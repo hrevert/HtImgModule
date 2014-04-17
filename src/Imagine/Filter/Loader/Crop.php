@@ -7,7 +7,7 @@ use Imagine\Filter\Basic\Crop as CropFilter;
 
 class Crop implements LoaderInterface
 {
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         list($x, $y) = $options['start'];
         $width = $options['width'];

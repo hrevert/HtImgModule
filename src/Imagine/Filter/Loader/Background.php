@@ -25,7 +25,7 @@ class Background extends Paste implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         $size = (isset($options['width']) && isset($options['height']) )
             ? [$options['width'], $options['height']]

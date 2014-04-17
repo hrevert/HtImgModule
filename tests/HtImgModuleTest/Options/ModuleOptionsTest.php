@@ -9,15 +9,15 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
 
     public function testSettersAndGetters()
     {
-        $moduleOptions = new ModuleOptions(array(
+        $moduleOptions = new ModuleOptions([
             'enable_cache' => false,
             'img_source_path_stack' => ['img/'],
-            'img_source_map' => array('name' => 'hello'),
+            'img_source_map' => ['name' => 'hello'],
             'driver' => 'imagick',
             'filters' => ['hello'],
             'web_root' => 'web',
             'image_resolvers' => ['image_resolvers']
-        ));
+        ]);
         $this->assertEquals(false, $moduleOptions->getEnableCache());
         $this->assertEquals(['img/'], $moduleOptions->getImgSourcePathStack());
         $this->assertEquals('hello', $moduleOptions->getImgSourceMap()['name']);

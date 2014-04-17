@@ -28,8 +28,8 @@ class Paste implements FilterInterface
      */
     public function __construct(ImageInterface $pasteImage, $x, $y)
     {
-        $this->throwIfPointNotValid($x, 'x', array('left', 'right', 'center'));
-        $this->throwIfPointNotValid($y, 'y', array('top', 'bottom', 'middle'));
+        $this->throwIfPointNotValid($x, 'x', ['left', 'right', 'center']);
+        $this->throwIfPointNotValid($y, 'y', ['top', 'bottom', 'middle']);
 
         $this->pasteImage = $pasteImage;
         $this->x = $x;

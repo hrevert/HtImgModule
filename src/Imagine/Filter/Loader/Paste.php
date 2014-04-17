@@ -33,7 +33,7 @@ class Paste implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         if (!isset($options['image'])) {
             throw new Exception\InvalidArgumentException('Option "image" is required.');

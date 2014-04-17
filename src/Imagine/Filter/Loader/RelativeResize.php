@@ -10,7 +10,7 @@ class RelativeResize implements LoaderInterface
     /**
      * {@inheritDoc}
      */
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         foreach ($options as $method => $parameter) {
             return new RelativeResizeFilter($method, $parameter);

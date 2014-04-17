@@ -8,7 +8,7 @@ use Imagine\Filter\Basic\Thumbnail as ThumbnailFilter;
 
 class Thumbnail implements LoaderInterface
 {
-    public function load(array $options = array())
+    public function load(array $options = [])
     {
         $mode = isset($options['mode']) && $options['mode'] === 'inset'  ?
             ManipulatorInterface::THUMBNAIL_INSET :
