@@ -4,7 +4,7 @@ namespace HtImgModule\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use HtImgModule\Service\ImageServiceInterface;
 use HtImgModule\View\Model\ImageModel;
-use Imagine\Exception\InvalidArgumentException;
+use HtImgModule\Exception;
 
 class ImageController extends AbstractActionController
 {
@@ -35,7 +35,7 @@ class ImageController extends AbstractActionController
         }
         try {
             $imageData = $this->imageService->getImageFromRelativePath($relativePath, $filter);
-        } catch (InvalidArgumentException $e) {
+        } catch (Exception\ImageNotFoundException $e) {
             return $this->notFoundAction();
         }
 
