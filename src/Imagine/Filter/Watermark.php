@@ -104,7 +104,6 @@ class Watermark implements \Imagine\Filter\FilterInterface
                 throw new Exception\InvalidArgumentException(
                     sprintf('Unknown position "%s"', $this->position)
                 );
-                break;
         }
 
         return $image->paste($watermark, new Point($x, $y));
