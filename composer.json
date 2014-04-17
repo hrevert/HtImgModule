@@ -25,7 +25,7 @@
         "imagine/Imagine": "0.5.*"
     },
     "require": {
-        "ext-gd2": "*"
+        "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {
