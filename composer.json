@@ -24,7 +24,7 @@
         "zendframework/zend-stdlib": "~2.2",
         "imagine/Imagine": "0.5.*"
     },
-    "require": {
+    "require-dev": {
         "ext-gd": "*"
     },
     "autoload": {
