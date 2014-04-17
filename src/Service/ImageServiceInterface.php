@@ -8,6 +8,7 @@ interface ImageServiceInterface
      *
      * @param  string                        $relativePath
      * @param  string                        $filter
+     * @throws \HtImgModule\Exception\ImageNotFoundException
      * @return array
      */
     public function getImageFromRelativePath($relativePath, $filter);
