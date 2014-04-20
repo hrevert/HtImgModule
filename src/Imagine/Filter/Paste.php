@@ -24,7 +24,9 @@ class Paste implements FilterInterface
     protected $y;
 
     /**
-     * @param \Imagine\Image\ImageInterface $pasteImage
+     * @param \Imagine\Image\ImageInterface $pasteImage     Image to be pasted
+     * @param string|int $x     x-coordinage|position of left corner
+     * @param string|int $y     y-coordinage|position of left corner
      */
     public function __construct(ImageInterface $pasteImage, $x, $y)
     {
