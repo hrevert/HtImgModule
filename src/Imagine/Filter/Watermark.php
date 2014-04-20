@@ -9,7 +9,7 @@ use HtImgModule\Exception;
 class Watermark implements \Imagine\Filter\FilterInterface
 {
     /**
-     * @var string|int
+     * @var string|int|null
      */
     protected $size;
 
@@ -27,22 +27,24 @@ class Watermark implements \Imagine\Filter\FilterInterface
      * Constructor
      *
      * @param ImageInterface $watermark
-     * @param string|int     $size
+     * @param string|int|null     $size
      * @param string         $position
      */
     public function __construct(ImageInterface $watermark, $size = null, $position = 'center')
     {
         $this->watermark = $watermark;        
         $this->position = $position;
-        if (is_string($size) && substr($size, -1) === '%') {
-            $size = substr($size, 0, -1) / 100;
+        if (!is_null($size)) {
+            if (is_string($size) && substr($size, -1) === '%') {
+                $size = substr($size, 0, -1) / 100;
+            }
+            if (!is_integer($size) && !is_double($size) && !is_float($size)) {
+                throw new Exception\InvalidArgumentException(
+                    sprintf('"%s" expects parameter 2, size to be integer, %s provider instead', __METHOD__, gettype($size))
+                );            
+            }
+            $this->size = $size;            
         }
-        if (!is_integer($size) && !is_double($size)) {
-            throw new Exception\InvalidArgumentException(
-                sprintf('"%s" expects parameter 2, size to be integer, %s provider instead', __METHOD__, gettype($size))
-            );            
-        }
-        $this->size = $size;
     }
 
     /**
