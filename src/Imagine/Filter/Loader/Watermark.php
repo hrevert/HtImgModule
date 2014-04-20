@@ -12,7 +12,7 @@ class Watermark extends Paste implements LoaderInterface
     {
         return new WatermarkFilter(
             $this->imagine->open($this->resolver->resolve($options['watermark'])),
-            $options['size'],
+            isset($options['size']) ? $options['size'] : null,
             isset($options['position']) ? $options['position'] : 'center'
         );
     }

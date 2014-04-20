@@ -14,5 +14,6 @@ class WatermarkTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(RESOURCES_DIR . '/Archos.jpg'));
         $loader = new Watermark($imagine, $resolver);
         $this->assertInstanceOf('HtImgModule\Imagine\Filter\Watermark', $loader->load(['watermark' => 'hello.jpeg', 'size' => '10%']));
+        $this->assertInstanceOf('HtImgModule\Imagine\Filter\Watermark', $loader->load(['watermark' => 'hello.jpeg']));
     }
 }
