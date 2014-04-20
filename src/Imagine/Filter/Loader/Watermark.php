@@ -10,13 +10,9 @@ class Watermark extends Paste implements LoaderInterface
      */
     public function load(array $options = [])
     {
-        $size = (isset($options['width']) && isset($options['height']) )
-            ? [$options['width'], $options['height']]
-            : null;
-
         return new WatermarkFilter(
             $this->imagine->open($this->resolver->resolve($options['watermark'])),
-            $size,
+            $options['size'],
             isset($options['position']) ? $options['position'] : 'center'
         );
     }
