@@ -162,8 +162,7 @@ return [
                 'type' => 'watermark'',
                 'options' => [
                   'watermark' => 'image-to-be-pasted',
-                  'width' => 100, // Optional
-                  'height' => 200, // Optional
+                  'size' => '90%', // Optional
                   'position' => 'left' // Optional defaults to center
                 ]
             ]        
