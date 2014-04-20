@@ -37,9 +37,9 @@ class Watermark implements \Imagine\Filter\FilterInterface
         if (is_string($size) && substr($size, -1) === '%') {
             $size = substr($size, 0, -1) / 100;
         }
-        if (!is_integer($size)) {
+        if (!is_integer($size) && !is_double($size)) {
             throw new Exception\InvalidArgumentException(
-                sprintf('"%s" expects parameter 2 to be integer, %s provider instead', __METHOD__, gettype($size))
+                sprintf('"%s" expects parameter 2, size to be integer, %s provider instead', __METHOD__, gettype($size))
             );            
         }
         $this->size = $size;
