@@ -3,6 +3,7 @@ namespace HtImgModule\View\Model;
 
 use Zend\View\Model\ViewModel;
 use Imagine\Image\ImageInterface;
+use HtImgModule\Exception;
 
 class ImageModel extends ViewModel
 {
@@ -51,6 +52,14 @@ class ImageModel extends ViewModel
                 $this->setImagePath($imageOrPath);
             } elseif ($imageOrPath instanceof ImageInterface) {
                 $this->setImage($imageOrPath);
+            } else {
+                throw new Exception\InvalidArgumentException(
+                    sprintf(
+                        '%s expects parameter 1 to be image path or instance of Imagine\Image\ImageInterface, %s provided instead',
+                        __METHOD__,
+                        is_object($imageOrPath) ? get_class($imageOrPath) : gettype($imageOrPath)
+                    )
+                );
             }
         }
         if ($format !== null) {
