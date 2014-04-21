@@ -42,8 +42,9 @@ class ImageModel extends ViewModel
      * Constructor
      *
      * @param ImageInterface|string $imageOrPath
+     * @param string|null $format
      */
-    public function __construct($imageOrPath = null)
+    public function __construct($imageOrPath = null, $format = null)
     {
         if ($imageOrPath !== null) {
             if (is_string($imageOrPath)) {
@@ -51,6 +52,9 @@ class ImageModel extends ViewModel
             } elseif ($imageOrPath instanceof ImageInterface) {
                 $this->setImage($imageOrPath);
             }
+        }
+        if ($format !== null) {
+            $this->setFormat($format);
         }
     }
 
