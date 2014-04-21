@@ -1,7 +1,6 @@
 <?php
 namespace HtImgModule\Imagine\Filter;
 
-use HtImgModule\Imagine\Filter\Watermark;
 use Imagine\Gd\Imagine;
 
 class WatermarkTest extends \PHPUnit_Framework_TestCase
@@ -14,8 +13,8 @@ class WatermarkTest extends \PHPUnit_Framework_TestCase
        $watermark = new Watermark($archos, '50%');
        $newImage = $watermark->apply($flowers);
        $watermark = new Watermark($archos, '50%', 'right');
-       $newImage = $watermark->apply($flowers);  
-       //$newImage->save('resources/watermark.jpg');      
+       $newImage = $watermark->apply($flowers);
+       //$newImage->save('resources/watermark.jpg');
     }
 
    public function testGetExceptionWithInvalidPosition()
@@ -24,7 +23,7 @@ class WatermarkTest extends \PHPUnit_Framework_TestCase
        $imagine = new Imagine();
        $archos = $imagine->open('resources/Archos.jpg');
        $flowers = $imagine->open('resources/flowers.jpg');
-       $watermark = new Watermark($archos, null, 'asdf');  
+       $watermark = new Watermark($archos, null, 'asdf');
        $newImage = $watermark->apply($flowers);
    }
 
@@ -33,6 +32,6 @@ class WatermarkTest extends \PHPUnit_Framework_TestCase
        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
        $imagine = new Imagine();
        $archos = $imagine->open('resources/Archos.jpg');
-       $watermark = new Watermark($archos, 'asfd', 'asdf');  
-   } 
+       $watermark = new Watermark($archos, 'asfd', 'asdf');
+   }
 }

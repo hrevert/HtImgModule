@@ -1,7 +1,6 @@
 <?php
 namespace HtImgModule\Imagine\Filter;
 
-use HtImgModule\Imagine\Filter\Background;
 use Imagine\Gd\Imagine;
 
 class BackgroundTest extends \PHPUnit_Framework_TestCase

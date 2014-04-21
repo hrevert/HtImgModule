@@ -26,13 +26,13 @@ class Watermark implements \Imagine\Filter\FilterInterface
     /**
      * Constructor
      *
-     * @param ImageInterface $watermark
-     * @param string|int|null     $size
-     * @param string         $position
+     * @param ImageInterface  $watermark
+     * @param string|int|null $size
+     * @param string          $position
      */
     public function __construct(ImageInterface $watermark, $size = null, $position = 'center')
     {
-        $this->watermark = $watermark;        
+        $this->watermark = $watermark;
         $this->position = $position;
         if (!is_null($size)) {
             if (is_string($size) && substr($size, -1) === '%') {
@@ -41,9 +41,9 @@ class Watermark implements \Imagine\Filter\FilterInterface
             if (!is_integer($size) && !is_double($size) && !is_float($size)) {
                 throw new Exception\InvalidArgumentException(
                     sprintf('"%s" expects parameter 2, size to be integer, %s provider instead', __METHOD__, gettype($size))
-                );            
+                );
             }
-            $this->size = $size;            
+            $this->size = $size;
         }
     }
 
