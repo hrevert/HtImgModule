@@ -33,7 +33,7 @@ return [
 ```
 
 Now, you can get image from view templates like:
-```
+```html+php
 <img src="<?php echo $this->htImgUrl('my_image.png', 'my_thumbnail'); ?>" alt="Hello" />
 ```
 Alternatively, you can:
