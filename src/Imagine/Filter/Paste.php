@@ -71,8 +71,6 @@ class Paste implements FilterInterface
             case 'center':
                 return (integer) round( ($image->getSize()->getWidth() / 2) - ($pasteImage->getSize()->getWidth() / 2) );
             case 'left':
-            default:
-                return 0;
         }
     }
 
@@ -91,8 +89,6 @@ class Paste implements FilterInterface
             case 'middle':
                 return (integer) round( ($image->getSize()->getHeight() / 2) - ($pasteImage->getSize()->getHeight() / 2) );
             case 'top':
-            default:
-                return 0;
         }
     }
 

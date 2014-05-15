@@ -15,4 +15,11 @@ class RelativeResizeTest extends \PHPUnit_Framework_TestCase
         $filter = $loader->load($options);
         $this->assertInstanceOf('Imagine\Filter\Advanced\RelativeResize', $filter);
     }
+
+    public function testGetExcpeptionWithEmptyOrNoOptions()
+    {
+        $loader = new RelativeResize();
+        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
+        $filter = $loader->load([]);
+    }
 }

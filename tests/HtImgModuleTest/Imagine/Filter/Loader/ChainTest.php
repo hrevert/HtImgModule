@@ -27,4 +27,12 @@ class ChainTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
         $chainFilter = $chainLoader->load(['filters' => []]);
     }
+
+    public function testGetExceptionWithInvalidOptionsType()
+    {
+        $filterLoaders = new ServiceManager;
+        $chainLoader = new  Chain($filterLoaders);
+        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
+        $chainFilter = $chainLoader->load(['filters' => '']);
+    }
 }
