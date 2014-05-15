@@ -5,6 +5,7 @@ HtImgModule
 [![Latest Unstable Version](https://poser.pugx.org/hrevert/ht-img-module/v/unstable.png)](https://packagist.org/packages/hrevert/ht-img-module)
 [![Total Downloads](https://poser.pugx.org/hrevert/ht-img-module/downloads.png)](https://packagist.org/packages/hrevert/ht-img-module)
 [![Scrutinizer](https://scrutinizer-ci.com/g/hrevert/HtImgModule/badges/quality-score.png?s=c9bd5af136c2e580cf760d19f3ca72ae53bb8a02)](https://scrutinizer-ci.com/g/hrevert/HtImgModule/)
+[![Code Coverage](https://scrutinizer-ci.com/g/hrevert/HtImgModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/hrevert/HtImgModule/?branch=master)
 
 This module simplies image manipulation for Zend Framework 2. This module integrates Zend Framework 2 with [Imagine](https://github.com/avalanche123/Imagine), the most amazing Image manipulation library for PHP.
 
