@@ -8,9 +8,13 @@ php:
 
 before_script:
  - composer install
+ - wget https://scrutinizer-ci.com/ocular.phar
 
 script:
   - (cd tests ; phpunit ./)
+
+after_script:
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
   
 matrix:
   allow_failures:

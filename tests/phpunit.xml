@@ -1,5 +1,16 @@
-﻿<phpunit bootstrap="Bootstrap.php">
+﻿<phpunit bootstrap="Bootstrap.php"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="false"
+         backupGlobals="false"
+         syntaxCheck="true"
+>
     <testsuite name="HtImgModuleTest">
         <directory>HtImgModuleTest</directory>
     </testsuite>
+    <logging>
+        <log type="coverage-text" target="php://stdout"/>
+        <log type="coverage-clover" target="../build/logs/clover.xml"/>
+    </logging>
 </phpunit>
