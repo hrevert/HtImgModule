@@ -69,7 +69,9 @@ class ImgUrl extends AbstractHelper
             $format = $format ?: 'png';
         }
         if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
-            return $this->getView()->basePath() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
+            $basePathHelper = $this->getView()->plugin('basePath');
+
+            return $basePathHelper() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
         }
         if (!isset($imagePath)) {
             $imagePath = $this->relativePathResolver->resolve($relativeName);
@@ -80,6 +82,8 @@ class ImgUrl extends AbstractHelper
             );
         }
 
-        return $this->getView()->url('htimg/display', ['filter' => $filter], ['query' => ['relativePath' => $relativeName]]);
+        $urlHelper = $this->getView()->plugin('url');
+
+        return $urlHelper('htimg/display', ['filter' => $filter], ['query' => ['relativePath' => $relativeName]]);
     }
 }
