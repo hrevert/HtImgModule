@@ -1,11 +1,10 @@
 <?php
-namespace HtImgModuleTest\Factory\Imagine\Loader;
+namespace HtImgModuleTest\Factory\Imagine\Loader\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\ServiceManager;
 use HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory;
 
-class FileSystemLoaderFactoryTest implements FactoryInterface
+class FileSystemLoaderFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
@@ -13,10 +12,10 @@ class FileSystemLoaderFactoryTest implements FactoryInterface
         $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
         $serviceManager->setService('HtImg\RelativePathResolver', $resolver);
         $factory = new FileSystemLoaderFactory();
-        $imageLoaders = $this->getMock('Zend\Service\AbstractPluginManager');
+        $imageLoaders = $this->getMock('Zend\ServiceManager\AbstractPluginManager');
         $imageLoaders->expects($this->once())
             ->method('getServiceLocator')
             ->will($this->returnValue($serviceManager));
-        $this->assertInstanceOf('HtImgModule\Imagine\Loader\LoaderPluginManager', $factory->createService($imageLoaders));
+        $this->assertInstanceOf('HtImgModule\Imagine\Loader\FileSystemLoader', $factory->createService($imageLoaders));
     } 
 }

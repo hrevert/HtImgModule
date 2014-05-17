@@ -2,6 +2,7 @@
 namespace HtImgModuleTest\Factory\Imagine\Loader;
 
 use HtImgModule\Factory\Imagine\Loader\LoaderPluginManagerFactory;
+use Zend\ServiceManager\ServiceManager;
 
 class LoaderPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -4,7 +4,7 @@ namespace HtImgModule\Imagine\Loader;
 use Zend\ServiceManager\AbstractPluginManager;
 use HtImgModule\Exception;
 
-class LoaderPluginManager extends \AbstractPluginManager
+class LoaderPluginManager extends AbstractPluginManager
 {
     protected $factories = [
         'FileSystem' => 'HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory',
