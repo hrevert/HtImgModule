@@ -2,6 +2,8 @@
 namespace HtImgModuleTest\View\Helper;
 
 use HtImgModule\View\Helper\DisplayImage;
+use Zend\View\Renderer\PhpRenderer;
+use Zend\View\HelperPluginManager;
 
 class DisplayImageTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,25 +18,25 @@ class DisplayImageTest extends \PHPUnit_Framework_TestCase
     {
         $helper = new DisplayImage;
         $helper->setAttributes(['alt' => 'hello']);
-        $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
+        $renderer = new PhpRenderer;
+        $helpers = new HelperPluginManager;
+        $renderer->setHelperPluginManager($helpers);
 
         $doctype = $this->getMock('Zend\View\Helper\Doctype');
         $doctype->expects($this->once())
             ->method('isXhtml')
             ->will($this->returnValue(true));
+        $helpers->setService('doctype', $doctype);
 
-        $map = [
-            ['HtImgModule\View\Helper\ImgUrl',  function(){return '/app';}],
-            ['doctype', $doctype],
-
-        ];
-
-        $renderer->expects($this->once())
-            ->method('plugin')
-            ->will($this->returnValueMap($map));
+        $imgUrl = $this->getMockBuilder('HtImgModule\View\Helper\ImgUrl')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $imgUrl->expects($this->once())
+            ->method('__invoke')
+            ->will($this->returnValue('/app'));
+        $helpers->setService('HtImgModule\View\Helper\ImgUrl', $imgUrl);
         
         $helper->setView($renderer);
-        var_dump($renderer->plugin('HtImgModule\View\Helper\ImgUrl'));
-        $this->assertEquals('<img src="/app"/>', $helper('asdfsadf', 'asdfasfd'));
+        $this->assertEquals('<img alt="hello" src="/app" />', $helper('asdfsadf', 'asdfasfd'));
     }
 }
