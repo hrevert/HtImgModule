@@ -53,7 +53,6 @@ class Module implements
                 'HtImgModule\Imagine\Filter\FilterManager' => 'HtImgModule\Factory\FilterManagerFactory',
                 'HtImgModule\Imagine\Resolver\ResolverManager' => 'HtImgModule\Factory\ResolverManagerFactory',
                 'HtImgModule\Service\CacheManager' => 'HtImgModule\Factory\CacheManagerFactory',
-                'HtImgModule\Imagine\Loader\FileSystemLoader' => 'HtImgModule\Factory\FileSystemLoaderFactory',
             ]
         ];
     }

@@ -1,5 +1,5 @@
 <?php
-namespace HtImgModule\Factory;
+namespace HtImgModule\Factory\Imagine\Loader;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -7,9 +7,9 @@ use HtImgModule\Imagine\Loader\FileSystemLoader;
 
 class FileSystemLoaderFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $loaders)
     {
-        $resolver = $serviceLocator->get('HtImg\RelativePathResolver');
+        $resolver = $loaders->getServiceLocator()->get('HtImg\RelativePathResolver');
 
         return new FileSystemLoader($resolver);
     }    
