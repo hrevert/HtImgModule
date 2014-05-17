@@ -14,7 +14,7 @@ class DisplayImageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['class' => 'pull-right', 'foo' => 'bar'], $helper->getAttributes());
     }
 
-    public function testGetImageTag()
+    public function testInvoke()
     {
         $helper = new DisplayImage;
         $helper->setAttributes(['alt' => 'hello']);
@@ -38,5 +38,6 @@ class DisplayImageTest extends \PHPUnit_Framework_TestCase
         
         $helper->setView($renderer);
         $this->assertEquals('<img alt="hello" src="/app" />', $helper('asdfsadf', 'asdfasfd'));
+        $this->assertEquals($helper, $helper());
     }
 }
