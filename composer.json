@@ -24,7 +24,8 @@
         "zendframework/zend-stdlib": "~2.2",
         "zendframework/zend-filter": "~2.2",
         "zendframework/zend-escaper": "~2.2",
-        "imagine/Imagine": "0.5.*"
+        "imagine/Imagine": "0.5.*",
+        "league/flysystem": "0.4.*"
     },
     "require-dev": {
         "ext-gd": "*"
