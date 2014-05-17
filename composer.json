@@ -28,7 +28,8 @@
         "league/flysystem": "0.4.*"
     },
     "require-dev": {
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "knplabs/gaufrette":"0.1.*"
     },
     "autoload": {
         "psr-4": {
