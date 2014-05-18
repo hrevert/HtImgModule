@@ -15,13 +15,13 @@ class FileSystemLoaderTest extends \PHPUnit_Framework_TestCase
         $loader = new FileSystemLoader($resolver);
 
         $reflection = new ReflectionClass($loader);
-        $property = $reflection->getProperty('fiysystem');
+        $property = $reflection->getProperty('loader');
         $property->setAccessible(true);
-        $flySystem = $this->getMock('League\Flysystem\FilesystemInterface');
-        $flySystem->expects($this->exactly(1))
-            ->method('read')
+        $fileSystem = $this->getMock('HtImgModule\Imagine\Loader\SimpleFileSystemLoader');
+        $fileSystem->expects($this->exactly(1))
+            ->method('load')
             ->will($this->returnValue('this-is-image'));
-        $property->setValue($loader, $flySystem);
+        $property->setValue($loader, $fileSystem);
 
         $this->assertEquals('this-is-image', $loader->load('asdf'));
     }

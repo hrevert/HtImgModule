@@ -1,6 +1,8 @@
 <?php
 namespace HtImgModule\Imagine\Loader;
 
+use HtImgModule\Binary\Binary;
+
 interface LoaderInterface
 {
     /**
@@ -10,7 +12,7 @@ interface LoaderInterface
      *
      * @param mixed $path
      *
-     * @return string An image binary content
+     * @return Binary|string An image binary content
      */
     public function load($path);        
 }

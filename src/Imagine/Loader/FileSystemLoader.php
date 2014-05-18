@@ -2,8 +2,6 @@
 namespace HtImgModule\Imagine\Loader;
 
 use Zend\View\Resolver\ResolverInterface;
-use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local as Adapter;
 
 class FileSystemLoader implements LoaderInterface
 {
@@ -13,9 +11,9 @@ class FileSystemLoader implements LoaderInterface
     protected $resolver;
 
     /**
-     * @var Filesystem
+     * @var SimpleFileSystemLoader
      */
-    protected $fiysystem;
+    protected $loader;
 
     /**
      * Constructor
@@ -25,7 +23,7 @@ class FileSystemLoader implements LoaderInterface
     public function __construct($resolver)
     {
         $this->resolver = $resolver;
-        $this->fiysystem = new Filesystem(new Adapter('.'));
+        $this->loader = new SimpleFileSystemLoader('.');
     }
 
     /**
@@ -35,6 +33,6 @@ class FileSystemLoader implements LoaderInterface
     {
         $imagePath = $this->resolver->resolve($path);
 
-        return $this->fiysystem->read($imagePath);
+        return $this->loader->load($imagePath);
     }
 }
