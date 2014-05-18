@@ -34,7 +34,7 @@ class ImageController extends AbstractActionController
             return $this->notFoundAction();
         }
         try {
-            $imageData = $this->imageService->getImageFromRelativePath($relativePath, $filter);
+            $imageData = $this->imageService->getImage($relativePath, $filter);
         } catch (Exception\ImageNotFoundException $e) {
             return $this->notFoundAction();
         } catch (Exception\FilterNotFoundException $e) {

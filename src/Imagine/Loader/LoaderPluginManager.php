@@ -7,7 +7,7 @@ use HtImgModule\Exception;
 class LoaderPluginManager extends AbstractPluginManager
 {
     protected $factories = [
-        'FileSystem' => 'HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory',
+        'filesystem' => 'HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory',
     ];
 
     public function validatePlugin($plugin)

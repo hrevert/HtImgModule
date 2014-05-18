@@ -27,10 +27,15 @@ class SimpleFileSystemLoader implements LoaderInterface
         $absolutePath = $this->rootPath . '/' . ltrim($path, '/');
 
         if (!file_exists($absolutePath)) {
-            throw new Exception\InvalidArgumentException(sprintf('Source image not found in "%s"', $absolutePath));
+            throw new Exception\ImageNotFoundException(sprintf('Source image not found in "%s"', $absolutePath));
         }
         
         $contents = file_get_contents($absolutePath);
+
+        if (!function_exists('exif_imagetype')) {
+            return $contents;
+        }
+
         $extension = pathinfo($absolutePath, PATHINFO_EXTENSION);
         $mimeType = image_type_to_mime_type(exif_imagetype($absolutePath));
         

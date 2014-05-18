@@ -15,6 +15,7 @@ return [
             200 => 'image_path_stack',
         ],
         'resolvers_manager' => [],
+        'loaders' => [],
     ],
     'router' => [
         'routes' => [

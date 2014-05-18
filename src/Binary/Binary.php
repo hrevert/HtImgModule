@@ -46,6 +46,11 @@ class Binary implements BinaryInterface
         return $this->mimeType;
     }
 
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
+
     /**
      * @return string
      */
@@ -53,3 +58,4 @@ class Binary implements BinaryInterface
     {
         return $this->format;
     }
+}
