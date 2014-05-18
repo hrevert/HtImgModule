@@ -23,7 +23,8 @@
         "zendframework/zend-view": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
         "zendframework/zend-filter": "~2.2",
-        "imagine/Imagine": "0.5.*"
+        "imagine/Imagine": "0.5.*",
+        "symfony/http-foundation": "~2.3"
     },
     "require-dev": {
         "ext-gd": "*",
