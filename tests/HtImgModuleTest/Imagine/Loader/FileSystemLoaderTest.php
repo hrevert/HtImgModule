@@ -17,7 +17,9 @@ class FileSystemLoaderTest extends \PHPUnit_Framework_TestCase
         $reflection = new ReflectionClass($loader);
         $property = $reflection->getProperty('loader');
         $property->setAccessible(true);
-        $fileSystem = $this->getMock('HtImgModule\Imagine\Loader\SimpleFileSystemLoader');
+        $fileSystem = $this->getMockBuilder('HtImgModule\Imagine\Loader\SimpleFileSystemLoader')
+            ->disableOriginalConstructor()
+            ->getMock();
         $fileSystem->expects($this->exactly(1))
             ->method('load')
             ->will($this->returnValue('this-is-image'));
