@@ -76,7 +76,7 @@ class ImageService implements ImageServiceInterface
         if (isset($filterOptions['format'])) {
             $format = $filterOptions['format'];
         } else {
-            $binary = $this->loaderManager->getBinary($relativePath, $filter);
+            $binary = $this->loaderManager->loadBinary($relativePath, $filter);
             $format = $binary->getFormat() ?: 'png';
         }
 
@@ -85,7 +85,7 @@ class ImageService implements ImageServiceInterface
             $filteredImage = $this->imagine->open($imagePath);
         } else {
             if (!isset($binary)) {
-                $binary = $this->loaderManager->getBinary($relativePath, $filter);
+                $binary = $this->loaderManager->loadBinary($relativePath, $filter);
             }
 
             $image = $this->imagine->load($binary->getContent());

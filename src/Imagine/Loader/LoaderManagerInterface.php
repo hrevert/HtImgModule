@@ -13,5 +13,5 @@ interface LoaderManagerInterface
      * @return BinaryInterface
      * @throws \HtImgModule\Exception\ImageNotFoundException
      */
-    public function getBinary($relativePath, $filter);
+    public function loadBinary($relativePath, $filter);
 }

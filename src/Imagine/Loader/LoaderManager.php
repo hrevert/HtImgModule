@@ -60,7 +60,7 @@ class LoaderManager implements LoaderManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function getBinary($relativePath, $filter)
+    public function loadBinary($relativePath, $filter)
     {
         $filterOptions = $this->filterManager->getFilterOptions($filter);
 
