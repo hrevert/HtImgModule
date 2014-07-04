@@ -73,18 +73,27 @@ class ImageService implements ImageServiceInterface
     {
         $filterOptions = $this->filterManager->getFilterOptions($filter);
 
-        $binary = $this->loaderManager->getBinary($relativePath, $filter);
         if (isset($filterOptions['format'])) {
             $format = $filterOptions['format'];
         } else {
+            $binary = $this->loaderManager->getBinary($relativePath, $filter);
             $format = $binary->getFormat() ?: 'png';
         }
 
-        $image = $this->imagine->load($binary->getContent());
-        $filteredImage = $this->filterManager->getFilter($filter)->apply($image);
+        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
+            $imagePath = $this->cacheManager->getCachePath($relativePath, $filter, $format);
+            $filteredImage = $this->imagine->open($imagePath);
+        } else {
+            if (!isset($binary)) {
+                $binary = $this->loaderManager->getBinary($relativePath, $filter);
+            }
 
-        if ($this->cacheOptions->getEnableCache()) {
-            $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
+            $image = $this->imagine->load($binary->getContent());
+            $filteredImage = $this->filterManager->getFilter($filter)->apply($image);
+
+            if ($this->cacheOptions->getEnableCache()) {
+                $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
+            }            
         }
 
         return [

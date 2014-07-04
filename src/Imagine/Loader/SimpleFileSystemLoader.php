@@ -6,8 +6,16 @@ use HtImgModule\Binary\Binary;
 
 class SimpleFileSystemLoader implements LoaderInterface
 {
+    /**
+     * @var string
+     */
     protected $rootPath;
 
+    /**
+     * Constructor
+     *
+     * @param string
+     */
     public function __construct($rootPath)
     {
         $this->rootPath = $rootPath;

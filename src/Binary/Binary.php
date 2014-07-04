@@ -19,9 +19,11 @@ class Binary implements BinaryInterface
     protected $format;
 
     /**
+     * Constructor
+     *
      * @param string $content
      * @param string $mimeType
-     * @param string $format
+     * @param string|null $format
      */
     public function __construct($content, $mimeType, $format = null)
     {
@@ -31,7 +33,7 @@ class Binary implements BinaryInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getContent()
     {
@@ -39,20 +41,23 @@ class Binary implements BinaryInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getMimeType()
     {
         return $this->mimeType;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setFormat($format)
     {
         $this->format = $format;
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getFormat()
     {

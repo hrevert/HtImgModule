@@ -23,7 +23,7 @@ class FileSystemLoader implements LoaderInterface
     public function __construct($resolver)
     {
         $this->resolver = $resolver;
-        $this->loader = new SimpleFileSystemLoader('.');
+        $this->loader = new SimpleFileSystemLoader('');
     }
 
     /**

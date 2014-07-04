@@ -2,6 +2,7 @@
 namespace HtImgModule\Imagine\Loader;
 
 use HtImgModule\Binary\Binary;
+use HtImgModule\Binary\BinaryInterface;
 use HtImgModule\Exception;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
@@ -10,16 +11,39 @@ use HtImgModule\Binary\MimeTypeGuesser;
 
 class LoaderManager implements LoaderManagerInterface
 {
+    /**
+     * @var ServiceLocatorInterface
+     */
     protected $imageLoaders;
 
+    /**
+     * @var FilterManagerInterface
+     */
     protected $filterManager;
 
+    /**
+     * @var string
+     */
     protected $defaultImageLoader;
 
+    /**
+     * @var MimeTypeGuesser
+     */
     protected $mimeTypeGuesser;
 
+    /**
+     * @var MimeTypeExtensionGuesser
+     */
     protected $extensionGuesser;
 
+    /**
+     * Constructor
+     *
+     * @param ServiceLocatorInterface $imageLoaders
+     * @param FilterManagerInterface $filterManager
+     * @param string $defaultImageLoader
+     * @param MimeTypeGuesser $mimeTypeGuesser
+     */
     public function __construct(
         ServiceLocatorInterface $imageLoaders, 
         FilterManagerInterface $filterManager, 
@@ -33,6 +57,9 @@ class LoaderManager implements LoaderManagerInterface
         $this->mimeTypeGuesser = $mimeTypeGuesser;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getBinary($relativePath, $filter)
     {
         $filterOptions = $this->filterManager->getFilterOptions($filter);
@@ -50,7 +77,7 @@ class LoaderManager implements LoaderManagerInterface
         if (!$binary) {
             throw new Exception\ImageNotFoundException();            
         }
-        if (!$binary instanceof Binary) {
+        if (!$binary instanceof BinaryInterface) {
             $binary = new Binary($binary, $this->mimeTypeGuesser->guess($binary));
         }
         if ($binary->getFormat() === null) {
@@ -60,6 +87,11 @@ class LoaderManager implements LoaderManagerInterface
         return $binary;
     }
 
+    /**
+     * Gets a singleton mime type to file extension guesser.
+     *
+     * @return MimeTypeExtensionGuesser
+     */
     public function getExtensionGuesser()
     {
         if (!$this->extensionGuesser) {

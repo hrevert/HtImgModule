@@ -18,6 +18,13 @@ class MimeTypeGuesser
         $this->mimeTypeGuesser = $mimeTypeGuesser;
     }
 
+    /**
+     * Gets mime type of binary
+     *
+     * @param string $binary
+     * @return string
+     * @throws \Exception
+     */
     public function guess($binary)
     {
         $tmpFile = tempnam(sys_get_temp_dir(), 'ht-img-module');

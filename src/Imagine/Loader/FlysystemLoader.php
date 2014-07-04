@@ -2,6 +2,7 @@
 namespace HtImgModule\Imagine\Loader;
 
 use League\Flysystem\FilesystemInterface;
+use HtImgModule\Binary\Binary;
 
 /**
  * Image Loader for Library, flysystem
