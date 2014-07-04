@@ -11,7 +11,7 @@ before_script:
  - wget https://scrutinizer-ci.com/ocular.phar
 
 script:
-  - (cd tests ; phpunit ./)
+  - (cd tests ; ../vendor/bin/phpunit ./)
 
 after_script:
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml

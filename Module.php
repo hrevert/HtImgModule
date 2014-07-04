@@ -26,9 +26,6 @@ class Module implements
     public function getAutoloaderConfig()
     {
         return [
-            'Zend\Loader\ClassMapAutoloader' => [
-                __DIR__ . '/autoload_classmap.php',
-            ],
             'Zend\Loader\StandardAutoloader' => [
                 'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src',
@@ -53,6 +50,9 @@ class Module implements
                 'HtImgModule\Imagine\Filter\FilterManager' => 'HtImgModule\Factory\FilterManagerFactory',
                 'HtImgModule\Imagine\Resolver\ResolverManager' => 'HtImgModule\Factory\ResolverManagerFactory',
                 'HtImgModule\Service\CacheManager' => 'HtImgModule\Factory\CacheManagerFactory',
+                'HtImgModule\Imagine\Loader\LoaderPluginManager' => 'HtImgModule\Factory\Imagine\Loader\LoaderPluginManagerFactory',
+                'HtImgModule\Imagine\Loader\LoaderManager' => 'HtImgModule\Factory\Imagine\Loader\LoaderManagerFactory',
+                'HtImgModule\Binary\MimeTypeGuesser' => 'HtImgModule\Factory\MimeTypeGuesserFactory',
             ]
         ];
     }

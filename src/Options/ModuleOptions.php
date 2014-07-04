@@ -34,6 +34,8 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
 
     protected $cacheExpiry = 86400;
 
+    protected $defaultImageLoader = 'FileSystem';
+
     public function setEnableCache($enableCache)
     {
         $this->enableCache = (bool) $enableCache;
@@ -168,5 +170,15 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     public function getImageResolvers()
     {
         return $this->imageResolvers;
+    }
+
+    public function setDefaultImageLoader($defaultImageLoader)
+    {
+        $this->defaultImageLoader = $defaultImageLoader;
+    }
+
+    public function getDefaultImageLoader()
+    {
+        return $this->defaultImageLoader;
     }
 }

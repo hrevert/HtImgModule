@@ -28,13 +28,13 @@ class ImageController extends AbstractActionController
      */
     public function displayAction()
     {
-        $relativePath = $this->params()->fromQuery('relativePath');
-        $filter = $this->params()->fromRoute('filter');
+        $relativePath = $this->plugin('params')->fromQuery('relativePath');
+        $filter = $this->plugin('params')->fromRoute('filter');
         if (!$relativePath || !$filter) {
             return $this->notFoundAction();
         }
         try {
-            $imageData = $this->imageService->getImageFromRelativePath($relativePath, $filter);
+            $imageData = $this->imageService->getImage($relativePath, $filter);
         } catch (Exception\ImageNotFoundException $e) {
             return $this->notFoundAction();
         } catch (Exception\FilterNotFoundException $e) {

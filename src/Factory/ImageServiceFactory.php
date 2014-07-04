@@ -12,10 +12,14 @@ class ImageServiceFactory implements FactoryInterface
     {
         $imagine = $serviceLocator->get('HtImg\Imagine');
         $options = $serviceLocator->get('HtImg\ModuleOptions');
-        $cacheManager = $serviceLocator->get('HtImgModule\Service\CacheManager');
-        $resolver = $serviceLocator->get('HtImg\RelativePathResolver');
+        $imageLoaderManager = $serviceLocator->get('HtImgModule\Imagine\Loader\LoaderManager');
         $filterManager = $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager');
 
-        return new ImageService($cacheManager, $options, $imagine, $resolver, $filterManager);
+        $imageService = new ImageService($options, $imagine, $filterManager, $imageLoaderManager);
+        if ($options->getEnableCache()) {
+            $imageService->setCacheManager($serviceLocator->get('HtImgModule\Service\CacheManager'));
+        }
+
+        return $imageService;
     }
 }
