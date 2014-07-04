@@ -38,5 +38,5 @@ class MyController extends AbstractActionController
 
 ### Navigation
 
-* Continue to [Displaying Images From Controller](Images From Controller.md)
+* Continue to [Image Loaders](image-loaders.md)
 * Move to [the Index](README.md)

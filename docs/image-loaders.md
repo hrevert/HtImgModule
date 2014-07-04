@@ -62,3 +62,7 @@ $fileSystem = ....;
 
 $imageLoader = new HtImgModule\Imagine\Loader\GaufretteLoader($fileSystem);
 ```
+
+### Navigation
+
+* Back to [the Index](README.md)
