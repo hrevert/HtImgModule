@@ -83,6 +83,15 @@ $options = [
      * Accepted value: Integer
      */
     //'cache_expiry' => 86400
+
+    /**
+     * Default Image Loader
+     *
+     * Image Loader determines how to load a image for a "filter"
+     * This option means the default image loader(for all filters)
+     * Please see the docs for creating a custom image loader
+     */
+    // 'default_image_loader' => 'FileSystem',
 ];
 
 /**
