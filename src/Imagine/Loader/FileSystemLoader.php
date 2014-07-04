@@ -2,6 +2,7 @@
 namespace HtImgModule\Imagine\Loader;
 
 use Zend\View\Resolver\ResolverInterface;
+use HtImgModule\Exception;
 
 class FileSystemLoader implements LoaderInterface
 {
@@ -32,6 +33,10 @@ class FileSystemLoader implements LoaderInterface
     public function load($path)
     {
         $imagePath = $this->resolver->resolve($path);
+
+        if (!$imagePath) {
+            throw new Exception\ImageNotFoundException(sprintf('Cound not resolve image, "%s"', $path));
+        }
 
         return $this->loader->load($imagePath);
     }

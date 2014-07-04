@@ -27,4 +27,16 @@ class FileSystemLoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('this-is-image', $loader->load('asdf'));
     }
+
+    public function testGetExceptionWhenResolverCannotResolve()
+    {
+        $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
+        $resolver->expects($this->exactly(1))
+            ->method('resolve')
+            ->will($this->returnValue(false));
+        $loader = new FileSystemLoader($resolver);
+        
+        $this->setExpectedException('HtImgModule\Exception\ImageNotFoundException');
+        $loader->load('asdfasdf');      
+    }
 }
