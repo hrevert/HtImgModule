@@ -20,7 +20,7 @@ class FileSystemLoader implements LoaderInterface
      *
      * @param ResolverInterface
      */
-    public function __construct($resolver)
+    public function __construct(ResolverInterface $resolver)
     {
         $this->resolver = $resolver;
         $this->loader   = new SimpleFileSystemLoader('');
