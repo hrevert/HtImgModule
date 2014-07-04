@@ -42,4 +42,64 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($image, $imageData['image']);
     }
+
+    public function testGetImageFromRelativePathAndCreateCache()
+    {
+        $options = new ModuleOptions;
+        $imagine = $this->getMock('Imagine\Image\ImagineInterface');
+        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $imageService = new ImageService(
+            $options,
+            $imagine,
+            $filterManager,
+            $loaderManager
+        );
+
+        $binaryContent = '35345fascxzcasdfhj;alsdkf4asldfkja;sldf65854';
+        $relativePath = 'relative/path/to/image';
+        $filterName = 'foo-bar-filter';
+        $filterManager->expects($this->once())
+            ->method('getFilterOptions')
+            ->with($filterName)
+            ->will($this->returnValue([]));
+
+        $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
+        $binary->expects($this->once())
+            ->method('getContent')
+            ->will($this->returnValue($binaryContent));
+        $loaderManager->expects($this->once())
+            ->method('loadBinary')
+            ->with($relativePath, $filterName)
+            ->will($this->returnValue($binary));
+
+        $image = $this->getMock('Imagine\Image\ImageInterface');
+
+        $imagine->expects($this->once())
+            ->method('load')
+            ->with($binaryContent)
+            ->will($this->returnValue($image));
+
+        $filteredImage = $this->getMock('Imagine\Image\ImageInterface');
+        $filter = $this->getMock('Imagine\Filter\FilterInterface');
+        $filter->expects($this->once())
+            ->method('apply')
+            ->with($image)
+            ->will($this->returnValue($filteredImage));
+
+        $filterManager->expects($this->once())
+            ->method('getFilter')
+            ->with($filterName)
+            ->will($this->returnValue($filter));
+
+        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
+        $imageService->setCacheManager($cacheManager);
+        $cacheManager->expects($this->once())
+            ->method('createCache')
+            ->with($relativePath, $filterName, $filteredImage, 'png');
+
+        $imageData = $imageService->getImage($relativePath, $filterName);
+
+        $this->assertEquals($image, $imageData['image']);
+    }
 }
