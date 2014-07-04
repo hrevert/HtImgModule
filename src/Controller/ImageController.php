@@ -28,8 +28,8 @@ class ImageController extends AbstractActionController
      */
     public function displayAction()
     {
-        $relativePath = $this->params()->fromQuery('relativePath');
-        $filter = $this->params()->fromRoute('filter');
+        $relativePath = $this->plugin('params')->fromQuery('relativePath');
+        $filter = $this->plugin('params')->fromRoute('filter');
         if (!$relativePath || !$filter) {
             return $this->notFoundAction();
         }
