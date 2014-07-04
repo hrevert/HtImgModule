@@ -35,6 +35,10 @@
         "phpunit/phpunit": "4.1.*",
         "phine/test": "1.*"
     },
+    "suggest": {
+        "league/flysystem": "To use this library to load image",
+        "knplabs/gaufrette": "To use this library to load image"
+    },
     "autoload": {
         "psr-4": {
             "HtImgModule\\": "src/"
