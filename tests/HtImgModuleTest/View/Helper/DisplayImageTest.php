@@ -35,7 +35,7 @@ class DisplayImageTest extends \PHPUnit_Framework_TestCase
             ->method('__invoke')
             ->will($this->returnValue('/app'));
         $helpers->setService('HtImgModule\View\Helper\ImgUrl', $imgUrl);
-        
+
         $helper->setView($renderer);
         $this->assertEquals('<img alt="hello" src="/app" />', $helper('asdfsadf', 'asdfasfd'));
         $this->assertEquals($helper, $helper());

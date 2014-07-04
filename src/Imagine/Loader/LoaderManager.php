@@ -40,13 +40,13 @@ class LoaderManager implements LoaderManagerInterface
      * Constructor
      *
      * @param ServiceLocatorInterface $imageLoaders
-     * @param FilterManagerInterface $filterManager
-     * @param string $defaultImageLoader
-     * @param MimeTypeGuesser $mimeTypeGuesser
+     * @param FilterManagerInterface  $filterManager
+     * @param string                  $defaultImageLoader
+     * @param MimeTypeGuesser         $mimeTypeGuesser
      */
     public function __construct(
-        ServiceLocatorInterface $imageLoaders, 
-        FilterManagerInterface $filterManager, 
+        ServiceLocatorInterface $imageLoaders,
+        FilterManagerInterface $filterManager,
         $defaultImageLoader,
         MimeTypeGuesser $mimeTypeGuesser
     )
@@ -72,10 +72,10 @@ class LoaderManager implements LoaderManagerInterface
         if (!is_object($imageLoader)) {
             $imageLoader = $this->imageLoaders->get($imageLoader);
         }
-        
+
         $binary = $imageLoader->load($relativePath);
         if (!$binary) {
-            throw new Exception\ImageNotFoundException();            
+            throw new Exception\ImageNotFoundException();
         }
         if (!$binary instanceof BinaryInterface) {
             $binary = new Binary($binary, $this->mimeTypeGuesser->guess($binary));

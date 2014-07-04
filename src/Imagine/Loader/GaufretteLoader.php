@@ -30,5 +30,5 @@ class GaufretteLoader implements LoaderInterface
     public function load($path)
     {
         return $this->filesystem->read($path);
-    }    
+    }
 }

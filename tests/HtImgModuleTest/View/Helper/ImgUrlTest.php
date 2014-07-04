@@ -25,7 +25,7 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             $resolver
         );
         $this->setExpectedException('HtImgModule\Exception\ImageNotFoundException');
-        $helper('path/to/some/random/image/', 'foo_view_filter');        
+        $helper('path/to/some/random/image/', 'foo_view_filter');
     }
 
     public function testGetNewImageNotFromCache()
@@ -55,9 +55,9 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
         $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
         $renderer->expects($this->once())
             ->method('plugin')
-            ->will($this->returnValue(function(){return 'app';}));
+            ->will($this->returnValue(function () {return 'app';}));
         $helper->setView($renderer);
-        $helper('path/to/some/random/image/', 'foo_view_filter');         
+        $helper('path/to/some/random/image/', 'foo_view_filter');
     }
 
     public function testGetImageFromCache()
@@ -84,8 +84,8 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
         $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
         $renderer->expects($this->once())
             ->method('plugin')
-            ->will($this->returnValue(function(){return 'app';}));
+            ->will($this->returnValue(function () {return 'app';}));
         $helper->setView($renderer);
-        $helper('path/to/some/random/image/', 'foo_view_filter');         
+        $helper('path/to/some/random/image/', 'foo_view_filter');
     }
 }

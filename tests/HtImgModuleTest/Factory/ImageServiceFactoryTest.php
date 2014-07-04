@@ -17,8 +17,7 @@ class ImageServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('HtImgModule\Service\CacheManager', $this->getMock('HtImgModule\Service\CacheManagerInterface'));
         $serviceManager->setService('HtImgModule\Imagine\Loader\LoaderManager', $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface'));
 
-
         $factory = new ImageServiceFactory();
         $this->assertInstanceOf('HtImgModule\Service\ImageService', $factory->createService($serviceManager));
-    }    
+    }
 }

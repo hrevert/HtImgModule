@@ -1,7 +1,8 @@
 <?php
-namespace HtImgModule\Imagine\Filter;
+namespace HtImgModuleTest\Imagine\Filter;
 
 use Imagine\Gd\Imagine;
+use HtImgModule\Imagine\Filter\Watermark;
 
 class WatermarkTest extends \PHPUnit_Framework_TestCase
 {

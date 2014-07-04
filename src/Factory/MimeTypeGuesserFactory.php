@@ -13,5 +13,5 @@ class MimeTypeGuesserFactory implements FactoryInterface
         $symfonyMimeTypeGuesser = SymfonyMimeTypeGuesser ::getInstance();
 
         return new MimeTypeGuesser($symfonyMimeTypeGuesser);
-    }    
+    }
 }

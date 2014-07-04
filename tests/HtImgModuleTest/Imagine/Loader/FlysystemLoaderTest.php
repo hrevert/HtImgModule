@@ -1,5 +1,5 @@
 <?php
-namespace HtImgModule\Imagine\Loader;
+namespace HtImgModuleTest\Imagine\Loader;
 
 use HtImgModule\Imagine\Loader\FlysystemLoader;
 

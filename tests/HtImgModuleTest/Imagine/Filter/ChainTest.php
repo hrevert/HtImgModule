@@ -1,7 +1,9 @@
 <?php
-namespace HtImgModule\Imagine\Filter;
+namespace HtImgModuleTest\Imagine\Filter;
 
 use Imagine\Gd\Imagine;
+use HtImgModule\Imagine\Filter\Background;
+use HtImgModule\Imagine\Filter\Chain;
 
 class ChainTest extends \PHPUnit_Framework_TestCase
 {

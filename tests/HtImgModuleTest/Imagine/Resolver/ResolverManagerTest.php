@@ -2,7 +2,6 @@
 namespace HtImgModuleTest\Imagine\Resolver;
 
 use HtImgModule\Imagine\Resolver\ResolverManager;
-use Zend\ServiceManager\ServiceManager;
 
 class ResolverManagerTest extends \PHPUnit_Framework_TestCase
 {

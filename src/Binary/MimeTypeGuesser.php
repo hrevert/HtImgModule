@@ -21,7 +21,7 @@ class MimeTypeGuesser
     /**
      * Gets mime type of binary
      *
-     * @param string $binary
+     * @param  string     $binary
      * @return string
      * @throws \Exception
      */
@@ -42,5 +42,5 @@ class MimeTypeGuesser
 
             throw $e;
         }
-    }    
+    }
 }

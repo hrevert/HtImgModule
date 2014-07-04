@@ -1,5 +1,5 @@
 <?php
-namespace HtImgModuleTest\Factory\Imagine\Loader\Factory;
+namespace HtImgModuleTest\Factory\Imagine\Loader;
 
 use Zend\ServiceManager\ServiceManager;
 use HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory;
@@ -17,5 +17,5 @@ class FileSystemLoaderFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('getServiceLocator')
             ->will($this->returnValue($serviceManager));
         $this->assertInstanceOf('HtImgModule\Imagine\Loader\FileSystemLoader', $factory->createService($imageLoaders));
-    } 
+    }
 }

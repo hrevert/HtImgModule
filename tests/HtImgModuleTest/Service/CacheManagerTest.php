@@ -46,7 +46,7 @@ class CacheManagerTest extends \PHPUnit_Framework_TestCase
         $cacheManager->createCache('awesome/archos-crop.jpg', 'crop', $image);
         $cacheFile = RESOURCES_DIR . '/crop/awesome/archos-crop.jpg';
         $this->assertTrue(is_readable($cacheFile));
-        
+
         return $cacheManager;
     }
 

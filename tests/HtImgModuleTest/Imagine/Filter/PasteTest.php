@@ -1,7 +1,8 @@
 <?php
-namespace HtImgModule\Imagine\Filter;
+namespace HtImgModuleTest\Imagine\Filter;
 
 use Imagine\Gd\Imagine;
+use HtImgModule\Imagine\Filter\Paste;
 
 class PasteTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,7 +42,7 @@ class PasteTest extends \PHPUnit_Framework_TestCase
        $paste = new Paste($archos, 'center', 'top');
        $newImage = $paste->apply($flowers);
        $paste = new Paste($archos, 'left', 'bottom');
-       $newImage = $paste->apply($flowers);       
+       $newImage = $paste->apply($flowers);
    }
 
    public function testGetExceptionWIthNegativeCoordinate()

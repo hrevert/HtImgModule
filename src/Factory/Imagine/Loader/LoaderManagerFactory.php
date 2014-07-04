@@ -15,5 +15,5 @@ class LoaderManagerFactory implements FactoryInterface
         $mimeTypeGuesser    = $serviceLocator->get('HtImgModule\Binary\MimeTypeGuesser');
 
         return new LoaderManager($imageLoaders, $filterManager, $defaultImageLoader, $mimeTypeGuesser);
-    }      
+    }
 }

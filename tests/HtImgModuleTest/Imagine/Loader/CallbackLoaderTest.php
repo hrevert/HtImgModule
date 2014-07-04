@@ -1,5 +1,5 @@
 <?php
-namespace HtImgModule\Imagine\Loader\Test;
+namespace HtImgModuleTest\Imagine\Loader;
 
 use HtImgModule\Imagine\Loader\CallbackLoader;
 
@@ -8,8 +8,9 @@ class CallbackLoaderTest extends \PHPUnit_Framework_TestCase
     public function testLoad()
     {
         $loader = new CallbackLoader(
-            function($path) {
+            function ($path) {
                 $this->assertEquals('some/image.jpeg', $path);
+
                 return 'path/to/some-image.jpeg';
             }
         );

@@ -5,11 +5,11 @@ interface BinaryInterface
 {
     /**
      * Gets binary content
-     * 
+     *
      * @return string
      */
     public function getContent();
-    
+
     /**
      * Gets mime type
      *
@@ -20,15 +20,15 @@ interface BinaryInterface
     /**
      * Sets format
      *
-     * @param string $format
+     * @param  string $format
      * @return void
      */
     public function setFormat($format);
-    
+
     /**
      * Gets format
      *
      * @return string
      */
-    public function getFormat();            
+    public function getFormat();
 }

@@ -14,5 +14,5 @@ interface LoaderInterface
      *
      * @return Binary|string An image binary content
      */
-    public function load($path);        
+    public function load($path);
 }

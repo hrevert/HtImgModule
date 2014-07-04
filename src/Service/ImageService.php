@@ -3,9 +3,7 @@ namespace HtImgModule\Service;
 
 use Imagine\Image\ImagineInterface;
 use HtImgModule\Options\CacheOptionsInterface;
-use Zend\View\Resolver\ResolverInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
-use HtImgModule\Exception;
 use HtImgModule\Imagine\Loader\LoaderManagerInterface;
 
 class ImageService implements ImageServiceInterface
@@ -37,7 +35,7 @@ class ImageService implements ImageServiceInterface
 
     /**
      * Constructor
-     * 
+     *
      * @param CacheOptionsInterface  $cacheOptions
      * @param ImagineInterface       $imagine
      * @param FilterManagerInterface $filterManager
@@ -59,7 +57,7 @@ class ImageService implements ImageServiceInterface
     /**
      * Sets cache manager
      *
-     * @param CacheManagerInterface  $cacheManager
+     * @param CacheManagerInterface $cacheManager
      */
     public function setCacheManager(CacheManagerInterface $cacheManager)
     {
@@ -93,7 +91,7 @@ class ImageService implements ImageServiceInterface
 
             if ($this->cacheOptions->getEnableCache()) {
                 $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
-            }            
+            }
         }
 
         return [

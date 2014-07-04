@@ -13,7 +13,7 @@ class ImageRendererTest extends \PHPUnit_Framework_TestCase
             ->method('show')
             ->with('png')
             ->will($this->returnValue('something'));
-        
+
         $model = new ImageModel($image, 'png');
 
         $renderer = new ImageRenderer;

@@ -31,6 +31,6 @@ class PasteTest extends \PHPUnit_Framework_TestCase
         $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
         $loader = new Paste($this->getMock('Imagine\Image\ImagineInterface'), $resolver);
         $this->setExpectedException('HtImgModule\Exception\RuntimeException');
-        $loader->load(['image' => 'asdf.png']);        
+        $loader->load(['image' => 'asdf.png']);
     }
 }

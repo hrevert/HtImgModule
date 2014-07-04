@@ -12,5 +12,5 @@ class FileSystemLoaderFactory implements FactoryInterface
         $resolver = $loaders->getServiceLocator()->get('HtImg\RelativePathResolver');
 
         return new FileSystemLoader($resolver);
-    }    
+    }
 }

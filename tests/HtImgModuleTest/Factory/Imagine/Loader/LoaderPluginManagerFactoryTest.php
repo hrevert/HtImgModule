@@ -12,5 +12,5 @@ class LoaderPluginManagerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('Config', ['htimg' => ['loaders' => []]]);
         $factory = new LoaderPluginManagerFactory();
         $this->assertInstanceOf('HtImgModule\Imagine\Loader\LoaderPluginManager', $factory->createService($serviceManager));
-    }    
+    }
 }

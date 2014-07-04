@@ -37,7 +37,7 @@ class SimpleFileSystemLoader implements LoaderInterface
         if (!file_exists($absolutePath)) {
             throw new Exception\ImageNotFoundException(sprintf('Source image not found in "%s"', $absolutePath));
         }
-        
+
         $contents = file_get_contents($absolutePath);
 
         if (!function_exists('exif_imagetype')) {
@@ -46,7 +46,7 @@ class SimpleFileSystemLoader implements LoaderInterface
 
         $extension = pathinfo($absolutePath, PATHINFO_EXTENSION);
         $mimeType = image_type_to_mime_type(exif_imagetype($absolutePath));
-        
-        return new Binary($contents, $mimeType, $extension);   
+
+        return new Binary($contents, $mimeType, $extension);
     }
 }

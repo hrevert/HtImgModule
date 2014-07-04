@@ -124,6 +124,6 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $response->expects($this->once())
             ->method('setStatusCode')
             ->with(404);
-        Property::set($controller, 'response', $response);       
+        Property::set($controller, 'response', $response);
     }
 }
