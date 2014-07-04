@@ -29,10 +29,10 @@ return [
                     'display'   => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/display/:filter/',
-                            'defaults' => [
-                                'controller' => 'htimg',
-                                'action' => 'display'
+                            'route'     => '/display/:filter/',
+                            'defaults'  => [
+                                'controller'    => 'htimg',
+                                'action'        => 'display'
                             ]
                         ]
                     ]
