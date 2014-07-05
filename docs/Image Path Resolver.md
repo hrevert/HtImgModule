@@ -1,13 +1,7 @@
 Image Path Resolver
 =========================
-Image Path Resolver is similiar to Zend Framework 2 view template resolvers(Actually an extension of `Zend\View\Resolver\AggregateResolver`).
-
-Whenever, you provide image relative path to view helper like this:
-
-```php
- <?php echo $this->htDisplayImage('my_image.png', 'my_thumbnail', ['alt' => 'Hello']); ?
-```
-Here, the image path resolver will look for relative path, `my_image.png` in the image source path stack which can be configured as:
+Image resolvers are implementation of `HtImgModule\Imagine\Resolver\ResolverInterface`. Image resolvers are used by `HtImgModule\Imagine\Loader\FileSystemLoader` to resolve images from filesystem .
+Image Path Resolver is similiar to Zend Framework 2 view template resolvers(Actually an extension of `Zend\View\Resolver\ResolverInterface`).
 
 ```php
 return [
@@ -83,5 +77,5 @@ Here 270 is the priority of the resolver. The resolvers having high priority are
 
 ### Navigation
 
-* Continue to [Displaying Images From Controller](Images From Controller.md)
-* Back to [Using Filters](Using Filters.md)
+* Back to [Image Loaders](image-loaders.md)
+* Go to [the Index](README.md)

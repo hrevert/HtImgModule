@@ -19,7 +19,8 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
             'image_resolvers' => ['image_resolvers'],
             'cache_path' => 'images',
             'cache_expiry' => 678678,
-            'filter_loaders' => ['factories' => [], 'aliases' => []]
+            'filter_loaders' => ['factories' => [], 'aliases' => []],
+            'default_image_loader' => 'my_image_loader',
         ]);
         $this->assertEquals(false, $moduleOptions->getEnableCache());
         $this->assertEquals(['img/'], $moduleOptions->getImgSourcePathStack());
@@ -31,6 +32,7 @@ class ModuleOptionsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('images', $moduleOptions->getCachePath());
         $this->assertEquals(678678, $moduleOptions->getCacheExpiry());
         $this->assertEquals(['factories' => [], 'aliases' => []], $moduleOptions->getFilterLoaders());
+        $this->assertEquals('my_image_loader', $moduleOptions->getDefaultImageLoader());
     }
 
     public function testGetExceptionWithInvalidDriver()

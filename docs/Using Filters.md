@@ -173,5 +173,5 @@ return [
 
 ### Navigation
 
-* Continue to [Image Path Resolver](Image Path Resolver.md)
+* Continue to [Displaying Images From Controller](Images From Controller.md)
 * Back to [Filters, Filter Loaders And Filter Aliases](Filters, Filter Loaders And Filter Aliases.md)

@@ -7,6 +7,6 @@ If you are looking for some information that is not listed in the documentation,
 
 1. [Filters, Filter Loaders And Filter Aliases](Filters, Filter Loaders And Filter Aliases.md)
 2. [Using Filters](Using Filters.md)
-3. [Image Path Resolver](Image Path Resolver.md)
-4. [Displaying Images From Controller](Images From Controller.md)
-5. [Image Loaders](image-loaders.md)
+3. [Displaying Images From Controller](Images From Controller.md)
+4. [Image Loaders](image-loaders.md)
+5. [Image Path Resolver](Image Path Resolver.md)

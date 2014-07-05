@@ -66,4 +66,4 @@ $imageLoader = new HtImgModule\Imagine\Loader\GaufretteLoader($fileSystem);
 ### Navigation
 
 * Back to [Displaying Images From Controller](Images From Controller.md)
-* Go to [the Index](README.md)
+* Continue to [Image Path Resolver](Image Path Resolver.md)
