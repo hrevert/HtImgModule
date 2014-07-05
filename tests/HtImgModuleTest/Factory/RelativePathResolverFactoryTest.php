@@ -22,7 +22,7 @@ class RelativePathResolverFactoryTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->getMock('Zend\View\Resolver\ResolverInterface')));
         $serviceManager->setService('HtImgModule\Imagine\Resolver\ResolverManager', $resolverManager);
         $factory = new RelativePathResolverFactory();
-        $this->assertInstanceOf('Zend\View\Resolver\ResolverInterface', $factory->createService($serviceManager));
+        $this->assertInstanceOf('HtImgModule\Imagine\Resolver\AggregateResolver', $factory->createService($serviceManager));
     }
 
     public function testResolve()

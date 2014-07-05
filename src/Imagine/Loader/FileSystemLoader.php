@@ -1,7 +1,7 @@
 <?php
 namespace HtImgModule\Imagine\Loader;
 
-use Zend\View\Resolver\ResolverInterface;
+use HtImgModule\Imagine\Resolver\ResolverInterface;
 use HtImgModule\Exception;
 
 class FileSystemLoader implements LoaderInterface

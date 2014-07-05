@@ -4,7 +4,7 @@ namespace HtImgModule\Imagine\Resolver;
 use Zend\ServiceManager\AbstractPluginManager;
 use HtImgModule\Exception;
 
-class ResolverManager  extends AbstractPluginManager
+class ResolverManager extends AbstractPluginManager
 {
     /**
      * @var array

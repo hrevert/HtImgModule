@@ -9,7 +9,7 @@ class FileSystemLoaderFactoryTest extends \PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $serviceManager = new ServiceManager();
-        $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
+        $resolver = $this->getMock('HtImgModule\Imagine\Resolver\ResolverInterface');
         $serviceManager->setService('HtImg\RelativePathResolver', $resolver);
         $factory = new FileSystemLoaderFactory();
         $imageLoaders = $this->getMock('Zend\ServiceManager\AbstractPluginManager');
