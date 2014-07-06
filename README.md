@@ -51,7 +51,3 @@ The officially documentation is available in the [docs/](https://github.com/hrev
 
 ## Acknowledgements
 HtImgModule is inspired by [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) and [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
-
-## To-Do
-1. Improve Docs
-2. Improve Tests
