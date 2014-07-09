@@ -20,9 +20,7 @@
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-servicemanager": "~2.2",
         "zendframework/zend-modulemanager": "~2.2",
-        "zendframework/zend-view": "~2.2",
         "zendframework/zend-stdlib": "~2.2",
-        "zendframework/zend-filter": "~2.2",
         "zendframework/zend-http": "~2.2",
         "imagine/Imagine": "0.5.*",
         "symfony/http-foundation": "~2.3"
@@ -30,6 +28,7 @@
     "require-dev": {
         "ext-gd": "*",
         "zendframework/zend-escaper": "~2.2",
+        "zendframework/zend-view": "~2.2",
         "league/flysystem": "0.4.*",
         "knplabs/gaufrette":"0.1.*",
         "phpunit/phpunit": "4.1.*",
@@ -37,7 +36,8 @@
     },
     "suggest": {
         "league/flysystem": "To use this library to load image",
-        "knplabs/gaufrette": "To use this library to load image"
+        "knplabs/gaufrette": "To use this library to load image",
+        "zendframework/zend-view": "To use some view helpers provided this module"
     },
     "autoload": {
         "psr-4": {
