@@ -29,6 +29,7 @@
         "ext-gd": "*",
         "zendframework/zend-escaper": "~2.2",
         "zendframework/zend-view": "~2.2",
+        "zendframework/zend-filter": "~2.2",
         "league/flysystem": "0.4.*",
         "knplabs/gaufrette":"0.1.*",
         "phpunit/phpunit": "4.1.*",
