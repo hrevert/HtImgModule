@@ -5,8 +5,9 @@ use Imagine\Image\ImagineInterface;
 use HtImgModule\Options\CacheOptionsInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
 use HtImgModule\Imagine\Loader\LoaderManagerInterface;
+use HtImgModule\EventManager\EventProvider;
 
-class ImageService implements ImageServiceInterface
+class ImageService extends EventProvider implements ImageServiceInterface
 {
     /**
      * @var CacheOptionsInterface
@@ -69,6 +70,9 @@ class ImageService implements ImageServiceInterface
      */
     public function getImage($relativePath, $filter)
     {
+        $eventManager = $this->getEventManager();
+        $eventManager->trigger(__FUNCTION__, $this, ['relativePath' => $relativePath, 'filter' => $filter]);
+
         $filterOptions = $this->filterManager->getFilterOptions($filter);
 
         if (isset($filterOptions['format'])) {
@@ -79,23 +83,26 @@ class ImageService implements ImageServiceInterface
         }
 
         if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
-            $imagePath = $this->cacheManager->getCachePath($relativePath, $filter, $format);
-            $filteredImage = $this->imagine->open($imagePath);
+            $imagePath      = $this->cacheManager->getCachePath($relativePath, $filter, $format);
+            $filteredImage  = $this->imagine->open($imagePath);
         } else {
             if (!isset($binary)) {
                 $binary = $this->loaderManager->loadBinary($relativePath, $filter);
             }
 
-            $image = $this->imagine->load($binary->getContent());
-            $filteredImage = $this->filterManager->getFilter($filter)->apply($image);
+            $image          = $this->imagine->load($binary->getContent());
+            $filteredImage  = $this->filterManager->getFilter($filter)->apply($image);
 
             if ($this->cacheOptions->getEnableCache()) {
                 $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
             }
         }
 
+        $args = ['relativePath' => $relativePath, 'filter' => $filter, 'filteredImage' => $filteredImage, 'format' => $format];
+        $eventManager->trigger(__FUNCTION__ . '.post', $this, $args);
+
         return [
-            'image' => $filteredImage,
+            'image'  => $filteredImage,
             'format' => $format
         ];
 
