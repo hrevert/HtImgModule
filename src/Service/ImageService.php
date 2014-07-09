@@ -49,8 +49,8 @@ class ImageService extends EventProvider implements ImageServiceInterface
         LoaderManagerInterface $loaderManager
     )
     {
-        $this->cacheOptions = $cacheOptions;
-        $this->imagine = $imagine;
+        $this->cacheOptions  = $cacheOptions;
+        $this->imagine       = $imagine;
         $this->filterManager = $filterManager;
         $this->loaderManager = $loaderManager;
     }

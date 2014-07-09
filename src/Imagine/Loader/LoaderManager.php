@@ -51,10 +51,10 @@ class LoaderManager implements LoaderManagerInterface
         MimeTypeGuesser $mimeTypeGuesser
     )
     {
-        $this->imageLoaders = $imageLoaders;
-        $this->filterManager = $filterManager;
+        $this->imageLoaders       = $imageLoaders;
+        $this->filterManager      = $filterManager;
         $this->defaultImageLoader = $defaultImageLoader;
-        $this->mimeTypeGuesser = $mimeTypeGuesser;
+        $this->mimeTypeGuesser    = $mimeTypeGuesser;
     }
 
     /**

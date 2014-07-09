@@ -9,8 +9,8 @@ class RelativePathResolverFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $options = $serviceLocator->get('HtImg\ModuleOptions');
-        $resolver = new AggregateResolver();
+        $options         = $serviceLocator->get('HtImg\ModuleOptions');
+        $resolver        = new AggregateResolver();
         $resolverManager = $serviceLocator->get('HtImgModule\Imagine\Resolver\ResolverManager');
         foreach ($options->getImageResolvers() as $priority => $subResolverName) {
             $resolver->attach($resolverManager->get($subResolverName), $priority);

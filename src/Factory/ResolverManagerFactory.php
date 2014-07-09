@@ -10,7 +10,7 @@ class ResolverManagerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = new Config($serviceLocator->get('Config')['htimg']['resolvers_manager']);
+        $config          = new Config($serviceLocator->get('Config')['htimg']['resolvers_manager']);
         $resolverManager = new ResolverManager($config);
         $resolverManager->setServiceLocator($serviceLocator);
 

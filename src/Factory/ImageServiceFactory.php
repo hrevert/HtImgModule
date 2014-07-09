@@ -10,12 +10,11 @@ class ImageServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $imagine = $serviceLocator->get('HtImg\Imagine');
-        $options = $serviceLocator->get('HtImg\ModuleOptions');
+        $imagine            = $serviceLocator->get('HtImg\Imagine');
+        $options            = $serviceLocator->get('HtImg\ModuleOptions');
         $imageLoaderManager = $serviceLocator->get('HtImgModule\Imagine\Loader\LoaderManager');
-        $filterManager = $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager');
-
-        $imageService = new ImageService($options, $imagine, $filterManager, $imageLoaderManager);
+        $filterManager      = $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager');
+        $imageService       = new ImageService($options, $imagine, $filterManager, $imageLoaderManager);
         if ($options->getEnableCache()) {
             $imageService->setCacheManager($serviceLocator->get('HtImgModule\Service\CacheManager'));
         }

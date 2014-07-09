@@ -45,7 +45,7 @@ class SimpleFileSystemLoader implements LoaderInterface
         }
 
         $extension = pathinfo($absolutePath, PATHINFO_EXTENSION);
-        $mimeType = image_type_to_mime_type(exif_imagetype($absolutePath));
+        $mimeType  = image_type_to_mime_type(exif_imagetype($absolutePath));
 
         return new Binary($contents, $mimeType, $extension);
     }
