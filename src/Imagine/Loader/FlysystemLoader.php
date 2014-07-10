@@ -1,7 +1,10 @@
 <?php
 namespace HtImgModule\Imagine\Loader;
 
+use HtImgModule\Binary\Binary;
+use HtImgModule\Exception;
 use League\Flysystem\FilesystemInterface;
+use League\Flysystem\FileNotFoundException;
 
 /**
  * Image Loader for Library, flysystem
@@ -29,6 +32,18 @@ class FlysystemLoader implements LoaderInterface
      */
     public function load($path)
     {
-        return $this->filesystem->read($path);
+        try {
+            $contents = $this->filesystem->read($path);
+        } catch (FileNotFoundException $e) {
+            throw new Exception\ImageNotFoundException(sprintf('Source image not found in "%s"', $path));
+        }
+
+        $mimeType = $this->filesystem->getMimeType($path);
+        if ($mimeType === false) {
+            // Mime Type could not be detected
+            return $contents;
+        }
+
+        return new Binary($contents, $mimeType);
     }
 }
