@@ -10,7 +10,7 @@ HtImgModule
 This module simplies image manipulation for Zend Framework 2. This module integrates Zend Framework 2 with [Imagine](https://github.com/avalanche123/Imagine), the most amazing Image manipulation library for PHP.
 
 ## Installation
-* Add `"hrevert/ht-img-module": "0.0.*"` to composer.json and run `php composer.phar update`
+* Add `"hrevert/ht-img-module": "0.1.*"` to composer.json and run `php composer.phar update`
 * Register `HtImgModule` as module in `config/application.config.php`
 * Copy the file located in `vendor/hrevert/ht-img-module/config/ht-img-module.global.php` to `config/autoload` and change the values as you wish
 
