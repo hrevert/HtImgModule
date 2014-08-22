@@ -70,7 +70,10 @@ class LoaderManager implements LoaderManagerInterface
             $imageLoader = $this->defaultImageLoader;
         }
         if (!is_object($imageLoader)) {
-            $imageLoader = $this->imageLoaders->get($imageLoader);
+            $imageLoader = $this->imageLoaders->get(
+                $imageLoader,
+                isset($filterOptions['loader_options']) ? $filterOptions['loader_options'] : []
+            );
         }
 
         $binary = $imageLoader->load($relativePath);

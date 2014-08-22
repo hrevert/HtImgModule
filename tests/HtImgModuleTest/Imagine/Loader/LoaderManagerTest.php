@@ -25,7 +25,18 @@ class LoaderManagerTest extends \PHPUnit_Framework_TestCase
         $loadManager->loadBinary($relativePath, 'asdf');
     }
 
-    public function testLoadBinary()
+    public function getData()
+    {
+        return [
+            ['awesome_image_loader', ['loader_options' => ['a' => []]]],
+            ['awesome_image_loader_2', []],
+        ];
+    }
+
+    /**
+     * @dataProvider getData
+     */
+    public function testLoadBinary($imageLoaderName, $filterOptions)
     {
         $imageLoaders  = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
         $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
@@ -37,14 +48,14 @@ class LoaderManagerTest extends \PHPUnit_Framework_TestCase
 
         $relativePath = 'relative/path/of/some/image';
         $filter = 'bar_filter';
-        $imageLoaderName = 'some_image_loader';
         $binaryContent = 'asdf55asd4f53as4df54asdf564asdf';
         $mimeType = 'image/png';
+        $filterOptions['image_loader'] = $imageLoaderName;
 
         $filterManager->expects($this->once())
             ->method('getFilterOptions')
             ->with($filter)
-            ->will($this->returnValue(['image_loader' => $imageLoaderName]));
+            ->will($this->returnValue($filterOptions));
 
         $imageLoaders->expects($this->once())
             ->method('get')
