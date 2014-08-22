@@ -58,7 +58,7 @@ class FilterManager implements FilterManagerInterface
     /**
      * Validates if filter exists and is valid
      *
-     * @param  string                             $filter Filter Alias
+     * @param  string                             $filter Filter Service
      * @throws Exception\FilterNotFoundException
      * @throws Exception\InvalidArgumentException
      * @return void

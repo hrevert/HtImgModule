@@ -17,7 +17,7 @@ class DisplayImage extends AbstractHtmlElement
      * Gets valid HTML image tag or self when $relativeName is not provided
      *
      * @param  string $relativeName Relative Path
-     * @param  string $filter       Filter Alias
+     * @param  string $filter       Filter Service
      * @param  array  $attributes   Attributes for HTML image tag
      * @return string
      */

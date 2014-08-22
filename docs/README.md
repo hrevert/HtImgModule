@@ -5,7 +5,7 @@ Welcome to the official HtImgModule documentation. This documentation will help 
 
 If you are looking for some information that is not listed in the documentation, please open an issue!
 
-1. [Filters, Filter Loaders And Filter Aliases](Filters, Filter Loaders And Filter Aliases.md)
+1. [Filters, Filter Loaders And Filter Services](Filters, Filter Loaders And Filter Services.md)
 2. [Using Filters](Using Filters.md)
 3. [Displaying Images From Controller](Images From Controller.md)
 4. [Image Loaders](image-loaders.md)

@@ -55,7 +55,7 @@ class ImgUrl extends AbstractHelper
      * Gets url of image
      *
      * @param  string $relativeName Relative Path
-     * @param  string $filter       Filter Alias
+     * @param  string $filter       Filter Service
      * @return string
      */
     public function __invoke($relativeName, $filter)

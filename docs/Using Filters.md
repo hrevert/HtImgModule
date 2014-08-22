@@ -32,7 +32,7 @@ return [
 return [
     'htimg' => [
         'filters' => [
-            'crop_alias' => [ 
+            'crop_service' => [ 
                 'type' => 'crop',
                 'options' => [
                     'width' => 100,
@@ -50,7 +50,7 @@ return [
 return [
     'htimg' => [
         'filters' => [
-            'resize_alias' => [ 
+            'resize_service' => [ 
                 'type' => 'resize',
                 'options' => [
                     'width' => 100,
@@ -174,4 +174,4 @@ return [
 ### Navigation
 
 * Continue to [Displaying Images From Controller](Images From Controller.md)
-* Back to [Filters, Filter Loaders And Filter Aliases](Filters, Filter Loaders And Filter Aliases.md)
+* Back to [Filters, Filter Loaders And Filter Services](Filters, Filter Loaders And Filter Services.md)

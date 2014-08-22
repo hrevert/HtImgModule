@@ -15,12 +15,12 @@ This module simplies image manipulation for Zend Framework 2. This module integr
 * Copy the file located in `vendor/hrevert/ht-img-module/config/ht-img-module.global.php` to `config/autoload` and change the values as you wish
 
 ## Basic Usage
-First, you need to create a filter alias, `my_thumbnail` in `/module/Application/config/module.config.php`
+First, you need to create a filter service, `my_thumbnail` in `/module/Application/config/module.config.php`
 ```php
 return [
     'htimg' => [
         'filters' => [
-            'my_thumbnail' => [ // this is filter aliases
+            'my_thumbnail' => [ // this is  filter service
                 'type' => 'thumbnail', // this is a filter loader
                 'options' => [  // filter loader passes these options to a Filter which manipulates the image
                     'width' => 100,
@@ -44,7 +44,7 @@ Alternatively, you can:
 Behind the scenes, the module applies the filter to the image on the first request and then caches the image to the web root. On the next request, the cached image would be served directly from the file system.
 
 ## Theory of Operation
-Whenever, you call a filter alias like `my_thumbnail` from view template, the view helpers(htImgUrl and htDisplayImage) check if the cached image exists. If the cached image exists, it just returns the url to cached image. Else, it return the url where the image is displayed.  Also a new cached image is created in the web root!
+Whenever, you call a filter service like `my_thumbnail` from view template, the view helpers(htImgUrl and htDisplayImage) check if the cached image exists. If the cached image exists, it just returns the url to cached image. Else, it return the url where the image is displayed.  Also a new cached image is created in the web root!
 
 ## Documentation
 The officially documentation is available in the [docs/](https://github.com/hrevert/HtImgModule/tree/master/docs) directory:
