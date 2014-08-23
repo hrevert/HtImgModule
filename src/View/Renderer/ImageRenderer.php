@@ -50,5 +50,11 @@ class ImageRenderer implements RendererInterface
 
             return $image->get($format);
         }
+
+        throw new Exception\InvalidArgumentException(sprintf(
+            '%s expects argument 1 to be an instance of HtImgModule\View\Model\ImageModel, %s provided instead',
+            __METHOD__,
+            is_object($nameOrModel) ? get_class($nameOrModel) : gettype($nameOrModel)
+        ));
     }
 }

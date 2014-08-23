@@ -3,6 +3,7 @@ namespace HtImgModuleTest\View\Renderer;
 
 use HtImgModule\View\Renderer\ImageRenderer;
 use HtImgModule\View\Model\ImageModel;
+use Zend\View\Model\ViewModel;
 
 class ImageRendererTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,6 +19,13 @@ class ImageRendererTest extends \PHPUnit_Framework_TestCase
 
         $renderer = new ImageRenderer;
         $this->assertEquals('image-binary-string', $renderer->render($model));
+    }
+
+    public function testGetExceptionWhenModelIsInvalid()
+    {
+        $renderer = new ImageRenderer;
+        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
+        $renderer->render(new ViewModel);
     }
 
     public function testGetEngine()
