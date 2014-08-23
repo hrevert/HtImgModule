@@ -47,10 +47,8 @@ class ImageRenderer implements RendererInterface
                     'You must provide Imagine\Image\ImageInterface or path of image'
                 );
             }
-            ob_start();
-            $image->show($format);
 
-            return ob_get_clean();
+            return $image->get($format);
         }
     }
 }

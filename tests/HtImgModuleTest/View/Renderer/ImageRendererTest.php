@@ -10,14 +10,14 @@ class ImageRendererTest extends \PHPUnit_Framework_TestCase
     {
         $image = $this->getMock('Imagine\Image\ImageInterface');
         $image->expects($this->exactly(1))
-            ->method('show')
+            ->method('get')
             ->with('png')
-            ->will($this->returnValue('something'));
+            ->will($this->returnValue('image-binary-string'));
 
         $model = new ImageModel($image, 'png');
 
         $renderer = new ImageRenderer;
-        $renderer->render($model);
+        $this->assertEquals('image-binary-string', $renderer->render($model));
     }
 
     public function testGetEngine()
