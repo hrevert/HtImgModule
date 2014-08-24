@@ -90,6 +90,34 @@ class ImageStrategy implements ListenerAggregateInterface
 
             $response = $e->getResponse();
             $response->setContent($result);
+
+            $response->getHeaders()->addHeaderLine('Content-type', $this->getMimeType($model->getFormat()));
         }
+    }
+
+    /**
+     * Internal
+     *
+     * Get the mime type based on format.
+     *
+     * @param string $format
+     *
+     * @return string mime-type
+     *
+     * @throws RuntimeException
+     */
+    protected function getMimeType($format)
+    {
+        static $mimeTypes = array(
+            'jpeg'  => 'image/jpeg',
+            'jpg'   => 'image/jpeg',
+            'pjpeg' => 'image/jpeg',
+            'gif'   => 'image/gif',
+            'png'   => 'image/png',
+            'wbmp'  => 'image/vnd.wap.wbmp',
+            'xbm'   => 'image/xbm',
+        );
+
+        return $mimeTypes[$format];
     }
 }
