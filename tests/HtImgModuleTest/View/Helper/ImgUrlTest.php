@@ -2,90 +2,79 @@
 namespace HtImgModuleTest\View\Helper;
 
 use HtImgModule\View\Helper\ImgUrl;
-use HtImgModule\Options\ModuleOptions;
-use HtImgModule\Service\CacheManager;
-use HtImgModule\Imagine\Filter\FilterManager;
 
 class ImgUrlTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetExceptionWhenResolverCannotResolve()
-    {
-        $options = new ModuleOptions;
-        $cacheManager = new CacheManager($options);
-        $resolver = $this->getMock('Zend\View\Resolver\AggregateResolver');
-        $resolver->expects($this->any())
-            ->method('resolve')
-            ->will($this->returnValue(false));
-        $filterManager = new FilterManager($options, $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
-        $filterManager->addFilter('foo_view_filter', ['type' => 'foo_view_filter_thumbnail', 'options' => ['format' => 'gif']]);
-        $helper = new ImgUrl(
-            $cacheManager,
-            $options,
-            $filterManager,
-            $resolver
-        );
-        $this->setExpectedException('HtImgModule\Exception\ImageNotFoundException');
-        $helper('path/to/some/random/image/', 'foo_view_filter');
-    }
-
     public function testGetNewImageNotFromCache()
     {
-        $options = new ModuleOptions;
-        $cacheManager =  $this->getMockBuilder('HtImgModule\Service\CacheManager')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $cacheManager->expects($this->once())
-            ->method('cacheExists')
-            ->will($this->returnValue(true));
-        $cacheManager->expects($this->once())
-            ->method('getCacheUrl')
-            ->will($this->returnValue(RESOURCES_DIR . '/flowers.jpg'));
-        $resolver = $this->getMock('Zend\View\Resolver\AggregateResolver');
-        $resolver->expects($this->any())
-            ->method('resolve')
-            ->will($this->returnValue(true));
-        $filterManager = new FilterManager($options, $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
-        $filterManager->addFilter('foo_view_filter', ['type' => 'foo_view_filter_thumbnail', 'options' => []]);
+        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
+        $options->expects($this->once())
+            ->method('getEnableCache')
+            ->will($this->returnValue(false));
+        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
+        $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
+        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $loaderManager->expects($this->once())
+            ->method('loadBinary')
+            ->with('path/to/some/random/image/', 'foo_view_filter')
+            ->will($this->returnValue($binary));
+        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $filterManager->expects($this->once())
+            ->method('getFilterOptions')
+            ->with('foo_view_filter')
+            ->will($this->returnValue([]));
         $helper = new ImgUrl(
             $cacheManager,
             $options,
             $filterManager,
-            $resolver
+            $loaderManager
         );
+        $urlHelper = $this->getMock('Zend\View\Helper\Url');
         $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
         $renderer->expects($this->once())
             ->method('plugin')
-            ->will($this->returnValue(function () {return 'app';}));
+            ->with('url')
+            ->will($this->returnValue($urlHelper));
+        $urlHelper->expects($this->once())
+            ->method('__invoke')
+            ->will($this->returnValue('url/to/some/random/image'));
         $helper->setView($renderer);
-        $helper('path/to/some/random/image/', 'foo_view_filter');
+        $this->assertEquals('url/to/some/random/image', $helper('path/to/some/random/image/', 'foo_view_filter'));
     }
 
     public function testGetImageFromCache()
     {
-        $options = new ModuleOptions;
-        $cacheManager =  $this->getMockBuilder('HtImgModule\Service\CacheManager')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
+        $options->expects($this->once())
+            ->method('getEnableCache')
+            ->will($this->returnValue(true));
+        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
         $cacheManager->expects($this->once())
             ->method('cacheExists')
-            ->will($this->returnValue(false));
-        $resolver = $this->getMock('Zend\View\Resolver\AggregateResolver');
-        $resolver->expects($this->any())
-            ->method('resolve')
+            ->with('path/to/some/random/image/', 'foo_view_filter', 'jpeg')
             ->will($this->returnValue(true));
-        $filterManager = new FilterManager($options, $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
-        $filterManager->addFilter('foo_view_filter', ['type' => 'foo_view_filter_thumbnail', 'options' => []]);
+        $cacheManager->expects($this->once())
+            ->method('getCacheUrl')
+            ->with('path/to/some/random/image/', 'foo_view_filter', 'jpeg')
+            ->will($this->returnValue('flowers.jpg'));
+        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $filterManager->expects($this->once())
+            ->method('getFilterOptions')
+            ->with('foo_view_filter')
+            ->will($this->returnValue(['format' => 'jpeg']));
         $helper = new ImgUrl(
             $cacheManager,
             $options,
             $filterManager,
-            $resolver
+            $loaderManager
         );
         $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
         $renderer->expects($this->once())
             ->method('plugin')
-            ->will($this->returnValue(function () {return 'app';}));
+            ->with('basePath')
+            ->will($this->returnValue(function () {return '/app';}));
         $helper->setView($renderer);
-        $helper('path/to/some/random/image/', 'foo_view_filter');
+        $this->assertEquals('/app/flowers.jpg', $helper('path/to/some/random/image/', 'foo_view_filter'));
     }
 }

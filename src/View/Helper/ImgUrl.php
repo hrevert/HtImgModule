@@ -3,11 +3,11 @@
 namespace HtImgModule\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-use Zend\View\Resolver\ResolverInterface;
 use HtImgModule\Options\CacheOptionsInterface;
 use HtImgModule\Service\CacheManagerInterface;
-use HtImgModule\Imagine\Filter\FilterManager;
+use HtImgModule\Imagine\Filter\FilterManagerInterface;
 use HtImgModule\Exception;
+use HtImgModule\Imagine\Loader\LoaderManagerInterface;
 
 class ImgUrl extends AbstractHelper
 {
@@ -22,33 +22,34 @@ class ImgUrl extends AbstractHelper
     protected $cacheManager;
 
     /**
-     * @var FilterManager
+     * @var FilterManagerInterface
      */
     protected $filterManager;
 
     /**
-     * @var ResolverInterface
+     * @var LoaderManagerInterface
      */
-    protected $relativePathResolver;
+    protected $loaderManager;
 
     /**
      * Constructor
      *
-     * @param CacheManagerInterface $cacheManager
-     * @param CacheOptionsInterface $cacheOptions
-     * @param FilterManager         $filterManager
+     * @param CacheManagerInterface  $cacheManager
+     * @param CacheOptionsInterface  $cacheOptions
+     * @param FilterManagerInterface $filterManager
+     * @param LoaderManagerInterface $loaderManager
      */
     public function __construct(
         CacheManagerInterface $cacheManager,
         CacheOptionsInterface $cacheOptions,
-        FilterManager $filterManager,
-        ResolverInterface $relativePathResolver
+        FilterManagerInterface $filterManager,
+        LoaderManagerInterface $loaderManager
     )
     {
         $this->cacheManager = $cacheManager;
         $this->cacheOptions = $cacheOptions;
         $this->filterManager = $filterManager;
-        $this->relativePathResolver = $relativePathResolver;
+        $this->loaderManager = $loaderManager;
     }
 
     /**
@@ -64,22 +65,13 @@ class ImgUrl extends AbstractHelper
         if (isset($filterOptions['format'])) {
             $format = $filterOptions['format'];
         } else {
-            $imagePath = $this->relativePathResolver->resolve($relativeName);
-            $format = pathinfo($imagePath, PATHINFO_EXTENSION);
-            $format = $format ?: 'png';
+            $binary = $this->loaderManager->loadBinary($relativeName, $filter);
+            $format = $binary->getFormat() ?: 'png';
         }
         if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
             $basePathHelper = $this->getView()->plugin('basePath');
 
             return $basePathHelper() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
-        }
-        if (!isset($imagePath)) {
-            $imagePath = $this->relativePathResolver->resolve($relativeName);
-        }
-        if (!$imagePath) {
-            throw new Exception\ImageNotFoundException(
-                sprintf('Unable to resolve %s', $relativeName)
-            );
         }
 
         $urlHelper = $this->getView()->plugin('url');

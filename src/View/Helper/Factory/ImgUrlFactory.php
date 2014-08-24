@@ -15,7 +15,7 @@ class ImgUrlFactory implements FactoryInterface
             $serviceLocator->get('HtImgModule\Service\CacheManager'),
             $serviceLocator->get('HtImg\ModuleOptions'),
             $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager'),
-            $serviceLocator->get('HtImg\RelativePathResolver')
+            $serviceLocator->get('HtImgModule\Imagine\Loader\LoaderManager')
         );
     }
 }
