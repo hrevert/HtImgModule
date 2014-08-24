@@ -8,6 +8,11 @@ class LoaderPluginManager extends AbstractPluginManager
 {
     protected $factories = [
         'filesystem' => 'HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory',
+        'simple'     => 'HtImgModule\Factory\Imagine\Loader\SimpleFileSystemLoaderFactoryTest',
+    ];
+
+    protected $shared = [
+        'simple' => false
     ];
 
     public function validatePlugin($plugin)
