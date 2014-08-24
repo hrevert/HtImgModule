@@ -34,6 +34,27 @@ $imageLoader = new HtImgModule\Imagine\Loader\SimpleFileSystemLoader('data/path/
 $binary = $imageLoader->load('my-image.png');
 ```
 
+This module can be used to load images by configuring like this:
+
+```php
+return [
+    'htimg' => [
+        'filters' => [
+            'my_filter' => [
+                'type' => 'filter_type',
+                'options' => [
+                    // .....
+                    'image_loader' => 'simple',
+                    'loader_options' => [
+                        'root_path' => 'data/images/uploads',
+                    ]
+                ]
+            ]        
+        ]
+    ]
+]
+```
+
 #### HtImgModule\Imagine\Loader\FileSystemLoader
 This image loaders resolves full path of image using image resolver and loads the image.
 ```php
