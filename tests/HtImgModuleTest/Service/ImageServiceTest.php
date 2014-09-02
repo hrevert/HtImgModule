@@ -11,9 +11,9 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetImageFromCache()
     {
-        $options = new ModuleOptions;
+        $options = $this->getMock('HtImgModule\Options\ModuleOptions');
         $imagine = $this->getMock('Imagine\Image\ImagineInterface');
-        $filterManager = new FilterManager($options, $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
+        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
         $imageService = new ImageService(
             $options,
@@ -30,7 +30,17 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(RESOURCES_DIR . '/flowers.jpg'));
         $imageService->setCacheManager($cacheManager);
 
-        $filterManager->addFilter('foo_filter', ['type' => 'foo_thumbnail', 'options' => ['format' => 'jpg']]);
+        $filterOptions = ['format' => 'jpg'];
+
+        $filterManager->expects($this->once())
+            ->method('getFilterOptions')
+            ->with('foo_filter')
+            ->will($this->returnValue($filterOptions));
+
+        $cacheManager->expects($this->once())
+            ->method('isCachingEnabled')
+            ->with('foo_filter', $filterOptions)
+            ->will($this->returnValue(true));
 
         $image = $this->getMock('Imagine\Image\ImageInterface');
         $imagine->expects($this->once())
@@ -45,7 +55,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetImageFromRelativePathAndCreateCache()
     {
-        $options = new ModuleOptions;
+        $options = $this->getMock('HtImgModule\Options\ModuleOptions');
         $imagine = $this->getMock('Imagine\Image\ImagineInterface');
         $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
@@ -93,6 +103,11 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($filter));
 
         $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
+        $cacheManager->expects($this->any())
+            ->method('isCachingEnabled')
+            ->with($filterName, [])
+            ->will($this->returnValue(true));
+
         $imageService->setCacheManager($cacheManager);
         $cacheManager->expects($this->once())
             ->method('createCache')

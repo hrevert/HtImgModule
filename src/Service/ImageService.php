@@ -82,7 +82,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
             $format = $binary->getFormat() ?: 'png';
         }
 
-        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
+        if ($this->cacheManager->isCachingEnabled($filter, $filterOptions) && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
             $imagePath      = $this->cacheManager->getCachePath($relativePath, $filter, $format);
             $filteredImage  = $this->imagine->open($imagePath);
         } else {
@@ -93,7 +93,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
             $image          = $this->imagine->load($binary->getContent());
             $filteredImage  = $this->filterManager->getFilter($filter)->apply($image);
 
-            if ($this->cacheOptions->getEnableCache()) {
+            if ($this->cacheManager->isCachingEnabled($filter, $filterOptions)) {
                 $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
             }
         }

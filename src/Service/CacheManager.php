@@ -84,4 +84,16 @@ class CacheManager implements CacheManagerInterface
             unlink($cachePath);
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isCachingEnabled($filter, array $filterOptions)
+    {
+        if (isset($filterOptions['enable_cache'])) {
+            return (bool) $filterOptions['enable_cache'];
+        }
+
+        return $this->cacheOptions->getEnableCache();
+    }
 }

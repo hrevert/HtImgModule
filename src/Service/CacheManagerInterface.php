@@ -55,4 +55,13 @@ interface CacheManagerInterface
      * @return void
      */
     public function deleteCache($relativeName, $filter, $formatOrImage = null);
+
+    /**
+     * Checks if caching is allowed for a given filter
+     *
+     * @param string $filter
+     * @param array $filterOptions
+     * @return bool
+     */
+    public function isCachingEnabled($filter, array $filterOptions);
 }
