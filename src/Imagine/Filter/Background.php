@@ -5,7 +5,6 @@ use Imagine\Filter\FilterInterface;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\ImagineInterface;
 use Imagine\Image\Box;
-use Imagine\Image\Color;
 use Imagine\Image\Point;
 
 class Background implements FilterInterface
@@ -34,9 +33,9 @@ class Background implements FilterInterface
      */
     public function __construct(ImagineInterface $imagine, $size = null, $color = '#fff')
     {
-        $this->imagine = $imagine;
-        $this->size = $size;
-        $this->color = $color;
+        $this->imagine  = $imagine;
+        $this->size     = $size;
+        $this->color    = $color;
     }
 
     /**
@@ -57,7 +56,7 @@ class Background implements FilterInterface
             $size = $image->getSize();
         }
 
-        $background = new Color($this->color);
+        $background = $image->palette()->color($this->color);
         $canvas = $this->imagine->create($size, $background);
 
         return $canvas->paste($image, $topLeft);

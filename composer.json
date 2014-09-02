@@ -23,7 +23,7 @@
         "zendframework/zend-stdlib": "~2.2",
         "zendframework/zend-http": "~2.2",
         "zendframework/zend-eventmanager": "~2.2",
-        "imagine/Imagine": "0.5.*",
+        "imagine/Imagine": "0.6.*",
         "symfony/http-foundation": "~2.3"
     },
     "require-dev": {
