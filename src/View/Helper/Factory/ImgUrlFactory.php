@@ -13,7 +13,6 @@ class ImgUrlFactory implements FactoryInterface
 
         return new ImgUrl(
             $serviceLocator->get('HtImgModule\Service\CacheManager'),
-            $serviceLocator->get('HtImg\ModuleOptions'),
             $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager'),
             $serviceLocator->get('HtImgModule\Imagine\Loader\LoaderManager')
         );

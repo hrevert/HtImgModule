@@ -7,7 +7,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetNewImageNotFromCache()
     {
-        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
         $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
         $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
@@ -26,7 +25,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(false));
         $helper = new ImgUrl(
             $cacheManager,
-            $options,
             $filterManager,
             $loaderManager
         );
@@ -45,7 +43,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
 
     public function testGetImageFromCache()
     {
-        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
         $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
         $cacheManager->expects($this->once())
             ->method('cacheExists')
@@ -68,7 +65,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
         $helper = new ImgUrl(
             $cacheManager,
-            $options,
             $filterManager,
             $loaderManager
         );

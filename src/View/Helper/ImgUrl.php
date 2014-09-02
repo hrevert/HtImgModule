@@ -3,7 +3,6 @@
 namespace HtImgModule\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-use HtImgModule\Options\CacheOptionsInterface;
 use HtImgModule\Service\CacheManagerInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
 use HtImgModule\Exception;
@@ -11,11 +10,6 @@ use HtImgModule\Imagine\Loader\LoaderManagerInterface;
 
 class ImgUrl extends AbstractHelper
 {
-    /**
-     * @var CacheOptionsInterface
-     */
-    protected $cacheOptions;
-
     /**
      * @var CacheManagerInterface
      */
@@ -35,19 +29,16 @@ class ImgUrl extends AbstractHelper
      * Constructor
      *
      * @param CacheManagerInterface  $cacheManager
-     * @param CacheOptionsInterface  $cacheOptions
      * @param FilterManagerInterface $filterManager
      * @param LoaderManagerInterface $loaderManager
      */
     public function __construct(
         CacheManagerInterface $cacheManager,
-        CacheOptionsInterface $cacheOptions,
         FilterManagerInterface $filterManager,
         LoaderManagerInterface $loaderManager
     )
     {
         $this->cacheManager = $cacheManager;
-        $this->cacheOptions = $cacheOptions;
         $this->filterManager = $filterManager;
         $this->loaderManager = $loaderManager;
     }
