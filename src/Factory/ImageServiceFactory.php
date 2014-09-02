@@ -15,9 +15,7 @@ class ImageServiceFactory implements FactoryInterface
         $imageLoaderManager = $serviceLocator->get('HtImgModule\Imagine\Loader\LoaderManager');
         $filterManager      = $serviceLocator->get('HtImgModule\Imagine\Filter\FilterManager');
         $imageService       = new ImageService($options, $imagine, $filterManager, $imageLoaderManager);
-        if ($options->getEnableCache()) {
-            $imageService->setCacheManager($serviceLocator->get('HtImgModule\Service\CacheManager'));
-        }
+        $imageService->setCacheManager($serviceLocator->get('HtImgModule\Service\CacheManager'));
 
         return $imageService;
     }
