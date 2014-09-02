@@ -7,10 +7,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetNewImageNotFromCache()
     {
-        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
-        $options->expects($this->once())
-            ->method('getEnableCache')
-            ->will($this->returnValue(false));
         $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
         $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
@@ -23,9 +19,12 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             ->method('getFilterOptions')
             ->with('foo_view_filter')
             ->will($this->returnValue([]));
+        $cacheManager->expects($this->once())
+            ->method('isCachingEnabled')
+            ->with('foo_view_filter', [])
+            ->will($this->returnValue(false));
         $helper = new ImgUrl(
             $cacheManager,
-            $options,
             $filterManager,
             $loaderManager
         );
@@ -44,10 +43,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
 
     public function testGetImageFromCache()
     {
-        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
-        $options->expects($this->once())
-            ->method('getEnableCache')
-            ->will($this->returnValue(true));
         $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
         $cacheManager->expects($this->once())
             ->method('cacheExists')
@@ -59,13 +54,17 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('flowers.jpg'));
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
         $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $filterOptions = ['format' => 'jpeg'];
         $filterManager->expects($this->once())
             ->method('getFilterOptions')
             ->with('foo_view_filter')
-            ->will($this->returnValue(['format' => 'jpeg']));
+            ->will($this->returnValue($filterOptions));
+        $cacheManager->expects($this->once())
+            ->method('isCachingEnabled')
+            ->with('foo_view_filter', $filterOptions)
+            ->will($this->returnValue(true));
         $helper = new ImgUrl(
             $cacheManager,
-            $options,
             $filterManager,
             $loaderManager
         );

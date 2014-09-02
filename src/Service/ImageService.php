@@ -2,18 +2,12 @@
 namespace HtImgModule\Service;
 
 use Imagine\Image\ImagineInterface;
-use HtImgModule\Options\CacheOptionsInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
 use HtImgModule\Imagine\Loader\LoaderManagerInterface;
 use HtImgModule\EventManager\EventProvider;
 
 class ImageService extends EventProvider implements ImageServiceInterface
 {
-    /**
-     * @var CacheOptionsInterface
-     */
-    protected $cacheOptions;
-
     /**
      * @var CacheManagerInterface
      */
@@ -37,32 +31,22 @@ class ImageService extends EventProvider implements ImageServiceInterface
     /**
      * Constructor
      *
-     * @param CacheOptionsInterface  $cacheOptions
+     * @param CacheManagerInterface  $cacheManager
      * @param ImagineInterface       $imagine
      * @param FilterManagerInterface $filterManager
      * @param LoaderManagerInterface $loaderManager
      */
     public function __construct(
-        CacheOptionsInterface $cacheOptions,
+        CacheManagerInterface  $cacheManager,
         ImagineInterface $imagine,
         FilterManagerInterface $filterManager,
         LoaderManagerInterface $loaderManager
     )
     {
-        $this->cacheOptions  = $cacheOptions;
+        $this->cacheManager  = $cacheManager;
         $this->imagine       = $imagine;
         $this->filterManager = $filterManager;
         $this->loaderManager = $loaderManager;
-    }
-
-    /**
-     * Sets cache manager
-     *
-     * @param CacheManagerInterface $cacheManager
-     */
-    public function setCacheManager(CacheManagerInterface $cacheManager)
-    {
-        $this->cacheManager = $cacheManager;
     }
 
     /**
@@ -82,7 +66,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
             $format = $binary->getFormat() ?: 'png';
         }
 
-        if ($this->cacheOptions->getEnableCache() && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
+        if ($this->cacheManager->isCachingEnabled($filter, $filterOptions) && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
             $imagePath      = $this->cacheManager->getCachePath($relativePath, $filter, $format);
             $filteredImage  = $this->imagine->open($imagePath);
         } else {
@@ -93,7 +77,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
             $image          = $this->imagine->load($binary->getContent());
             $filteredImage  = $this->filterManager->getFilter($filter)->apply($image);
 
-            if ($this->cacheOptions->getEnableCache()) {
+            if ($this->cacheManager->isCachingEnabled($filter, $filterOptions)) {
                 $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
             }
         }

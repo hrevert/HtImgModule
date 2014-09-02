@@ -76,4 +76,19 @@ class CacheManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($cacheManager->cacheExists('awesome/archos-crop.jpg', 'crop'));
         $this->assertFalse($cacheManager->cacheExists('awesome/random-crop.jpg', 'crop'));
     }
+
+    public function testCachingEnabledChecking()
+    {
+        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
+        $cacheManager = new CacheManager($options);
+
+        $this->assertTrue($cacheManager->isCachingEnabled('abcd', ['enable_cache' => true]));
+        $this->assertFalse($cacheManager->isCachingEnabled('abcd', ['enable_cache' => false]));
+
+        $options->expects($this->once())
+            ->method('getEnableCache')
+            ->will($this->returnValue(true));
+
+        $this->assertTrue($cacheManager->isCachingEnabled('abcd', []));
+    }
 }
