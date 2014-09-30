@@ -36,7 +36,7 @@ class SimpleFileSystemLoader implements LoaderInterface
             $absolutePath = $path;
         } else {
             $absolutePath = $this->rootPath . '/' . ltrim($path, '/');
-        }        
+        }
 
         if (!file_exists($absolutePath)) {
             throw new Exception\ImageNotFoundException(sprintf('Source image not found in "%s"', $absolutePath));

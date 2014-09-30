@@ -59,8 +59,8 @@ interface CacheManagerInterface
     /**
      * Checks if caching is allowed for a given filter
      *
-     * @param string $filter
-     * @param array $filterOptions
+     * @param  string $filter
+     * @param  array  $filterOptions
      * @return bool
      */
     public function isCachingEnabled($filter, array $filterOptions);

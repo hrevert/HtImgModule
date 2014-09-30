@@ -36,8 +36,8 @@ class DisplayImage extends AbstractHtmlElement
     /**
      * Return valid HTML image tag
      *
-     * @param string $relativeName
-     * @param string $filter
+     * @param  string $relativeName
+     * @param  string $filter
      * @return string
      */
     public function getImgTag($relativeName, $filter)

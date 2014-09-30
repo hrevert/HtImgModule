@@ -56,7 +56,7 @@ class ImageStrategy implements ListenerAggregateInterface
     /**
      * Sets ImageRenderer as Renderer when ImageModel is used
      *
-     * @param  ViewEvent $e
+     * @param  ViewEvent                  $e
      * @return ImageRenderer|null
      * @throws Exception\RuntimeException
      */
@@ -73,7 +73,7 @@ class ImageStrategy implements ListenerAggregateInterface
                 $model->setImage($this->imagine->open($model->getImagePath()));
             }
 
-            return new ImageRenderer;
+            return new ImageRenderer();
         }
     }
 

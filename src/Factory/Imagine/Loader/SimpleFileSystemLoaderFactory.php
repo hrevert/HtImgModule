@@ -29,5 +29,5 @@ class SimpleFileSystemLoaderFactory implements FactoryInterface, MutableCreation
         }
 
         return new SimpleFileSystemLoader($this->options['root_path']);
-    }    
+    }
 }
