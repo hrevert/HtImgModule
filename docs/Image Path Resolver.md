@@ -78,4 +78,4 @@ Here 270 is the priority of the resolver. The resolvers having high priority are
 ### Navigation
 
 * Back to [Image Loaders](image-loaders.md)
-* Go to [the Index](README.md)
+* Continue to [Caching](caching.md)

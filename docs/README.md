@@ -10,3 +10,4 @@ If you are looking for some information that is not listed in the documentation,
 3. [Displaying Images From Controller](Images From Controller.md)
 4. [Image Loaders](image-loaders.md)
 5. [Image Path Resolver](Image Path Resolver.md)
+6. [Caching](caching.md)
