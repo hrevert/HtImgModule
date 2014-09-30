@@ -9,8 +9,12 @@ class ImageControllerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $controllers)
     {
+        /** @var ServiceLocatorInterface $serviceLocator */
         $serviceLocator = $controllers->getServiceLocator();
 
-        return new ImageController($serviceLocator->get('HtImgModule\Service\ImageService'));
+        /** @var \HtImgModule\Service\ImageService $imageService */
+        $imageService = $serviceLocator->get('HtImgModule\Service\ImageService');
+
+        return new ImageController($imageService);
     }
 }

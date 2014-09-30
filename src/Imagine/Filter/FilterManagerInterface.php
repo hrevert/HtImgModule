@@ -9,7 +9,7 @@ interface FilterManagerInterface
      * Gets a filter
      *
      * @param  string                                          $filter
-     * @return Imagine\Filter\FilterInterface
+     * @return \Imagine\Filter\FilterInterface
      * @throws \HtImgModule\Exception\FilterNotFoundException
      * @throws \HtImgModule\Exception\InvalidArgumentException
      */
@@ -18,7 +18,7 @@ interface FilterManagerInterface
     /**
      * Applies a filter to a image and gives the new image
      *
-     * @param ImageInterface $filter
+     * @param ImageInterface $image
      * @param string         $filter
      */
     public function applyFilter(ImageInterface $image, $filter);

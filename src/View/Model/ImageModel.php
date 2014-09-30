@@ -44,6 +44,7 @@ class ImageModel extends ViewModel
      *
      * @param ImageInterface|string $imageOrPath
      * @param string|null           $format
+     * @throws Exception\InvalidArgumentException
      */
     public function __construct($imageOrPath = null, $format = null)
     {

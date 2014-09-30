@@ -57,7 +57,8 @@ class ImageStrategy implements ListenerAggregateInterface
      * Sets ImageRenderer as Renderer when ImageModel is used
      *
      * @param  ViewEvent $e
-     * @return void
+     * @return ImageRenderer|null
+     * @throws Exception\RuntimeException
      */
     public function selectRenderer(ViewEvent $e)
     {

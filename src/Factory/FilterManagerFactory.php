@@ -9,7 +9,10 @@ class FilterManagerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
+        /** @var \HtImgModule\Options\FilterOptionsInterface $options */
         $options                    = $serviceLocator->get('HtImg\ModuleOptions');
+        
+        /** @var ServiceLocatorInterface $filterLoaderPluginManager */
         $filterLoaderPluginManager  = $serviceLocator->get('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager');
 
         return new FilterManager($options, $filterLoaderPluginManager);

@@ -19,7 +19,7 @@ class FileSystemLoader implements LoaderInterface
     /**
      * Constructor
      *
-     * @param ResolverInterface
+     * @param ResolverInterface $resolver
      */
     public function __construct(ResolverInterface $resolver)
     {

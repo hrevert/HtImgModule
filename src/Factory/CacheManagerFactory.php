@@ -9,6 +9,7 @@ class CacheManagerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
+        /** @var \HtImgModule\Options\CacheOptionsInterface $options */
         $options = $serviceLocator->get('HtImg\ModuleOptions');
 
         return new CacheManager($options);

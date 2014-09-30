@@ -10,6 +10,11 @@ use Imagine\Image\ImageInterface;
 class ImageRenderer implements RendererInterface
 {
     /**
+     * @var ResolverInterface
+     */
+    protected $resolver;
+
+    /**
      * Return the template engine object, if any
      *
      * If using a third-party template engine, such as Smarty, patTemplate,
@@ -27,7 +32,7 @@ class ImageRenderer implements RendererInterface
      * Set the resolver used to map a template name to a resource the renderer may consume.
      *
      * @param  ResolverInterface $resolver
-     * @return Renderer
+     * @return self
      */
     public function setResolver(ResolverInterface $resolver)
     {
