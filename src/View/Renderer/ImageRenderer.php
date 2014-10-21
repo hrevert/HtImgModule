@@ -53,7 +53,7 @@ class ImageRenderer implements RendererInterface
                 );
             }
 
-            return $image->get($format);
+            return $image->get($format, $imageModel->getImageOutputOptions());
         }
 
         throw new Exception\InvalidArgumentException(sprintf(

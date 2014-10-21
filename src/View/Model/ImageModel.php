@@ -40,13 +40,19 @@ class ImageModel extends ViewModel
     protected $format = 'png';
 
     /**
+     * @var array
+     */
+    protected $imageOutputOptions = [];
+
+    /**
      * Constructor
      *
      * @param  ImageInterface|string              $imageOrPath
      * @param  string|null                        $format
+     * @param  array                              $imageOutputOptions
      * @throws Exception\InvalidArgumentException
      */
-    public function __construct($imageOrPath = null, $format = null)
+    public function __construct($imageOrPath = null, $format = null, array $imageOutputOptions = [])
     {
         if ($imageOrPath !== null) {
             if (is_string($imageOrPath)) {
@@ -66,6 +72,7 @@ class ImageModel extends ViewModel
         if ($format !== null) {
             $this->setFormat($format);
         }
+        $this->setImageOutputOptions($imageOutputOptions);
     }
 
     /**
@@ -136,5 +143,28 @@ class ImageModel extends ViewModel
     public function getFormat()
     {
         return $this->format;
+    }
+
+    /**
+     * Sets imageOutputOptions
+     *
+     * @param  array $imageOutputOptions
+     * @return self
+     */
+    public function setImageOutputOptions(array $imageOutputOptions)
+    {
+        $this->imageOutputOptions = $imageOutputOptions;
+
+        return $this;
+    }
+
+    /**
+     * Gets imageOutputOptions
+     *
+     * @return array
+     */
+    public function getImageOutputOptions()
+    {
+        return $this->imageOutputOptions;
     }
 }

@@ -59,26 +59,32 @@ class ImageService extends EventProvider implements ImageServiceInterface
 
         $filterOptions = $this->filterManager->getFilterOptions($filter);
 
+        $binary = $this->loaderManager->loadBinary($relativePath, $filter);
+
         if (isset($filterOptions['format'])) {
             $format = $filterOptions['format'];
         } else {
-            $binary = $this->loaderManager->loadBinary($relativePath, $filter);
             $format = $binary->getFormat() ?: 'png';
+        }
+
+        $imageOutputOptions = [];
+        if (isset($filterOptions['quality'])) {
+            $imageOutputOptions['quality'] = $filterOptions['quality'];
+        }
+        if ($binary->getFormat() === 'gif' && $filterOptions['animated']) {
+            $imageOutputOptions['animated'] = $filterOptions['animated'];
         }
 
         if ($this->cacheManager->isCachingEnabled($filter, $filterOptions) && $this->cacheManager->cacheExists($relativePath, $filter, $format)) {
             $imagePath      = $this->cacheManager->getCachePath($relativePath, $filter, $format);
             $filteredImage  = $this->imagine->open($imagePath);
         } else {
-            if (!isset($binary)) {
-                $binary = $this->loaderManager->loadBinary($relativePath, $filter);
-            }
 
             $image          = $this->imagine->load($binary->getContent());
             $filteredImage  = $this->filterManager->getFilter($filter)->apply($image);
 
             if ($this->cacheManager->isCachingEnabled($filter, $filterOptions)) {
-                $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format);
+                $this->cacheManager->createCache($relativePath, $filter, $filteredImage, $format, $imageOutputOptions);
             }
         }
 
@@ -87,8 +93,8 @@ class ImageService extends EventProvider implements ImageServiceInterface
 
         return [
             'image'  => $filteredImage,
-            'format' => $format
+            'format' => $format,
+            'imageOutputOptions' => $imageOutputOptions,
         ];
-
     }
 }

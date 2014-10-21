@@ -45,6 +45,6 @@ class ImageController extends AbstractActionController
             return $this->notFoundAction();
         }
 
-        return new ImageModel($imageData['image'], $imageData['format']);
+        return new ImageModel($imageData['image'], $imageData['format'], $imageData['imageOutputOptions']);
     }
 }
