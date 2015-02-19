@@ -41,8 +41,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
         ImagineInterface $imagine,
         FilterManagerInterface $filterManager,
         LoaderManagerInterface $loaderManager
-    )
-    {
+    ) {
         $this->cacheManager  = $cacheManager;
         $this->imagine       = $imagine;
         $this->filterManager = $filterManager;
@@ -71,7 +70,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
         if (isset($filterOptions['quality'])) {
             $imageOutputOptions['quality'] = $filterOptions['quality'];
         }
-        if ($binary->getFormat() === 'gif' && $filterOptions['animated']) {
+        if ($format === 'gif' && $filterOptions['animated']) {
             $imageOutputOptions['animated'] = $filterOptions['animated'];
         }
 
@@ -79,7 +78,6 @@ class ImageService extends EventProvider implements ImageServiceInterface
             $imagePath      = $this->cacheManager->getCachePath($relativePath, $filter, $format);
             $filteredImage  = $this->imagine->open($imagePath);
         } else {
-
             $image          = $this->imagine->load($binary->getContent());
             $filteredImage  = $this->filterManager->getFilter($filter)->apply($image);
 
@@ -89,7 +87,7 @@ class ImageService extends EventProvider implements ImageServiceInterface
         }
 
         $args = ['relativePath' => $relativePath, 'filter' => $filter, 'filteredImage' => $filteredImage, 'format' => $format];
-        $eventManager->trigger(__FUNCTION__ . '.post', $this, $args);
+        $eventManager->trigger(__FUNCTION__.'.post', $this, $args);
 
         return [
             'image'  => $filteredImage,

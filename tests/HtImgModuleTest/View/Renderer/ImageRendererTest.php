@@ -9,34 +9,36 @@ class ImageRendererTest extends \PHPUnit_Framework_TestCase
 {
     public function testRender()
     {
+        $imageOutputOptions = ['quality' => 93];
+
         $image = $this->getMock('Imagine\Image\ImageInterface');
         $image->expects($this->exactly(1))
-            ->method('get')
+            ->method('get', $imageOutputOptions)
             ->with('png')
             ->will($this->returnValue('image-binary-string'));
 
-        $model = new ImageModel($image, 'png');
+        $model = new ImageModel($image, 'png', $imageOutputOptions);
 
-        $renderer = new ImageRenderer;
+        $renderer = new ImageRenderer();
         $this->assertEquals('image-binary-string', $renderer->render($model));
     }
 
     public function testGetExceptionWhenModelIsInvalid()
     {
-        $renderer = new ImageRenderer;
+        $renderer = new ImageRenderer();
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
-        $renderer->render(new ViewModel);
+        $renderer->render(new ViewModel());
     }
 
     public function testGetEngine()
     {
-        $renderer = new ImageRenderer;
+        $renderer = new ImageRenderer();
         $this->assertEquals($renderer, $renderer->getEngine());
     }
 
     public function testSetResolver()
     {
-        $renderer = new ImageRenderer;
+        $renderer = new ImageRenderer();
         $this->assertEquals($renderer, $renderer->setResolver($this->getMock('Zend\View\Resolver\ResolverInterface')));
     }
 }

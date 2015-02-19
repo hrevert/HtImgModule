@@ -2,7 +2,6 @@
 namespace HtImgModuleTest\Service;
 
 use HtImgModule\Service\ImageService;
-use HtImgModule\Options\ModuleOptions;
 use HtImgModule\Service\CacheManager;
 use Imagine\Gd\Imagine;
 use HtImgModule\Imagine\Filter\FilterManager;
@@ -17,7 +16,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
         $cacheManager->expects($this->once())
             ->method('getCachePath')
-            ->will($this->returnValue(RESOURCES_DIR . '/flowers.jpg'));
+            ->will($this->returnValue(RESOURCES_DIR.'/flowers.jpg'));
         $imagine = $this->getMock('Imagine\Image\ImagineInterface');
         $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
@@ -28,7 +27,16 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             $loaderManager
         );
 
-        $filterOptions = ['format' => 'jpg'];
+        $relativePath = 'path/to/image/flowers.jpg';
+        $filterName = 'foo_filter';
+
+        $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
+        $loaderManager->expects($this->once())
+            ->method('loadBinary')
+            ->with($relativePath, $filterName)
+            ->will($this->returnValue($binary));
+
+        $filterOptions = ['format' => 'gif', 'quality' => 87, 'animated' => true];
 
         $filterManager->expects($this->once())
             ->method('getFilterOptions')
@@ -43,12 +51,15 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
         $image = $this->getMock('Imagine\Image\ImageInterface');
         $imagine->expects($this->once())
             ->method('open')
-            ->with(RESOURCES_DIR . '/flowers.jpg')
+            ->with(RESOURCES_DIR.'/flowers.jpg')
             ->will($this->returnValue($image));
 
         $imageData = $imageService->getImage('path/to/image/flowers.jpg', 'foo_filter');
 
         $this->assertEquals($image, $imageData['image']);
+        $this->assertEquals('gif', $imageData['format']);
+        $this->assertEquals(87, $imageData['imageOutputOptions']['quality']);
+        $this->assertEquals(true, $imageData['imageOutputOptions']['animated']);
     }
 
     public function testGetImageFromRelativePathAndCreateCache()
@@ -67,10 +78,13 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
         $binaryContent = '35345fascxzcasdfhj;alsdkf4asldfkja;sldf65854';
         $relativePath = 'relative/path/to/image';
         $filterName = 'foo-bar-filter';
+
+        $filterOptions = ['quality' => 87];
+
         $filterManager->expects($this->once())
             ->method('getFilterOptions')
             ->with($filterName)
-            ->will($this->returnValue([]));
+            ->will($this->returnValue($filterOptions));
 
         $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
         $binary->expects($this->once())
@@ -102,12 +116,12 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
 
         $cacheManager->expects($this->any())
             ->method('isCachingEnabled')
-            ->with($filterName, [])
+            ->with($filterName, $filterOptions)
             ->will($this->returnValue(true));
 
         $cacheManager->expects($this->once())
             ->method('createCache')
-            ->with($relativePath, $filterName, $filteredImage, 'png');
+            ->with($relativePath, $filterName, $filteredImage, 'png', $filterOptions);
 
         $imageData = $imageService->getImage($relativePath, $filterName);
 
