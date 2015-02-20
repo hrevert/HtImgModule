@@ -8,10 +8,11 @@ class ImageModelTest extends \PHPUnit_Framework_TestCase
 {
     public function testSettersAndGetters()
     {
-        $model = new ImageModel('./');
-        $model->setFormat('jpeg');
+        $imageOutputOptions = ['quality' => 93];
+        $model = new ImageModel('./', 'jpg', $imageOutputOptions);
         $this->assertEquals('./', $model->getImagePath());
-        $this->assertEquals('jpeg', $model->getFormat());
+        $this->assertEquals('jpg', $model->getFormat());
+        $this->assertEquals($imageOutputOptions, $model->getImageOutputOptions());
         $imagine = new Imagine();
         $archos = $imagine->open('resources/Archos.jpg');
         $model = new ImageModel($archos, 'gif');
@@ -22,6 +23,6 @@ class ImageModelTest extends \PHPUnit_Framework_TestCase
     public function testGetExceptionWithInvalidConstructorArgument()
     {
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
-        $model = new ImageModel(new \ArrayObject);
+        $model = new ImageModel(new \ArrayObject());
     }
 }

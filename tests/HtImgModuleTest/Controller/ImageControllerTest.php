@@ -18,7 +18,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $pluginManager = new PluginManager;
+        $pluginManager = new PluginManager();
         $controller->setPluginManager($pluginManager);
         $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
@@ -36,7 +36,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $imageService->expects($this->once())
             ->method('getImage')
             ->with($relativePath, $filter)
-            ->will($this->throwException(new Exception\ImageNotFoundException));
+            ->will($this->throwException(new Exception\ImageNotFoundException()));
         $this->expect404($controller);
         $controller->displayAction();
     }
@@ -50,7 +50,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $pluginManager = new PluginManager;
+        $pluginManager = new PluginManager();
         $controller->setPluginManager($pluginManager);
         $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
@@ -68,7 +68,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $imageService->expects($this->once())
             ->method('getImage')
             ->with($relativePath, $filter)
-            ->will($this->throwException(new Exception\FilterNotFoundException));
+            ->will($this->throwException(new Exception\FilterNotFoundException()));
         $this->expect404($controller);
         $controller->displayAction();
     }
@@ -82,7 +82,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $pluginManager = new PluginManager;
+        $pluginManager = new PluginManager();
         $controller->setPluginManager($pluginManager);
         $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
@@ -99,7 +99,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
 
         $image = $this->getMock('Imagine\Image\ImageInterface');
         $format = 'gif';
-        $imageData = ['image' => $image, 'format' => $format];
+        $imageData = ['image' => $image, 'format' => $format, 'imageOutputOptions' => ['quality' => 57]];
 
         $imageService->expects($this->once())
             ->method('getImage')
@@ -114,7 +114,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
 
     protected function expect404(ImageController $controller)
     {
-        $event = new MvcEvent;
+        $event = new MvcEvent();
         $controller->setEvent($event);
         $routeMatch = $this->getMockBuilder('Zend\Mvc\Router\RouteMatch')
             ->disableOriginalConstructor()

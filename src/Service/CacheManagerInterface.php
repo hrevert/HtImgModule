@@ -42,9 +42,10 @@ interface CacheManagerInterface
      * @param  string         $filter
      * @param  ImageInterface $image
      * @param  string|null    $formatOrImage
+     * @param  array          $saveOptions
      * @return void
      */
-    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null);
+    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null, array $saveOptions = []);
 
     /**
      * Deletes a new cache
