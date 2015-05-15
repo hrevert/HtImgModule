@@ -29,7 +29,7 @@ return [
                     'display'   => [
                         'type' => 'Segment',
                         'options' => [
-                            'route'     => '/display/:filter/',
+                            'route'     => '/display/:filter[/]',
                             'defaults'  => [
                                 'controller'    => 'htimg',
                                 'action'        => 'display'
