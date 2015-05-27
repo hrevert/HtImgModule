@@ -118,7 +118,7 @@ class ImageStrategy implements ListenerAggregateInterface
             'wbmp'  => 'image/vnd.wap.wbmp',
             'xbm'   => 'image/xbm',
         );
-
+        $format = strtolower($format);
         return $mimeTypes[$format];
     }
 }
