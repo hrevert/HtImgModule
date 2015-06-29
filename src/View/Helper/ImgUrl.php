@@ -5,6 +5,7 @@ namespace HtImgModule\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 use HtImgModule\Service\CacheManagerInterface;
 use HtImgModule\Imagine\Filter\FilterManagerInterface;
+use HtImgModule\Exception;
 use HtImgModule\Imagine\Loader\LoaderManagerInterface;
 
 class ImgUrl extends AbstractHelper
@@ -59,8 +60,12 @@ class ImgUrl extends AbstractHelper
             $format = $binary->getFormat() ?: 'png';
         }
         if ($this->cacheManager->isCachingEnabled($filter, $filterOptions) && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
+    
+            if($this->cacheManager->useCacheUrl()) {
+                return $this->cacheManager->useCacheUrl() . $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
+            }
+            
             $basePathHelper = $this->getView()->plugin('basePath');
-
             return $basePathHelper() . '/'. $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
         }
 

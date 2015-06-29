@@ -31,6 +31,8 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
     protected $filterLoaders = [];
 
     protected $cachePath = 'htimg';
+    
+    protected $cacheUrl = '';
 
     protected $cacheExpiry = 86400;
 
@@ -138,6 +140,18 @@ class ModuleOptions extends AbstractOptions implements CacheOptionsInterface, Fi
         return $this->filterLoaders;
     }
 
+    public function setCacheUrl($cacheUrl)
+    {
+        $this->cacheUrl = $cacheUrl;
+
+        return $this;
+    }
+
+    public function getCacheUrl()
+    {
+        return $this->cacheUrl;
+    }
+    
     public function setCachePath($cachePath)
     {
         $this->cachePath = $cachePath;

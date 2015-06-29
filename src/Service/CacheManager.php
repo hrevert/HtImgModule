@@ -65,13 +65,13 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null, array $saveOptions = [])
+    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null)
     {
         $cachePath = $this->getCachePath($relativeName, $filter, $formatOrImage);
         if (!is_dir(dirname($cachePath))) {
             mkdir(dirname($cachePath), 0755, true);
         }
-        $image->save($cachePath, $saveOptions);
+        $image->save($cachePath);
     }
 
     /**
@@ -95,5 +95,17 @@ class CacheManager implements CacheManagerInterface
         }
 
         return $this->cacheOptions->getEnableCache();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function useCacheUrl()
+    {
+        if($this->cacheOptions->getCacheUrl()) {
+            $this->cacheOptions->setCachePath('');
+            return $this->cacheOptions->getCacheUrl();
+        }
+        return null;
     }
 }

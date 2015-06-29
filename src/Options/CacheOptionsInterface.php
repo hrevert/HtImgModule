@@ -8,6 +8,8 @@ interface CacheOptionsInterface
     public function getWebRoot();
 
     public function getCachePath();
+    
+    public function getCacheUrl();
 
     public function getCacheExpiry();
 

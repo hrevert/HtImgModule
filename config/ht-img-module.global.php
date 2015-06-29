@@ -68,6 +68,13 @@ $options = [
       * Default: htimg
       */
     //'cache_path' => 'htimg'
+    
+    /**
+      * Cache Url(for external urls like static.example.com)
+      *
+      * Default: ''
+      */
+    //'cache_url' => ''
 
     /**
      * Filter Loaders
