@@ -40,18 +40,26 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function getCacheUrl($relativeName, $filter, $formatOrImage = null)
+    public function getCacheUrl($relativeName, $filter, $formatOrImage = null, $useFullUrl = false)
     {
         if (is_readable($formatOrImage)) {
             $format = pathinfo($formatOrImage, PATHINFO_EXTENSION);
-        } else {
+        } 
+        else {
             $format = $formatOrImage;
         }
+        
+        if ($useFullUrl && $this->useCacheUrl()) {
+            return $this->cacheOptions->getCacheUrl() . '/' . $filter . '/'. $relativeName . '.' . $format;
+        }
+        
         if (!$format) {
              return $this->cacheOptions->getCachePath() . '/' . $filter . '/'. $relativeName;
-        } else {
+        } 
+        else {
             return $this->getCacheUrl($relativeName, $filter) . '.' . $format;
         }
+    
     }
 
     /**
@@ -65,13 +73,13 @@ class CacheManager implements CacheManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null)
+    public function createCache($relativeName, $filter, ImageInterface $image, $formatOrImage = null, array $saveOptions = [])
     {
         $cachePath = $this->getCachePath($relativeName, $filter, $formatOrImage);
         if (!is_dir(dirname($cachePath))) {
             mkdir(dirname($cachePath), 0755, true);
         }
-        $image->save($cachePath);
+        $image->save($cachePath, $saveOptions);
     }
 
     /**
@@ -103,9 +111,8 @@ class CacheManager implements CacheManagerInterface
     public function useCacheUrl()
     {
         if($this->cacheOptions->getCacheUrl()) {
-            $this->cacheOptions->setCachePath('');
-            return $this->cacheOptions->getCacheUrl();
+            return true;
         }
-        return null;
+        return false;
     }
 }

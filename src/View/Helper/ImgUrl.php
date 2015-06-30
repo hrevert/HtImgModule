@@ -59,10 +59,11 @@ class ImgUrl extends AbstractHelper
             $binary = $this->loaderManager->loadBinary($relativeName, $filter);
             $format = $binary->getFormat() ?: 'png';
         }
+        
         if ($this->cacheManager->isCachingEnabled($filter, $filterOptions) && $this->cacheManager->cacheExists($relativeName, $filter, $format)) {
     
             if($this->cacheManager->useCacheUrl()) {
-                return $this->cacheManager->useCacheUrl() . $this->cacheManager->getCacheUrl($relativeName, $filter, $format);
+                return $this->cacheManager->getCacheUrl($relativeName, $filter, $format, true);
             }
             
             $basePathHelper = $this->getView()->plugin('basePath');

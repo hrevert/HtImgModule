@@ -21,9 +21,10 @@ interface CacheManagerInterface
      * @param  string      $relativeName
      * @param  string      $filter
      * @param  string|null $formatOrImage
+     * @param  bool|false  $useFullUrl
      * @return string
      */
-    public function getCacheUrl($relativeName, $filter, $formatOrImage = null);
+    public function getCacheUrl($relativeName, $filter, $formatOrImage = null, $useFullUrl = false);
 
     /**
      * Gets filesystem path for a cache
@@ -65,4 +66,11 @@ interface CacheManagerInterface
      * @return bool
      */
     public function isCachingEnabled($filter, array $filterOptions);
+
+    /**
+     * Check if we use full url for caching
+     * 
+     * @return bool
+     */
+    public function useCacheUrl();
 }
