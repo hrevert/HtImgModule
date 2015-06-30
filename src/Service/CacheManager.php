@@ -110,9 +110,6 @@ class CacheManager implements CacheManagerInterface
      */
     public function useCacheUrl()
     {
-        if($this->cacheOptions->getCacheUrl()) {
-            return true;
-        }
-        return false;
+        return $this->cacheOptions->getCacheUrl() ? true: false;
     }
 }
