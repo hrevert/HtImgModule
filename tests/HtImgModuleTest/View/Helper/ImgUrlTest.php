@@ -98,7 +98,7 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
         $cacheManager->expects($this->once())
             ->method('getCacheUrl')
             ->with('path/to/some/random/image/', 'foo_view_filter', 'jpeg', true)
-            ->will($this->returnValue('http:://static.example.com/foo_view_filter/path/to/some/random/image/flowers.jpg'));
+            ->will($this->returnValue('http://static.example.com/foo_view_filter/path/to/some/random/image/flowers.jpg'));
         $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
         $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
         $filterOptions = ['format' => 'jpeg'];
@@ -117,6 +117,6 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
         );
         $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
         $helper->setView($renderer);
-        $this->assertEquals('http:://static.example.com/foo_view_filter/path/to/some/random/image/flowers.jpg', $helper('path/to/some/random/image/', 'foo_view_filter'));
+        $this->assertEquals('http://static.example.com/foo_view_filter/path/to/some/random/image/flowers.jpg', $helper('path/to/some/random/image/', 'foo_view_filter'));
     }
 }
