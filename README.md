@@ -49,5 +49,8 @@ Whenever, you call a filter service like `my_thumbnail` from view template, the 
 ## Documentation
 The officially documentation is available in the [docs/](https://github.com/hrevert/HtImgModule/tree/master/docs) directory:
 
+##TODO
+- [ ] Support for Zend Framework 3
+
 ## Acknowledgements
 HtImgModule is inspired by [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) and [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
