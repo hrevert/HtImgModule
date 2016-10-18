@@ -12,7 +12,7 @@ class ImageControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService('HtImgModule\Service\ImageService', $this->getMock('HtImgModule\Service\ImageServiceInterface'));
         $factory = new ImageControllerFactory();
-        $controllers = new ControllerManager;
+        $controllers = new ControllerManager($serviceManager);
         $controllers->setServiceLocator($serviceManager);
         $this->assertInstanceOf('HtImgModule\Controller\ImageController', $factory->createService($controllers));
     }
