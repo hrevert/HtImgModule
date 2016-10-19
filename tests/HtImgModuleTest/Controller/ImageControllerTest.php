@@ -6,6 +6,7 @@ use HtImgModule\Exception;
 use Zend\Mvc\MvcEvent;
 use Phine\Test\Property;
 use Zend\Mvc\Controller\PluginManager;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class ImageControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,8 +18,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
 
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
-
-        $pluginManager = new PluginManager();
+        $container = $this->getMock(ServiceLocatorInterface::class);
+        if (!method_exists(PluginManager::class, 'configure')) {
+            $pluginManager = new PluginManager();
+        } else {
+            $pluginManager = new PluginManager($container);
+        }
         $controller->setPluginManager($pluginManager);
         $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
@@ -50,7 +55,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $pluginManager = new PluginManager();
+        $container = $this->getMock(ServiceLocatorInterface::class);
+        if (!method_exists(PluginManager::class, 'configure')) {
+            $pluginManager = new PluginManager();
+        } else {
+            $pluginManager = new PluginManager($container);
+        }
         $controller->setPluginManager($pluginManager);
         $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
@@ -82,7 +92,12 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $pluginManager = new PluginManager();
+        $container = $this->getMock(ServiceLocatorInterface::class);
+        if (!method_exists(PluginManager::class, 'configure')) {
+            $pluginManager = new PluginManager();
+        } else {
+            $pluginManager = new PluginManager($container);
+        }
         $controller->setPluginManager($pluginManager);
         $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
@@ -116,7 +131,11 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
     {
         $event = new MvcEvent();
         $controller->setEvent($event);
-        $routeMatch = $this->getMockBuilder('Zend\Mvc\Router\RouteMatch')
+        $mockRouteMatchClass = 'Zend\Mvc\Router\RouteMatch';
+        if (class_exists(\Zend\Router\RouteMatch::class)) {
+            $mockRouteMatchClass = \Zend\Router\RouteMatch::class;
+        }
+        $routeMatch = $this->getMockBuilder($mockRouteMatchClass)
             ->disableOriginalConstructor()
             ->getMock();
         $event->setRouteMatch($routeMatch);
@@ -124,6 +143,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
         $response->expects($this->once())
             ->method('setStatusCode')
             ->with(404);
+        $event->setResponse($response);
         Property::set($controller, 'response', $response);
     }
 }

@@ -2,6 +2,7 @@
 namespace HtImgModuleTest\View\Helper;
 
 use HtImgModule\View\Helper\DisplayImage;
+use Zend\ServiceManager\ServiceManager;
 use Zend\View\Renderer\PhpRenderer;
 use Zend\View\HelperPluginManager;
 
@@ -19,7 +20,13 @@ class DisplayImageTest extends \PHPUnit_Framework_TestCase
         $helper = new DisplayImage;
         $helper->setAttributes(['alt' => 'hello']);
         $renderer = new PhpRenderer;
-        $helpers = new HelperPluginManager;
+        $serviceManager = new ServiceManager();
+        if (!method_exists($serviceManager, 'configure')) {
+            $helpers = new HelperPluginManager;
+        } else {
+            $helpers = new HelperPluginManager($serviceManager);
+        }
+
         $renderer->setHelperPluginManager($helpers);
 
         $doctype = $this->getMock('Zend\View\Helper\Doctype');

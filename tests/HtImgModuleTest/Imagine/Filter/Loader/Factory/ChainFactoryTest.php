@@ -9,11 +9,20 @@ class ChainFactoryTest extends \PHPUnit_Framework_Testcase
     public function testFactory()
     {
         $serviceManager = new ServiceManager;
-        $serviceManager->setService('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager', $this->getMock('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager'));
-        $loaders = $this->getMock('Zend\ServiceManager\AbstractPluginManager');
-        $loaders->expects($this->any())
-            ->method('getServiceLocator')
-           ->will($this->returnValue($serviceManager));
+        $serviceManager->setService(
+            'HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager',
+            $this->getMockBuilder('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager')->disableOriginalConstructor()->getMock()
+        );
+        $loaders = $this->getMockBuilder('Zend\ServiceManager\AbstractPluginManager')
+            ->disableOriginalConstructor()
+            ->getMock();
+        if (!method_exists($serviceManager, 'configure')) {
+            $loaders->expects($this->any())
+                ->method('getServiceLocator')
+               ->will($this->returnValue($serviceManager));
+        } else {
+            $loaders = $serviceManager;
+        }
         $factory = new ChainFactory();
         $loader = $factory->createService($loaders);
         $this->assertInstanceOf('HtImgModule\Imagine\Filter\Loader\Chain', $loader);

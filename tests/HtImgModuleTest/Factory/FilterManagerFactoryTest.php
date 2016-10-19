@@ -12,7 +12,12 @@ class FilterManagerFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $serviceManager = new ServiceManager();
         $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions);
-        $serviceManager->setService('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager', new FilterLoaderPluginManager);
+        if (!method_exists($serviceManager, 'configure')) {
+            $pluginManager = new FilterLoaderPluginManager;
+        } else {
+            $pluginManager = new FilterLoaderPluginManager($serviceManager);
+        }
+        $serviceManager->setService('HtImgModule\Imagine\Filter\Loader\FilterLoaderPluginManager', $pluginManager);
         $factory = new FilterManagerFactory();
         $this->assertInstanceOf('HtImgModule\Imagine\Filter\FilterManager', $factory->createService($serviceManager));
     }
