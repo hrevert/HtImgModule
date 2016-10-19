@@ -1,19 +1,44 @@
 <?php
 namespace HtImgModule\Imagine\Resolver\Factory;
 
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use HtImgModule\Imagine\Resolver\ImagePathStackResolver;
 
 class ImagePathStackResolverFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $resolvers)
+    /**
+     * Create an object
+     *
+     * @param  ContainerInterface $container
+     * @param  string             $requestedName
+     * @param  null|array         $options
+     *
+     * @return object
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $serviceLocator = $resolvers->getServiceLocator();
-        $options = $serviceLocator->get('HtImg\ModuleOptions');
+        // For v2, we need to pull the parent service locator
+        if (!method_exists($container, 'configure')) {
+            $container = $container->getServiceLocator() ?: $container;
+        }
+        $options = $container->get('HtImg\ModuleOptions');
 
         return new ImagePathStackResolver([
             'script_paths' => $options->getImgSourcePathStack()
         ]);
+    }
+
+    public function createService(ServiceLocatorInterface $resolvers)
+    {
+        return $this($resolvers, ImagePathStackResolver::class);
     }
 }

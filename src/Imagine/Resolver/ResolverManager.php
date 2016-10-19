@@ -1,35 +1,51 @@
 <?php
 namespace HtImgModule\Imagine\Resolver;
 
+use HtImgModule\Imagine\Resolver\Factory\ImageMapResolverFactory;
+use HtImgModule\Imagine\Resolver\Factory\ImagePathStackResolverFactory;
 use Zend\ServiceManager\AbstractPluginManager;
 use HtImgModule\Exception;
+use Zend\ServiceManager\Exception\InvalidServiceException;
 
 class ResolverManager extends AbstractPluginManager
 {
+    protected $instanceOf = ResolverInterface::class;
     /**
      * @var array
      */
-    protected $factories  = [
-        'imagemap' => 'HtImgModule\Imagine\Resolver\Factory\ImageMapResolverFactory',
-        'imagepathstack' => 'HtImgModule\Imagine\Resolver\Factory\ImagePathStackResolverFactory',
+    protected $aliases = [
+        'image_path_stack' => 'imagepathstack',
     ];
+
+    protected $factories  = [
+        'imagemap' => ImageMapResolverFactory::class,
+        'imagepathstack' => ImagePathStackResolverFactory::class,
+    ];
+
+    public function validate($instance)
+    {
+        if (! $instance instanceof $this->instanceOf) {
+            throw new InvalidServiceException(sprintf(
+                'Invalid plugin "%s" created; not an instance of %s',
+                get_class($instance),
+                $this->instanceOf
+            ));
+        }
+    }
 
     /**
      * Checks if $plugin is instance of ResolverInterface
      *
-     * @param  mixed                              $plugin
+     * @param  mixed $instance
      * @return void
      * @throws Exception\InvalidArgumentException
      */
-    public function validatePlugin($plugin)
+    public function validatePlugin($instance)
     {
-        if ($plugin instanceof ResolverInterface) {
-            return; // we're okay
+        try {
+            $this->validate($instance);
+        } catch (InvalidServiceException $e) {
+            throw new Exception\InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
         }
-
-        throw new Exception\InvalidArgumentException(sprintf(
-            'Plugin of type %s is invalid; must implement HtImgModule\Imagine\Resolver\ResolverInterface',
-            (is_object($plugin) ? get_class($plugin) : gettype($plugin))
-        ));
     }
 }

@@ -1,10 +1,14 @@
 <?php
 namespace HtImgModule;
 
+use HtImgModule\View\Helper\DisplayImage;
+use HtImgModule\View\Helper\Factory\ImgUrlFactory;
+use HtImgModule\View\Helper\ImgUrl;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 class Module implements
     AutoloaderProviderInterface,
@@ -64,14 +68,12 @@ class Module implements
     {
         return [
             'factories' => [
-                'HtImgModule\View\Helper\ImgUrl' => 'HtImgModule\View\Helper\Factory\ImgUrlFactory',
-            ],
-            'invokables' => [
-                'HtImgModule\View\Helper\DisplayImage' => 'HtImgModule\View\Helper\DisplayImage',
+                ImgUrl::class => ImgUrlFactory::class,
+                DisplayImage::class => InvokableFactory::class,
             ],
             'aliases' => [
-                'htDisplayImage' => 'HtImgModule\View\Helper\DisplayImage',
-                'htImgUrl' => 'HtImgModule\View\Helper\ImgUrl',
+                'htDisplayImage' => DisplayImage::class,
+                'htImgUrl' => ImgUrl::class,
             ]
         ];
     }
