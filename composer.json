@@ -22,7 +22,6 @@
         "zendframework/zend-servicemanager": "^2.7.6 || ^3.1",
         "zendframework/zend-modulemanager": "^2.6",
         "zendframework/zend-stdlib": "^2.7 || ^3.0",
-        "zendframework/zend-hydrator": "^1.1 || ^2.2",
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-eventmanager": "^2.7 || ^3.0",
         "imagine/Imagine": "0.6.*",
