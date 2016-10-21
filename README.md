@@ -7,7 +7,7 @@ HtImgModule
 [![Scrutinizer](https://scrutinizer-ci.com/g/hrevert/HtImgModule/badges/quality-score.png?s=c9bd5af136c2e580cf760d19f3ca72ae53bb8a02)](https://scrutinizer-ci.com/g/hrevert/HtImgModule/)
 [![Code Coverage](https://scrutinizer-ci.com/g/hrevert/HtImgModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/hrevert/HtImgModule/?branch=master)
 
-This module simplifies image manipulation for Zend Framework 2. This module integrates Zend Framework 2 with [Imagine](https://github.com/avalanche123/Imagine), the most amazing Image manipulation library for PHP.
+This module simplifies image manipulation for Zend Framework. This module integrates zf2/zf3 with [Imagine](https://github.com/avalanche123/Imagine), the most amazing Image manipulation library for PHP.
 
 ## Installation
 * Add `"hrevert/ht-img-module": "0.4.*"` to composer.json and run `php composer.phar update`
@@ -48,9 +48,6 @@ Whenever, you call a filter service like `my_thumbnail` from view template, the 
 
 ## Documentation
 The officially documentation is available in the [docs/](https://github.com/hrevert/HtImgModule/tree/master/docs) directory:
-
-##TODO
-- [ ] Support for Zend Framework 3
 
 ## Acknowledgements
 HtImgModule is inspired by [AvalancheImagineBundle](https://github.com/avalanche123/AvalancheImagineBundle) and [LiipImagineBundle](https://github.com/liip/LiipImagineBundle).
