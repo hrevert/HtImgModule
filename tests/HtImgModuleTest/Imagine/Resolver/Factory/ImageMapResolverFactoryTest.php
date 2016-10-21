@@ -12,10 +12,16 @@ class ImageMapResolverFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager;
         $serviceManager->setService('HtImg\ModuleOptions', new ModuleOptions);
         $factory = new ImageMapResolverFactory;
-        $resolvers = $this->getMock('HtImgModule\Imagine\Resolver\ResolverManager');
-        $resolvers->expects($this->once())
-            ->method('getServiceLocator')
-            ->will($this->returnValue($serviceManager));
+        $resolvers = $this->getMockBuilder('HtImgModule\Imagine\Resolver\ResolverManager')
+            ->disableOriginalConstructor()
+            ->getMock();
+        if (!method_exists($serviceManager, 'configure')) {
+            $resolvers->expects($this->once())
+                ->method('getServiceLocator')
+                ->will($this->returnValue($serviceManager));
+        } else {
+            $resolvers = $serviceManager;
+        }
         $this->assertInstanceOf('HtImgModule\Imagine\Resolver\ImageMapResolver', $factory->createService($resolvers));
     }
 }

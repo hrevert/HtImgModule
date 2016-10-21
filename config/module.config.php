@@ -1,4 +1,8 @@
 <?php
+
+namespace HtImgModule;
+use HtImgModule\View\Strategy\ImageStrategy;
+
 return [
     'htimg' => [
         'filters' => [ // Just one for quick and easy way
@@ -41,13 +45,16 @@ return [
         ]
     ],
     'controllers' => [
+        'aliases' => [
+            'htimg' => Controller\ImageController::class,
+        ],
         'factories' => [
-            'htimg' => 'HtImgModule\Controller\Factory\ImageControllerFactory'
+            Controller\ImageController::class => Controller\Factory\ImageControllerFactory::class
         ]
     ],
     'view_manager' => [
         'strategies' => [
-            'HtImgModule\View\Strategy\ImageStrategy',
+            ImageStrategy::class,
         ],
     ],
 ];

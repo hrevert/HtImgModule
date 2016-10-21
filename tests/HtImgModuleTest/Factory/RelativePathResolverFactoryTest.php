@@ -16,7 +16,9 @@ class RelativePathResolverFactoryTest extends \PHPUnit_Framework_TestCase
         $options = new ModuleOptions;
         $options->setImageResolvers([1000 => 'image_map']);
         $serviceManager->setService('HtImg\ModuleOptions', $options);
-        $resolverManager = $this->getMock('HtImgModule\Imagine\Resolver\ResolverManager');
+        $resolverManager = $this->getMockBuilder('HtImgModule\Imagine\Resolver\ResolverManager')
+            ->disableOriginalConstructor()
+            ->getMock();
         $resolverManager->expects($this->once())
             ->method('get')
             ->will($this->returnValue($this->getMock('Zend\View\Resolver\ResolverInterface')));
@@ -30,8 +32,12 @@ class RelativePathResolverFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $options = new ModuleOptions;
         $serviceManager->setService('HtImg\ModuleOptions', $options);
-        $resolverManager = new ResolverManager;
-        $resolverManager->setServiceLocator($serviceManager);
+        if (!method_exists($serviceManager, 'configure')) {
+            $resolverManager = new ResolverManager;
+            $resolverManager->setServiceLocator($serviceManager);
+        } else {
+            $resolverManager = new ResolverManager($serviceManager);
+        }
         $serviceManager->setService('HtImgModule\Imagine\Resolver\ResolverManager', $resolverManager);
         $factory = new RelativePathResolverFactory();
         $resolver = $factory->createService($serviceManager);

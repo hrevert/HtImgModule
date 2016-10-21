@@ -1,29 +1,42 @@
 <?php
 namespace HtImgModule\Imagine\Loader;
 
+use HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory;
+use HtImgModule\Factory\Imagine\Loader\SimpleFileSystemLoaderFactory;
 use Zend\ServiceManager\AbstractPluginManager;
 use HtImgModule\Exception;
+use Zend\ServiceManager\Exception\InvalidServiceException;
 
 class LoaderPluginManager extends AbstractPluginManager
 {
+    protected $instanceOf = LoaderInterface::class;
+
     protected $factories = [
-        'filesystem' => 'HtImgModule\Factory\Imagine\Loader\FileSystemLoaderFactory',
-        'simple'     => 'HtImgModule\Factory\Imagine\Loader\SimpleFileSystemLoaderFactory',
+        'filesystem' => FileSystemLoaderFactory::class,
+        'simple'     => SimpleFileSystemLoaderFactory::class,
     ];
 
     protected $shared = [
         'simple' => false
     ];
 
-    public function validatePlugin($plugin)
+    public function validate($instance)
     {
-        if ($plugin instanceof LoaderInterface) {
-            return; // we're okay
+        if (! $instance instanceof $this->instanceOf) {
+            throw new InvalidServiceException(sprintf(
+                'Invalid plugin "%s" created; not an instance of %s',
+                get_class($instance),
+                $this->instanceOf
+            ));
         }
+    }
 
-        throw new Exception\InvalidArgumentException(sprintf(
-            'Plugin of type %s is invalid; must implement HtImgModule\Imagine\Loader\LoaderInterface',
-            (is_object($plugin) ? get_class($plugin) : gettype($plugin))
-        ));
+    public function validatePlugin($instance)
+    {
+        try {
+            $this->validate($instance);
+        } catch (InvalidServiceException $e) {
+            throw new Exception\InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 }

@@ -4,6 +4,7 @@
     "type": "library",
     "keywords": [
         "zf2",
+        "zf3",
         "module",
         "zendframework"
     ],
@@ -16,30 +17,37 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
-        "zendframework/zend-mvc": "~2.2",
-        "zendframework/zend-servicemanager": "~2.2",
-        "zendframework/zend-modulemanager": "~2.2",
-        "zendframework/zend-stdlib": "~2.2",
-        "zendframework/zend-http": "~2.2",
-        "zendframework/zend-eventmanager": "~2.2",
+        "php": "^5.6 || ^7.0",
+        "zendframework/zend-mvc": "^2.7.10 || ^3.0",
+        "zendframework/zend-servicemanager": "^2.7.6 || ^3.1",
+        "zendframework/zend-modulemanager": "^2.6",
+        "zendframework/zend-stdlib": "^2.7 || ^3.0",
+        "zendframework/zend-http": "^2.5",
+        "zendframework/zend-eventmanager": "^2.7 || ^3.0",
         "imagine/Imagine": "0.6.*",
         "symfony/http-foundation": "~2.3"
     },
     "require-dev": {
         "ext-gd": "*",
-        "zendframework/zend-escaper": "~2.2",
-        "zendframework/zend-view": "~2.2",
-        "zendframework/zend-filter": "~2.2",
+        "zendframework/zend-escaper": "^2.2",
+        "zendframework/zend-view": "^2.7",
+        "zendframework/zend-filter": "^2.5",
         "league/flysystem": "0.4.*",
-        "knplabs/gaufrette":"0.1.*",
-        "phpunit/phpunit": "4.1.*",
+        "knplabs/gaufrette":"^0.1.9",
+        "phpunit/phpunit": "^4.1",
         "phine/test": "1.*"
     },
     "suggest": {
         "league/flysystem": "To use this library to load image",
         "knplabs/gaufrette": "To use this library to load image",
         "zendframework/zend-view": "To use some view helpers provided this module"
+    },
+    "extra": {
+        "zf": {
+            "module": [
+                "HtImgModule"
+            ]
+        }
     },
     "autoload": {
         "psr-4": {
