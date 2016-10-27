@@ -11,9 +11,14 @@ class FilterLoaderPluginManager extends AbstractPluginManager
     protected $instanceOf = LoaderInterface::class;
 
     protected $aliases  = [
+        'Crop' => Crop::class,
         'crop' => Crop::class,
+        'RelativeResize' => RelativeResize::class,
+        'relativeResize' => RelativeResize::class,
         'relativeresize' => RelativeResize::class,
+        'Resize' => Resize::class,
         'resize' => Resize::class,
+        'Thumbnail' => Thumbnail::class,
         'thumbnail' => Thumbnail::class,
     ];
 

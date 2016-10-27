@@ -15,6 +15,11 @@ class ResolverManager extends AbstractPluginManager
      */
     protected $aliases = [
         'image_path_stack' => 'imagepathstack',
+        'imagePathStack' => 'imagepathstack',
+        'ImagePathStack' => 'imagepathstack',
+        'image_map' => 'imagemap',
+        'imageMap' => 'imagemap',
+        'ImageMap' => 'imagemap',
     ];
 
     protected $factories  = [
