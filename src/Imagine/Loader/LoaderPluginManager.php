@@ -11,6 +11,11 @@ class LoaderPluginManager extends AbstractPluginManager
 {
     protected $instanceOf = LoaderInterface::class;
 
+    protected $aliases = [
+        'FileSystem' => 'filesystem',
+        'Simple' => 'simple',
+    ];
+
     protected $factories = [
         'filesystem' => FileSystemLoaderFactory::class,
         'simple'     => SimpleFileSystemLoaderFactory::class,

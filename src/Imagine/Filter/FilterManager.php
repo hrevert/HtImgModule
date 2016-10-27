@@ -27,8 +27,7 @@ class FilterManager implements FilterManagerInterface
     public function __construct(
         FilterOptionsInterface $filterOptions,
         ServiceLocatorInterface $filterLoaderPluginManager
-    )
-    {
+    ) {
         $this->filterOptions = $filterOptions;
         $this->filterLoaderPluginManager = $filterLoaderPluginManager;
     }
