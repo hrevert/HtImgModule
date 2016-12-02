@@ -29,7 +29,7 @@ class CacheManagerTest extends \PHPUnit_Framework_TestCase
         $options->setCachePath(RESOURCES_DIR);
         $options->setWebRoot('public_html');
         $this->assertEquals('public_html/'. RESOURCES_DIR . '/hello/world', $cacheManager->getCachePath('world', 'hello'));
-        $this->assertEquals(RESOURCES_DIR . '/hello/Archos.jpg.jpg', $cacheManager->getCacheUrl('Archos.jpg', 'hello', RESOURCES_DIR . '/Archos.jpg'));
+        $this->assertEquals(RESOURCES_DIR . '/hello/Archos.jpg', $cacheManager->getCacheUrl('Archos.png', 'hello', RESOURCES_DIR . '/Archos.jpg'));
     }
 
     /**

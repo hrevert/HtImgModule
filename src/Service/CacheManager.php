@@ -50,7 +50,12 @@ class CacheManager implements CacheManagerInterface
         if (!$format) {
              return $this->cacheOptions->getCachePath() . '/' . $filter . '/'. $relativeName;
         } else {
-            return $this->getCacheUrl($relativeName, $filter) . '.' . $format;
+            // the extension of orginal image and cached image are not always same
+            // so we strip orginal extension and add new extension for cached image
+            $url = $this->getCacheUrl($relativeName, $filter);
+            $pathInfo = pathinfo($url);
+
+            return  $pathInfo['dirname'] . '/' . $pathInfo['filename']  . '.' . $format;
         }
     }
 
