@@ -10,6 +10,8 @@ class LoaderPluginManagerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new LoaderPluginManager(new Config($serviceLocator->get('Config')['htimg']['loaders']));
+        $loaderPluginManager = new LoaderPluginManager(new Config($serviceLocator->get('Config')['htimg']['loaders']));
+        $loaderPluginManager->setServiceLocator($serviceLocator);
+        return $loaderPluginManager;
     }
 }
