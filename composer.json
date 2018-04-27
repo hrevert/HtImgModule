@@ -35,7 +35,7 @@
         "league/flysystem": "0.4.*",
         "knplabs/gaufrette":"^0.1.9",
         "phpunit/phpunit": "^5.7",
-        "doctrine/instantiator": "^1.0.5",
+        "doctrine/instantiator": "1.0.5",
         "phine/test": "1.*"
     },
     "suggest": {
