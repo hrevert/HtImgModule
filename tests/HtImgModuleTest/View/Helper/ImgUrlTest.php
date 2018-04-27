@@ -7,14 +7,14 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetNewImageNotFromCache()
     {
-        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
-        $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
-        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $cacheManager =  $this->createMock('HtImgModule\Service\CacheManagerInterface');
+        $binary = $this->createMock('HtImgModule\Binary\BinaryInterface');
+        $loaderManager = $this->createMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
         $loaderManager->expects($this->once())
             ->method('loadBinary')
             ->with('path/to/some/random/image/', 'foo_view_filter')
             ->will($this->returnValue($binary));
-        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $filterManager = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
         $filterManager->expects($this->once())
             ->method('getFilterOptions')
             ->with('foo_view_filter')
@@ -28,8 +28,8 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             $filterManager,
             $loaderManager
         );
-        $urlHelper = $this->getMock('Zend\View\Helper\Url');
-        $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
+        $urlHelper = $this->createMock('Zend\View\Helper\Url');
+        $renderer = $this->createMock('Zend\View\Renderer\PhpRenderer');
         $renderer->expects($this->once())
             ->method('plugin')
             ->with('url')
@@ -43,7 +43,7 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
 
     public function testGetImageFromCache()
     {
-        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
+        $cacheManager =  $this->createMock('HtImgModule\Service\CacheManagerInterface');
         $cacheManager->expects($this->once())
             ->method('cacheExists')
             ->with('path/to/some/random/image/', 'foo_view_filter', 'jpeg')
@@ -52,8 +52,8 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             ->method('getCacheUrl')
             ->with('path/to/some/random/image/', 'foo_view_filter', 'jpeg')
             ->will($this->returnValue('flowers.jpg'));
-        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
-        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $loaderManager = $this->createMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $filterManager = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
         $filterOptions = ['format' => 'jpeg'];
         $filterManager->expects($this->once())
             ->method('getFilterOptions')
@@ -68,7 +68,7 @@ class ImgUrlTest extends \PHPUnit_Framework_TestCase
             $filterManager,
             $loaderManager
         );
-        $renderer = $this->getMock('Zend\View\Renderer\PhpRenderer');
+        $renderer = $this->createMock('Zend\View\Renderer\PhpRenderer');
         $renderer->expects($this->once())
             ->method('plugin')
             ->with('basePath')

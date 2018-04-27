@@ -10,16 +10,16 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetImageFromCache()
     {
-        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
+        $cacheManager =  $this->createMock('HtImgModule\Service\CacheManagerInterface');
         $cacheManager->expects($this->once())
             ->method('cacheExists')
             ->will($this->returnValue(true));
         $cacheManager->expects($this->once())
             ->method('getCachePath')
             ->will($this->returnValue(RESOURCES_DIR.'/flowers.jpg'));
-        $imagine = $this->getMock('Imagine\Image\ImagineInterface');
-        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
-        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $imagine = $this->createMock('Imagine\Image\ImagineInterface');
+        $filterManager = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $loaderManager = $this->createMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
         $imageService = new ImageService(
             $cacheManager,
             $imagine,
@@ -30,7 +30,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
         $relativePath = 'path/to/image/flowers.jpg';
         $filterName = 'foo_filter';
 
-        $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
+        $binary = $this->createMock('HtImgModule\Binary\BinaryInterface');
         $loaderManager->expects($this->once())
             ->method('loadBinary')
             ->with($relativePath, $filterName)
@@ -48,7 +48,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             ->with('foo_filter', $filterOptions)
             ->will($this->returnValue(true));
 
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock('Imagine\Image\ImageInterface');
         $imagine->expects($this->once())
             ->method('open')
             ->with(RESOURCES_DIR.'/flowers.jpg')
@@ -64,10 +64,10 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetImageFromRelativePathAndCreateCache()
     {
-        $cacheManager =  $this->getMock('HtImgModule\Service\CacheManagerInterface');
-        $imagine = $this->getMock('Imagine\Image\ImagineInterface');
-        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
-        $loaderManager = $this->getMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
+        $cacheManager =  $this->createMock('HtImgModule\Service\CacheManagerInterface');
+        $imagine = $this->createMock('Imagine\Image\ImagineInterface');
+        $filterManager = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $loaderManager = $this->createMock('HtImgModule\Imagine\Loader\LoaderManagerInterface');
         $imageService = new ImageService(
             $cacheManager,
             $imagine,
@@ -86,7 +86,7 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             ->with($filterName)
             ->will($this->returnValue($filterOptions));
 
-        $binary = $this->getMock('HtImgModule\Binary\BinaryInterface');
+        $binary = $this->createMock('HtImgModule\Binary\BinaryInterface');
         $binary->expects($this->once())
             ->method('getContent')
             ->will($this->returnValue($binaryContent));
@@ -95,15 +95,15 @@ class ImageServiceTest extends \PHPUnit_Framework_TestCase
             ->with($relativePath, $filterName)
             ->will($this->returnValue($binary));
 
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock('Imagine\Image\ImageInterface');
 
         $imagine->expects($this->once())
             ->method('load')
             ->with($binaryContent)
             ->will($this->returnValue($image));
 
-        $filteredImage = $this->getMock('Imagine\Image\ImageInterface');
-        $filter = $this->getMock('Imagine\Filter\FilterInterface');
+        $filteredImage = $this->createMock('Imagine\Image\ImageInterface');
+        $filter = $this->createMock('Imagine\Filter\FilterInterface');
         $filter->expects($this->once())
             ->method('apply')
             ->with($image)

@@ -9,9 +9,9 @@ class LoaderManagerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testFactory()
     {
         $serviceManager     = new ServiceManager();
-        $filterManager      = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
-        $imageLoaders       = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $options            = $this->getMock('HtImgModule\Options\ModuleOptions');
+        $filterManager      = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $imageLoaders       = $this->createMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $options            = $this->createMock('HtImgModule\Options\ModuleOptions');
         $mimeTypeGuesser    = $this->getMockBuilder('HtImgModule\Binary\MimeTypeGuesser')
             ->disableOriginalConstructor()
             ->getMock();

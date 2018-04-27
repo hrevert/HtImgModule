@@ -68,7 +68,7 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
     {
         $options = new ModuleOptions;
         $filterLoaders = new ServiceManager;
-        $loader = $this->getMock('HtImgModule\Imagine\Filter\Loader\LoaderInterface');
+        $loader = $this->createMock('HtImgModule\Imagine\Filter\Loader\LoaderInterface');
         $loader->expects($this->any())
             ->method('load')
             ->will($this->returnValue('sample_loader'));
@@ -100,10 +100,10 @@ class FilterManagerTest extends \PHPUnit_Framework_TestCase
     {
         $options = new ModuleOptions;
         $filterLoaders = new ServiceManager;
-        $loader = $this->getMock('HtImgModule\Imagine\Filter\Loader\LoaderInterface');
-        $filter = $this->getMock('Imagine\Filter\FilterInterface');
-        $image = $this->getMock('Imagine\Image\ImageInterface');
-        $filteredImage = $this->getMock('Imagine\Image\ImageInterface');
+        $loader = $this->createMock('HtImgModule\Imagine\Filter\Loader\LoaderInterface');
+        $filter = $this->createMock('Imagine\Filter\FilterInterface');
+        $image = $this->createMock('Imagine\Image\ImageInterface');
+        $filteredImage = $this->createMock('Imagine\Image\ImageInterface');
         $loader->expects($this->any())
             ->method('load')
             ->will($this->returnValue($filter));

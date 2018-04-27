@@ -22,7 +22,7 @@ class PasteTest extends \PHPUnit_Framework_TestCase
    {
        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
        $imagine = new Imagine();
-       $archos = $this->getMock('Imagine\Image\ImageInterface');
+       $archos = $this->createMock('Imagine\Image\ImageInterface');
        $paste = new Paste($archos, 'asdf', 'asdf');
    }
 
@@ -30,7 +30,7 @@ class PasteTest extends \PHPUnit_Framework_TestCase
    {
        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
        $imagine = new Imagine();
-       $archos = $this->getMock('Imagine\Image\ImageInterface');
+       $archos = $this->createMock('Imagine\Image\ImageInterface');
        $paste = new Paste($archos, 546, 'asdf');
    }
 
@@ -48,7 +48,7 @@ class PasteTest extends \PHPUnit_Framework_TestCase
    public function testGetExceptionWIthNegativeCoordinate()
    {
        $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
-       $image = $this->getMock('Imagine\Image\ImageInterface');
+       $image = $this->createMock('Imagine\Image\ImageInterface');
        $paste = new Paste($image, -100, 'top');
    }
 }

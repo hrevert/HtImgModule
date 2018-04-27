@@ -29,7 +29,7 @@ class DisplayImageTest extends \PHPUnit_Framework_TestCase
 
         $renderer->setHelperPluginManager($helpers);
 
-        $doctype = $this->getMock('Zend\View\Helper\Doctype');
+        $doctype = $this->createMock('Zend\View\Helper\Doctype');
         $doctype->expects($this->once())
             ->method('isXhtml')
             ->will($this->returnValue(true));

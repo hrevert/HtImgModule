@@ -24,8 +24,8 @@
         "zendframework/zend-stdlib": "^2.7 || ^3.0",
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-eventmanager": "^2.7 || ^3.0",
-        "imagine/Imagine": "0.6.*",
-        "symfony/http-foundation": "~2.3"
+        "imagine/Imagine": "^0.7.1",
+        "symfony/http-foundation": "~3.4"
     },
     "require-dev": {
         "ext-gd": "*",
@@ -34,7 +34,8 @@
         "zendframework/zend-filter": "^2.5",
         "league/flysystem": "0.4.*",
         "knplabs/gaufrette":"^0.1.9",
-        "phpunit/phpunit": "^4.1",
+        "phpunit/phpunit": "^5.7",
+        "doctrine/instantiator": "1.0.5",
         "phine/test": "1.*"
     },
     "suggest": {

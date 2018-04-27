@@ -8,7 +8,7 @@ class WatermarkTest extends \PHPUnit_Framework_TestCase
     public function testLoad()
     {
         $imagine = new \Imagine\Gd\Imagine;
-        $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
+        $resolver = $this->createMock('Zend\View\Resolver\ResolverInterface');
         $resolver->expects($this->any())
             ->method('resolve')
             ->will($this->returnValue(RESOURCES_DIR . '/Archos.jpg'));

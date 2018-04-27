@@ -9,7 +9,7 @@ class LoaderPluginManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidatePlugin()
     {
-        $loader = $this->getMock('HtImgModule\Imagine\Loader\LoaderInterface');
+        $loader = $this->createMock('HtImgModule\Imagine\Loader\LoaderInterface');
         $loaders = new LoaderPluginManager(new ServiceManager());
         $this->assertEquals(null, $loaders->validatePlugin($loader));
     }

@@ -8,7 +8,7 @@ class FileSystemLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoad()
     {
-        $resolver = $this->getMock('HtImgModule\Imagine\Resolver\ResolverInterface');
+        $resolver = $this->createMock('HtImgModule\Imagine\Resolver\ResolverInterface');
         $resolver->expects($this->exactly(1))
             ->method('resolve')
             ->will($this->returnValue('a/d/g.png'));
@@ -30,7 +30,7 @@ class FileSystemLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testGetExceptionWhenResolverCannotResolve()
     {
-        $resolver = $this->getMock('HtImgModule\Imagine\Resolver\ResolverInterface');
+        $resolver = $this->createMock('HtImgModule\Imagine\Resolver\ResolverInterface');
         $resolver->expects($this->exactly(1))
             ->method('resolve')
             ->will($this->returnValue(false));

@@ -8,7 +8,7 @@ class FlysystemLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetExceptionWhenImageFileCouldNotBeFound()
     {
-        $filesystem = $this->getMock('League\Flysystem\FilesystemInterface');
+        $filesystem = $this->createMock('League\Flysystem\FilesystemInterface');
         $filesystem->expects($this->exactly(1))
             ->method('read')
             ->with('my/special/image')
@@ -21,7 +21,7 @@ class FlysystemLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadBinary()
     {
-        $filesystem = $this->getMock('League\Flysystem\FilesystemInterface');
+        $filesystem = $this->createMock('League\Flysystem\FilesystemInterface');
         $filesystem->expects($this->exactly(1))
             ->method('read')
             ->with('my/special/image')
@@ -39,7 +39,7 @@ class FlysystemLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadOnlyContentsWhenMimeTypeCouldNotDetected()
     {
-        $filesystem = $this->getMock('League\Flysystem\FilesystemInterface');
+        $filesystem = $this->createMock('League\Flysystem\FilesystemInterface');
         $filesystem->expects($this->exactly(1))
             ->method('read')
             ->with('my/special/image')
