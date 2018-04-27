@@ -11,7 +11,7 @@ class PasteFactoryTest extends \PHPUnit_Framework_Testcase
     {
         $serviceManager = new ServiceManager;
         $serviceManager->setService('HtImg\Imagine', new Imagine);
-        $serviceManager->setService('HtImg\RelativePathResolver', $this->getMock('Zend\View\Resolver\ResolverInterface'));
+        $serviceManager->setService('HtImg\RelativePathResolver', $this->createMock('Zend\View\Resolver\ResolverInterface'));
         $loaders = $this->getMockBuilder('Zend\ServiceManager\AbstractPluginManager')
             ->disableOriginalConstructor()
             ->getMock();

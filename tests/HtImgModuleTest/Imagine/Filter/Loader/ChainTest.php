@@ -10,10 +10,10 @@ class ChainTest extends \PHPUnit_Framework_TestCase
     public function testLoad()
     {
         $filterLoaders = new ServiceManager;
-        $filterLoader = $this->getMock('HtImgModule\Imagine\Filter\Loader\LoaderInterface');
+        $filterLoader = $this->createMock('HtImgModule\Imagine\Filter\Loader\LoaderInterface');
         $filterLoader->expects($this->any())
             ->method('load')
-            ->will($this->returnValue($this->getMock('Imagine\Filter\FilterInterface')));
+            ->will($this->returnValue($this->createMock('Imagine\Filter\FilterInterface')));
         $filterLoaders->setService('thumbnail', $filterLoader);
         $chainLoader = new  Chain($filterLoaders);
         $chainFilter = $chainLoader->load(['filters' => ['thumbnail' => ['options' => []]]]);

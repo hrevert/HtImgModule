@@ -11,7 +11,7 @@ class ImageRendererTest extends \PHPUnit_Framework_TestCase
     {
         $imageOutputOptions = ['quality' => 93];
 
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock('Imagine\Image\ImageInterface');
         $image->expects($this->exactly(1))
             ->method('get', $imageOutputOptions)
             ->with('png')
@@ -39,6 +39,6 @@ class ImageRendererTest extends \PHPUnit_Framework_TestCase
     public function testSetResolver()
     {
         $renderer = new ImageRenderer();
-        $this->assertEquals($renderer, $renderer->setResolver($this->getMock('Zend\View\Resolver\ResolverInterface')));
+        $this->assertEquals($renderer, $renderer->setResolver($this->createMock('Zend\View\Resolver\ResolverInterface')));
     }
 }

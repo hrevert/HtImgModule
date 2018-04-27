@@ -7,9 +7,9 @@ class LoaderManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetExceptionWhenImageLoaderCannotLoadImage()
     {
-        $imageLoaders  = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
-        $imageLoader = $this->getMock('HtImgModule\Imagine\Loader\LoaderInterface');
+        $imageLoaders  = $this->createMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $filterManager = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $imageLoader = $this->createMock('HtImgModule\Imagine\Loader\LoaderInterface');
         $mimeTypeGuesser = $this->getMockBuilder('HtImgModule\Binary\MimeTypeGuesser')
             ->disableOriginalConstructor()
             ->getMock();
@@ -38,9 +38,9 @@ class LoaderManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadBinary($imageLoaderName, $filterOptions)
     {
-        $imageLoaders  = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $filterManager = $this->getMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
-        $imageLoader = $this->getMock('HtImgModule\Imagine\Loader\LoaderInterface');
+        $imageLoaders  = $this->createMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $filterManager = $this->createMock('HtImgModule\Imagine\Filter\FilterManagerInterface');
+        $imageLoader = $this->createMock('HtImgModule\Imagine\Loader\LoaderInterface');
         $mimeTypeGuesser = $this->getMockBuilder('HtImgModule\Binary\MimeTypeGuesser')
             ->disableOriginalConstructor()
             ->getMock();

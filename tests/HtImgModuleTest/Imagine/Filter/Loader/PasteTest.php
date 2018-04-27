@@ -9,7 +9,7 @@ class PasteTest extends \PHPUnit_Framework_TestCase
     public function testLoad()
     {
         $imagine = new \Imagine\Gd\Imagine;
-        $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
+        $resolver = $this->createMock('Zend\View\Resolver\ResolverInterface');
         $resolver->expects($this->any())
             ->method('resolve')
             ->will($this->returnValue(RESOURCES_DIR . '/Archos.jpg'));
@@ -20,16 +20,16 @@ class PasteTest extends \PHPUnit_Framework_TestCase
 
     public function testGetExceptionWithoutImageOptions()
     {
-        $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
-        $loader = new Paste($this->getMock('Imagine\Image\ImagineInterface'), $resolver);
+        $resolver = $this->createMock('Zend\View\Resolver\ResolverInterface');
+        $loader = new Paste($this->createMock('Imagine\Image\ImagineInterface'), $resolver);
         $this->setExpectedException('HtImgModule\Exception\InvalidArgumentException');
         $loader->load([]);
     }
 
     public function testGetExceptionWhenImageCannotBeResolved()
     {
-        $resolver = $this->getMock('Zend\View\Resolver\ResolverInterface');
-        $loader = new Paste($this->getMock('Imagine\Image\ImagineInterface'), $resolver);
+        $resolver = $this->createMock('Zend\View\Resolver\ResolverInterface');
+        $loader = new Paste($this->createMock('Imagine\Image\ImagineInterface'), $resolver);
         $this->setExpectedException('HtImgModule\Exception\RuntimeException');
         $loader->load(['image' => 'asdf.png']);
     }

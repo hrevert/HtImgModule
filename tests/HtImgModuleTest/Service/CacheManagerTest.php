@@ -79,7 +79,7 @@ class CacheManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testCachingEnabledChecking()
     {
-        $options = $this->getMock('HtImgModule\Options\CacheOptionsInterface');
+        $options = $this->createMock('HtImgModule\Options\CacheOptionsInterface');
         $cacheManager = new CacheManager($options);
 
         $this->assertTrue($cacheManager->isCachingEnabled('abcd', ['enable_cache' => true]));

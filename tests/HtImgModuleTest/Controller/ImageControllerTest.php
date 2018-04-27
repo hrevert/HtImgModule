@@ -12,20 +12,20 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
 {
     public function testGet404WhenImageIsNotFound()
     {
-        $imageService = $this->getMock('HtImgModule\Service\ImageServiceInterface');
+        $imageService = $this->createMock('HtImgModule\Service\ImageServiceInterface');
 
         $controller = new ImageController($imageService);
 
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
-        $container = $this->getMock(ServiceLocatorInterface::class);
+        $container = $this->createMock(ServiceLocatorInterface::class);
         if (!method_exists(PluginManager::class, 'configure')) {
             $pluginManager = new PluginManager();
         } else {
             $pluginManager = new PluginManager($container);
         }
         $controller->setPluginManager($pluginManager);
-        $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
+        $paramsPlugin = $this->createMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
 
         $paramsPlugin->expects($this->exactly(1))
@@ -48,21 +48,21 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testGet404WhenFilterIsNotFound()
     {
-        $imageService = $this->getMock('HtImgModule\Service\ImageServiceInterface');
+        $imageService = $this->createMock('HtImgModule\Service\ImageServiceInterface');
 
         $controller = new ImageController($imageService);
 
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $container = $this->getMock(ServiceLocatorInterface::class);
+        $container = $this->createMock(ServiceLocatorInterface::class);
         if (!method_exists(PluginManager::class, 'configure')) {
             $pluginManager = new PluginManager();
         } else {
             $pluginManager = new PluginManager($container);
         }
         $controller->setPluginManager($pluginManager);
-        $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
+        $paramsPlugin = $this->createMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
 
         $paramsPlugin->expects($this->exactly(1))
@@ -85,21 +85,21 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testDisplayImage()
     {
-        $imageService = $this->getMock('HtImgModule\Service\ImageServiceInterface');
+        $imageService = $this->createMock('HtImgModule\Service\ImageServiceInterface');
 
         $controller = new ImageController($imageService);
 
         $relativePath = 'relative/path/of/image';
         $filter = 'awesome_filter';
 
-        $container = $this->getMock(ServiceLocatorInterface::class);
+        $container = $this->createMock(ServiceLocatorInterface::class);
         if (!method_exists(PluginManager::class, 'configure')) {
             $pluginManager = new PluginManager();
         } else {
             $pluginManager = new PluginManager($container);
         }
         $controller->setPluginManager($pluginManager);
-        $paramsPlugin = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
+        $paramsPlugin = $this->createMock('Zend\Mvc\Controller\Plugin\Params');
         $pluginManager->setService('params', $paramsPlugin);
 
         $paramsPlugin->expects($this->exactly(1))
@@ -112,7 +112,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
             ->with('filter', null)
             ->will($this->returnValue($filter));
 
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock('Imagine\Image\ImageInterface');
         $format = 'gif';
         $imageData = ['image' => $image, 'format' => $format, 'imageOutputOptions' => ['quality' => 57]];
 
@@ -139,7 +139,7 @@ class ImageControllerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $event->setRouteMatch($routeMatch);
-        $response = $this->getMock('Zend\Http\Response');
+        $response = $this->createMock('Zend\Http\Response');
         $response->expects($this->once())
             ->method('setStatusCode')
             ->with(404);
