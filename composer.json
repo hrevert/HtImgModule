@@ -25,7 +25,7 @@
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-eventmanager": "^2.7 || ^3.0",
         "imagine/Imagine": "^0.7.1",
-        "symfony/http-foundation": "~3.4"
+        "symfony/http-foundation": "~3.4|^4.0|^5.0"
     },
     "require-dev": {
         "ext-gd": "*",
