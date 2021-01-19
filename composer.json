@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^5.6 || ^7.0 || ~8.0",
         "zendframework/zend-mvc": "^2.7.10 || ^3.0",
         "zendframework/zend-servicemanager": "^2.7.6 || ^3.1",
         "zendframework/zend-modulemanager": "^2.6",
@@ -25,7 +25,7 @@
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-eventmanager": "^2.7 || ^3.0",
         "imagine/Imagine": "^0.7.1",
-        "symfony/http-foundation": "~3.4"
+        "symfony/http-foundation": "~3.4|^4.0|^5.0"
     },
     "require-dev": {
         "ext-gd": "*",
